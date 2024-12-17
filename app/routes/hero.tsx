@@ -7,12 +7,12 @@ import { Suspense } from "react";
 
 export function Hero() {
   return (
-    <section className="pt-32 md:pt-40 pb-20">
+    <section className="pt-32  md:pt-50 pb-20">
       <motion.p
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-5 text-[#64FFDA] text-shadow"
+        className="mt-20 mb-5 text-[#64FFDA] text-shadow"
       >
         Portfolio personale
       </motion.p>
