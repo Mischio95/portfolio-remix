@@ -21,6 +21,12 @@ body {
   transition: transform 0.15s ease-out; /* Movimento fluido */
 }
 
+.animated-element {
+  opacity: 0;
+  transform: translateY(50px); /* Default per far partire lo spostamento */
+}
+
+
 @keyframes dash {
   to {
     stroke-dashoffset: 0;

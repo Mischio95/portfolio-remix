@@ -41,7 +41,7 @@ export default function Index() {
           <RegisterAnimations />
           <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 2xl:px-32 relative z-20 pt-8">
             <Hero />
-            <section id="skills" className="py-12 animated-element">
+            <section id="skills" className="py-12">
               <Skills />
             </section>
             <section id="about" className="py-12 mb-12 animated-element">

@@ -125,20 +125,22 @@ export function RegisterAnimations() {
         gsap.utils.toArray(".animated-element").forEach((element: any) => {
           gsap.fromTo(
             element,
+            // {
+            //   opacity: 0, // Parte con opacità 0
+            //   y: 50, // Parte spostato verso il basso
+            // },
+            { opacity: 0, y: 20 },
             {
-              opacity: 0, // Parte con opacità 0
-              y: 50, // Parte spostato verso il basso
-            },
-            {
-              opacity: 1, // Arriva a opacità 1
-              y: 0, // Torna alla posizione originale
-              duration: 1, // Durata dell'animazione
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+
               scrollTrigger: {
                 trigger: element, // L'elemento che attiva il trigger
-                start: "top 85%", // Inizia quando l'elemento è al 85% della viewport
-                end: "bottom 15%", //
+                start: "top 90%", // Modifica il valore per far partire prima l'animazione
+                end: "bottom 30%",
                 scrub: 0.5, // Rende l'animazione legata allo scroll (più fluida)
-                markers: false, // Rimuove i marker di debug
+                markers: true, // Rimuove i marker di debug
               },
             }
           );
