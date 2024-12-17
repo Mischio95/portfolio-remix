@@ -89,9 +89,9 @@ export default function Index() {
                     professionalmente in questo settore affascinante e dinamico.
                   </p>
                 </div>
-                <div className="max-w-3xl p-10 mx-auto ">
+                <div className="max-w-xl p-10 mx-auto ">
                   <img
-                    src="./public/memoji-about-me.png"
+                    src="https://micheletrombone.it/memoji-about-me.png"
                     alt="Michele Trombone"
                     className="rounded-3xl shadow-lg neon-green-shadow"
                   />
