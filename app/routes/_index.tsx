@@ -19,7 +19,7 @@ import { Preloader } from "./preloader";
 import Footer from "./footer";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Michele Trombone" }];
+  return [{ title: "Michele Trombone Portfolio" }];
 };
 
 export default function Index() {
