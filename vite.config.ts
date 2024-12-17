@@ -58,29 +58,10 @@ export default defineConfig({
     },
   },
 
-  // Configurazioni per il server di sviluppo
-  server: {
-    port: 5173, // Porta del server di sviluppo
-    open: true, // Apri automaticamente il browser
-    strictPort: true, // Esci se la porta è occupata
-  },
-
-  // Configurazioni per la build di produzione
-  build: {
-    outDir: "dist", // Directory di output
-    sourcemap: true, // Abilita la mappa del codice sorgente per debugging
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ["react", "react-dom"], // Divisione dei pacchetti principali
-        },
-      },
-    },
-  },
-
   // Ottimizzazioni per dipendenze
   optimizeDeps: {
     include: ["react", "react-dom"], // Dipendenze da pre-bundlare
     exclude: ["@remix-run/dev"], // Evita di pre-bundlare Remix
   },
+  
 });

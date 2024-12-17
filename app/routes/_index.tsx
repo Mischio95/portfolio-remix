@@ -10,8 +10,6 @@ import { Typewriter } from "react-simple-typewriter";
 import Button from "~/components/button";
 import AnimatedButton from "~/components/AnimatedButton";
 import Button3D from "~/components/Button3D";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 import { registerAnimations } from "~/components/registerAnimations";
 import { Link } from "react-router-dom";
