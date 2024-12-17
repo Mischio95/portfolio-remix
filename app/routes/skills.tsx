@@ -1,13 +1,9 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "~/components/animatedsection";
-import { registerAnimations } from "~/components/registerAnimations";
+import { RegisterAnimations } from "~/components/RegisterAnimations";
 import { useEffect } from "react";
 
 export function Skills() {
-  useEffect(() => {
-    registerAnimations();
-  }, []);
-
   const technicalSkills = [
     { name: "React", icon: "/icons/react.svg" },
     { name: "Remix", icon: "/icons/remi.svg" },

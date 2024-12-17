@@ -11,7 +11,7 @@ import Button from "~/components/button";
 import AnimatedButton from "~/components/AnimatedButton";
 import Button3D from "~/components/Button3D";
 import { useEffect } from "react";
-import { registerAnimations } from "~/components/registerAnimations";
+import { RegisterAnimations } from "~/components/RegisterAnimations";
 import { Link } from "react-router-dom";
 import { Skills } from "./skills";
 import { Hero } from "./hero";
@@ -23,10 +23,6 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  useEffect(() => {
-    registerAnimations();
-  }, []);
-
   const [loading, setLoading] = useState(true);
 
   const handleFinishLoading = () => {
@@ -42,12 +38,13 @@ export default function Index() {
           <SocialSidebar />
           <EmailSidebar />
           <BubbleEffect />
+          <RegisterAnimations />
           <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 2xl:px-32 relative z-20 pt-8">
             <Hero />
-            <section id="skills" className="py-7 animated-element">
+            <section id="skills" className="py-12 animated-element">
               <Skills />
             </section>
-            <section id="about" className="py-7 animated-element">
+            <section id="about" className="py-12 mb-12 animated-element">
               <h2 className="text-3xl font-bold text-slate-100 mb-8">
                 <span className="text-[#64FFDA]">02. </span>
                 <span className="pb-20 text-slate-100"> UN PO' DI ME</span>
@@ -101,7 +98,7 @@ export default function Index() {
                 </div>
               </div>
             </section>
-            <section id="experience" className="py-7 animated-element">
+            <section id="experience" className="py-12 mb-12 animated-element">
               <h2 className="text-3xl font-bold text-slate-100 mb-8">
                 <span className="text-[#64FFDA]">03. </span>
                 <span className="pb-20 text-slate-100">
@@ -177,7 +174,7 @@ export default function Index() {
               </div>
             </section>
 
-            <section id="work" className="py-7 animated-element">
+            <section id="work" className="py-12 mb-12 animated-element">
               <h2 className="text-3xl font-bold text-slate-100 mb-8">
                 <span className="text-[#64FFDA]">04. </span>
                 <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
@@ -325,7 +322,7 @@ export default function Index() {
               </div>
             </section>
 
-            <section id="contact" className="py-7 mt-[120px] mb-[100px]">
+            <section id="contact" className="py-12 mt-[120px] mb-[100px]">
               <h2 className="text-3xl font-bold text-slate-100 mb-8 text-center">
                 Resta in contatto!
               </h2>
@@ -342,7 +339,7 @@ export default function Index() {
                 </Button3D>
               </div>
             </section>
-            <section id="footer" className="py-7">
+            <section id="footer" className="py-12">
               <Footer />
             </section>
           </div>
