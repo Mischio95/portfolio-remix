@@ -140,7 +140,7 @@ export function RegisterAnimations() {
                 start: "top 90%", // Modifica il valore per far partire prima l'animazione
                 end: "bottom 30%",
                 scrub: 0.5, // Rende l'animazione legata allo scroll (più fluida)
-                markers: true, // Rimuove i marker di debug
+                markers: false, // Rimuove i marker di debug
               },
             }
           );
