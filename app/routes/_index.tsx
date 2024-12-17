@@ -89,11 +89,11 @@ export default function Index() {
                     professionalmente in questo settore affascinante e dinamico.
                   </p>
                 </div>
-                <div className="max-w-fit p-10 mx-auto">
+                <div className="max-w-3xl p-10 mx-auto ">
                   <img
-                    src="http://micheletrombone.netsons.org/wp-content/uploads/2024/07/image-3.png"
+                    src="./public/memoji-about-me.png"
                     alt="Michele Trombone"
-                    className="rounded-3xl shadow-lg"
+                    className="rounded-3xl shadow-lg neon-green-shadow"
                   />
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function Index() {
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-20">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       HACKATHON - MOBILE GAME DEVELOPMENT (BITDROME - MKERS){" "}
                     </h3>
@@ -217,7 +217,7 @@ export default function Index() {
                 </AnimatedSection>
 
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-20">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       Destiny's Altered Order - APPLE DEVELOPER ACADEMY
                     </h3>
@@ -252,7 +252,7 @@ export default function Index() {
                 </AnimatedSection>
 
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-20">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       P-01 - Dark of Phos - APPLE DEVELOPER ACADEMY
                     </h3>
@@ -285,8 +285,9 @@ export default function Index() {
                     </a>
                   </div>
                 </AnimatedSection>
+
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-20">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       APPLE DEVELOPER WWDC23 - FALLINGNOTE
                     </h3>

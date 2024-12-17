@@ -10,6 +10,9 @@ body {
     color-scheme: dark;
   }
 }
+.neon-green-shadow {
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
+}
 
 .bubble {
   width: 400px; /* Dimensione della bolla */
