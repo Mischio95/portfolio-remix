@@ -14,8 +14,16 @@ export default function Footer() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-lg mb-4">
-            Grazie per aver visitato il mio portfolio!
+          <p className="text-2xl mb-4">
+            <Typewriter
+              words={["Grazie per aver visitato il mio portfolio!"]}
+              loop
+              cursor
+              cursorStyle="|"
+              typeSpeed={60}
+              // deleteSpeed={50}
+              delaySpeed={4500}
+            />
           </p>
           <p className="text-sm">
             © {new Date().getFullYear()} Michele Trombone. Tutti i diritti
