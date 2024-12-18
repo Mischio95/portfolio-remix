@@ -12,8 +12,7 @@ export function Preloader({ onFinish }: { onFinish: () => void }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[#10172a] z-50">
       <svg
-        width="150"
-        height="150"
+        className="w-32 h-32"
         viewBox="0 0 120 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
