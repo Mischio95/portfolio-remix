@@ -60,7 +60,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.nav
-          className="fixed inset-0 bg-[#0a192f] z-50 flex flex-col items-center justify-center"
+          className="fixed inset-0 bg-[#10172a] z-50 flex flex-col items-center justify-center"
           initial="hidden"
           animate="visible"
           exit="exit"
