@@ -175,13 +175,13 @@ export default function Index() {
               </div>
             </section>
 
-            <section id="work" className="py-12 mb-12 animated-element">
+            <section id="work" className="py-12 animated-element">
               <h2 className="text-3xl font-bold text-slate-100 mb-8">
                 <span className="text-[#64FFDA]">04. </span>
                 <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
                 <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
                 <AnimatedSection>
                   <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
@@ -195,17 +195,17 @@ export default function Index() {
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
                     <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         C#
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         PlasticSCM
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Unity
                       </span>
                     </div>
-                    <a
+                    {/* <a
                       href="https://github.com/Mischio95/EloHell/"
                       className="text-[#64FFDA] relative group"
                     >
@@ -213,7 +213,13 @@ export default function Index() {
                         Link GitHub!
                         <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
                       </span>
-                    </a>
+                    </a> */}
+                    <div className="w-full text-center pt-2">
+                      {" "}
+                      <Button3D href="https://github.com/Mischio95/EloHell/">
+                        Link Github!
+                      </Button3D>
+                    </div>
                   </div>
                 </AnimatedSection>
 
@@ -230,17 +236,17 @@ export default function Index() {
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
                     <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         C#
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         PlasticSCM
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Unity
                       </span>
                     </div>
-                    <a
+                    {/* <a
                       href="https://github.com/Mischio95/DAO"
                       className="text-[#64FFDA] relative group"
                     >
@@ -248,7 +254,13 @@ export default function Index() {
                         Link GitHub!
                         <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
                       </span>
-                    </a>
+                    </a> */}
+                    <div className="w-full text-center pt-2">
+                      {" "}
+                      <Button3D href="https://github.com/Mischio95/EloHell/">
+                        Link Github!
+                      </Button3D>
+                    </div>
                   </div>
                 </AnimatedSection>
 
@@ -262,20 +274,20 @@ export default function Index() {
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
                     <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Xcode
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Swift
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         SpriteKit
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Git
                       </span>
                     </div>
-                    <a
+                    {/* <a
                       href="https://github.com/Mischio95/MC3-P-01"
                       className="text-[#64FFDA] relative group"
                     >
@@ -283,7 +295,13 @@ export default function Index() {
                         Link GitHub!
                         <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
                       </span>
-                    </a>
+                    </a> */}
+                    <div className="w-full text-center pt-2">
+                      {" "}
+                      <Button3D href="https://github.com/Mischio95/EloHell/">
+                        Link Github!
+                      </Button3D>
+                    </div>
                   </div>
                 </AnimatedSection>
 
@@ -297,20 +315,20 @@ export default function Index() {
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
                     <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Playgrounds
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Swift
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         SpriteKit
                       </span>
-                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Git
                       </span>
                     </div>
-                    <a
+                    {/* <a
                       href="https://github.com/Mischio95/MC3-P-01"
                       className="text-[#64FFDA] relative group"
                     >
@@ -318,30 +336,19 @@ export default function Index() {
                         Link GitHub!
                         <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
                       </span>
-                    </a>
+                    </a> */}
+                    <div className="w-full text-center pt-2">
+                      {" "}
+                      <Button3D href="https://github.com/Mischio95/EloHell/">
+                        Link Github!
+                      </Button3D>
+                    </div>
                   </div>
                 </AnimatedSection>
               </div>
             </section>
 
-            <section id="contact" className="py-12 mt-[120px] mb-[100px]">
-              <h2 className="text-3xl font-bold text-slate-100 mb-8 text-center">
-                Resta in contatto!
-              </h2>
-              <p className="text-slate-400 text-center mb-8 max-w-200 mx-auto">
-                Se ti è piaciuto ciò che hai visto nel mio portfolio o se hai
-                domande, progetti o collaborazioni in mente, non esitare a
-                metterti in contatto con me! Sono sempre aperto a nuove
-                opportunità e conversazioni. Inviami una mail, e risponderò al
-                più presto.
-              </p>
-              <div className="text-center">
-                <Button3D href="mailto:michele.trombone@example.com">
-                  Inviami un messaggio!
-                </Button3D>
-              </div>
-            </section>
-            <section id="footer" className="py-12">
+            <section id="footer" className="py-2">
               <Footer />
             </section>
           </div>
