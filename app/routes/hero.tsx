@@ -8,7 +8,7 @@ import AnimatedText from "~/components/AnimatedText";
 
 export function Hero() {
   return (
-    <section className="md:pt-36 pb-20">
+    <section className="pt-36 md:pt-36 pb-20 sm:mt-18">
       <motion.p
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -23,7 +23,10 @@ export function Hero() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="mb-0 text-5xl font-bold text-slate-100 md:text-7xl text-shadow"
       >
-        <AnimatedText testo="Michele Trombone." />
+        <AnimatedText
+          testo="Michele Trombone."
+          className="text-4xl md:text-5xl lg:text-7xl"
+        />
       </motion.h1>
       <motion.div
         initial={{ opacity: 0, y: 30 }}

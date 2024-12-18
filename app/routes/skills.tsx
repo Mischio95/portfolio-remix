@@ -36,7 +36,7 @@ export function Skills() {
         <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
       </h2>
 
-      <div className="space-y-12">
+      <div className="space-y-8 sm:space-y-12">
         <AnimatedSection>
           <div className="bg-[#10172A] p-8 rounded-lg">
             <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">

@@ -51,9 +51,9 @@ export default function Index() {
                 <span className="pb-20 text-slate-100"> UN PO' DI ME</span>
                 <div className="h-[1px] bg-slate-600 w-full mt-4"></div>{" "}
               </h2>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-8 text-center md:text-left">
                 <div>
-                  <p className="text-slate-400 mb-4">
+                  <p className="text-slate-400 mb-4 ">
                     Ciao! Sono Michele Trombone, uno sviluppatore appassionato
                     di tecnologia e programmazione, con un interesse particolare
                     per il mondo dei videogiochi e tutto ciò che lo circonda. Mi
@@ -175,13 +175,16 @@ export default function Index() {
               </div>
             </section>
 
-            <section id="work" className="py-12 mb-12 animated-element">
+            <section
+              id="work"
+              className="py-12 mb-12 grid grid-cols-1 animated-element"
+            >
               <h2 className="text-3xl font-bold text-slate-100 mb-8">
                 <span className="text-[#64FFDA]">04. </span>
                 <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
                 <div className="h-[1px] bg-slate-600 w-full mt-4"></div>{" "}
               </h2>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2  gap-8">
                 <AnimatedSection>
                   <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">

@@ -2,9 +2,10 @@ import React from "react";
 
 interface AnimatedTextProps {
   testo: string;
+  className?: string;
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({ testo }) => {
+const AnimatedText: React.FC<AnimatedTextProps> = ({ testo, className }) => {
   return (
     <div
       style={{
@@ -14,7 +15,8 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ testo }) => {
         justifyContent: "flex-start",
         alignItems: "center",
         margin: "0",
-        overflow: "hidden", // Aggiungi questa linea per nascondere eventuali overflow
+        padding: "0",
+        overflow: "hidden",
       }}
     >
       <svg
@@ -27,34 +29,24 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ testo }) => {
         {/* Testo con riempimento animato */}
         <text
           x="0"
+          y="50%"
+          dominantBaseline="middle"
           textAnchor="start"
-          y="60%"
           fill="url(#pattern)"
           fontFamily="inter"
           fontSize="10vh"
+          className={className}
         >
           {testo}
         </text>
         <defs>
-          <radialGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0">
-            <stop offset="0%" style={{ stopColor: "#64FFDAff" }} />
-            <stop offset="50%" style={{ stopColor: "#53D1B3ff" }} />
-            <stop offset="100%" style={{ stopColor: "#42A38Cff" }} />
-          </radialGradient>
-          {/* <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0">
-            <stop offset="0%" style={{ stopColor: "#33235b" }} />
-            <stop offset="25%" style={{ stopColor: "#D62229" }} />
-            <stop offset="50%" style={{ stopColor: "#E97639" }} />
-            <stop offset="75%" style={{ stopColor: "#792042" }} />
-            <stop offset="100%" style={{ stopColor: "#33235b" }} />
-          </linearGradient>  //color arcobaleno */}
-          {/* <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0">
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0">
             <stop offset="0%" style={{ stopColor: "#64ffda" }} />
             <stop offset="25%" style={{ stopColor: "#57e6c0" }} />
             <stop offset="50%" style={{ stopColor: "#80ffd4" }} />
             <stop offset="75%" style={{ stopColor: "#aaffde" }} />
             <stop offset="100%" style={{ stopColor: "#64ffda" }} />
-          </linearGradient> */}
+          </linearGradient>
           <pattern
             id="pattern"
             x="0"
