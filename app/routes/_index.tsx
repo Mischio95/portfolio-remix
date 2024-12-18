@@ -175,18 +175,15 @@ export default function Index() {
               </div>
             </section>
 
-            <section
-              id="work"
-              className="py-12 mb-12 grid grid-cols-1 animated-element"
-            >
+            <section id="work" className="py-12 mb-12 animated-element">
               <h2 className="text-3xl font-bold text-slate-100 mb-8">
                 <span className="text-[#64FFDA]">04. </span>
                 <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
-                <div className="h-[1px] bg-slate-600 w-full mt-4"></div>{" "}
+                <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
               </h2>
-              <div className="grid md:grid-cols-2  gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       HACKATHON - MOBILE GAME DEVELOPMENT (BITDROME - MKERS){" "}
                     </h3>
@@ -197,15 +194,15 @@ export default function Index() {
                       Sviluppo di una demo di un Mobile Game con Unity.
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                    <div className="flex gap-2 mb-4">
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                    <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         C#
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         PlasticSCM
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
-                        Unity Engine
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                        Unity
                       </span>
                     </div>
                     <a
@@ -221,7 +218,7 @@ export default function Index() {
                 </AnimatedSection>
 
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       Destiny's Altered Order - APPLE DEVELOPER ACADEMY
                     </h3>
@@ -232,15 +229,15 @@ export default function Index() {
                       Gioco di ruolo 2D per mobile sviluppato con Unity.
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                    <div className="flex gap-2 mb-4">
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                    <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         C#
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         PlasticSCM
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
-                        Unity Engine
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
+                        Unity
                       </span>
                     </div>
                     <a
@@ -256,7 +253,7 @@ export default function Index() {
                 </AnimatedSection>
 
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       P-01 - Dark of Phos - APPLE DEVELOPER ACADEMY
                     </h3>
@@ -264,17 +261,17 @@ export default function Index() {
                       Platform Game 2D mobile a scorrimento laterale.
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                    <div className="flex gap-2 mb-4">
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                    <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Xcode
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Swift
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         SpriteKit
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Git
                       </span>
                     </div>
@@ -291,7 +288,7 @@ export default function Index() {
                 </AnimatedSection>
 
                 <AnimatedSection>
-                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50">
+                  <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
                     <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
                       APPLE DEVELOPER WWDC23 - FALLINGNOTE
                     </h3>
@@ -299,17 +296,17 @@ export default function Index() {
                       Gioco Arcade per Swift Playground, iPadOS and iOS.
                     </p>
                     <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                    <div className="flex gap-2 mb-4">
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                    <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Playgrounds
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Swift
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         SpriteKit
                       </span>
-                      <span className="border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm">
+                      <span className="w-24 border border-[#64FFDA] border-opacity-20 text-slate-300 px-2 py-1 rounded text-sm text-center">
                         Git
                       </span>
                     </div>
