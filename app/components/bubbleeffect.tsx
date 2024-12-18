@@ -59,8 +59,8 @@ export function BubbleEffect() {
     <div
       className="bubble fixed top-0 left-0 pointer-events-none z-50"
       style={{
-        transform: `translate(${mousePosition.x - 200}px, ${
-          mousePosition.y - 200
+        transform: `translate(${mousePosition.x - 120}px, ${
+          mousePosition.y - 120
         }px)`,
       }}
     ></div>

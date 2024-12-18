@@ -14,14 +14,22 @@ body {
   box-shadow: 0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
 }
 
+.neon-green-shadow-text {
+  text-shadow: 0 0 5px rgba(100, 255, 218, 0.5), 0 0 10px rgba(100, 255, 218, 0.3), 0 0 15px rgba(100, 255, 218, 0.2);
+}
+
 .bubble {
-  width: 400px; /* Dimensione della bolla */
-  height: 400px;
+  width: 250px; /* Dimensione della bolla */
+  height: 250px;
   border-radius: 50%; /* Forma circolare */
-  background: rgba(255, 255, 255, 0.05); /* Colore bianco con trasparenza */
-  filter: blur(70px); /* Effetto sfocatura */
-  -webkit-filter: blur(70px); /* Per supportare WebKit */
+  background: rgba(255, 255, 255, 0.03); /* Colore bianco con trasparenza */
+  filter: blur(40px); /* Effetto sfocatura ridotto */
+  -webkit-filter: blur(40px); /* Per supportare WebKit */
   transition: transform 0.15s ease-out; /* Movimento fluido */
+  will-change: transform, filter;
+  transform: translateZ(0); /* Forza accelerazione GPU */
+
+
 }
 
 .animated-element {

@@ -100,7 +100,7 @@ export function Nav() {
           </motion.svg>
         </Link>
         <nav className="hidden md:block">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-8 text-base">
             {menuItems.map((item, index) => (
               <motion.li
                 key={item.label}
@@ -111,9 +111,11 @@ export function Nav() {
                 <a
                   href={item.href}
                   onClick={(e) => handleClick(e, item.href)}
-                  className="group flex items-center gap-1 text-sm text-slate-300 transition-colors hover:text-[#64FFDA]"
+                  className="group flex items-center gap-1 text-base text-slate-300 transition-colors hover:text-[#64FFDA]"
                 >
-                  <span className="text-[#64FFDA]">{item.number}</span>
+                  <span className="text-[#64FFDA] text-base">
+                    {item.number}
+                  </span>
                   {item.label}
                 </a>
               </motion.li>
@@ -123,7 +125,13 @@ export function Nav() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: menuItems.length * 0.1 }}
             >
-              <Button3D>Scarica il CV!</Button3D>
+              <section className="text-sm">
+                <div>
+                  <Button3D href="https://micheletrombone.it/MicheleTromboneCV.pdf">
+                    Scarica il CV!
+                  </Button3D>
+                </div>
+              </section>
             </motion.li>
           </ul>
         </nav>

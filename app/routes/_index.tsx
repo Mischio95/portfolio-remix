@@ -17,6 +17,7 @@ import { Skills } from "./skills";
 import { Hero } from "./hero";
 import { Preloader } from "./preloader";
 import Footer from "./footer";
+import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
@@ -37,7 +38,7 @@ export default function Index() {
           <Nav />
           <SocialSidebar />
           <EmailSidebar />
-          <BubbleEffect />
+          <BubbleEffectCanvas />
           <RegisterAnimations />
           <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 2xl:px-32 relative z-20 pt-8">
             <Hero />

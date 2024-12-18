@@ -4,6 +4,7 @@ import Button3D from "~/components/Button3D";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
+import AnimatedText from "~/components/AnimatedText";
 
 export function Hero() {
   return (
@@ -12,17 +13,17 @@ export function Hero() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="mt-20 mb-5 text-[#64FFDA] text-shadow"
+        className="mt-20 mb-5 text-[#fff]"
       >
-        Portfolio personale
+        <span className="text-base">Portfolio personale</span>
       </motion.p>
       <motion.h1
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="mb-4 text-5xl font-bold text-slate-100 md:text-7xl text-shadow"
+        className="mb-0 text-5xl font-bold text-slate-100 md:text-7xl text-shadow"
       >
-        Michele Trombone.
+        <AnimatedText testo="Michele Trombone." />
       </motion.h1>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
