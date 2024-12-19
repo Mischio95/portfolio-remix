@@ -12,6 +12,7 @@ export function RegisterAnimations() {
           ScrollTriggerModule.ScrollTrigger || ScrollTriggerModule.default;
 
         gsap.registerPlugin(ScrollTrigger);
+        const mm = gsap.matchMedia();
 
         // Animazione di fade-in con opacità
         ScrollTrigger.batch(".fade-in", {
@@ -123,8 +124,6 @@ export function RegisterAnimations() {
         });
 
         gsap.utils.toArray(".animated-element").forEach((element: any) => {
-          const mm = gsap.matchMedia();
-
           // Animazioni per desktop
           mm.add("(min-width: 768px)", () => {
             gsap.fromTo(
