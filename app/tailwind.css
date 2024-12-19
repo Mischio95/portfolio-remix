@@ -5,17 +5,24 @@
 html,
 body {
   @apply bg-[#10172a];
-
+  height: 100%;
+  margin: 0;
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
 }
+
+.wrapper {
+  height: 100%;
+}
 .neon-green-shadow {
-  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5),
+    0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
 }
 
 .neon-green-shadow-text {
-  text-shadow: 0 0 5px rgba(100, 255, 218, 0.5), 0 0 10px rgba(100, 255, 218, 0.3), 0 0 15px rgba(100, 255, 218, 0.2);
+  text-shadow: 0 0 5px rgba(100, 255, 218, 0.5),
+    0 0 10px rgba(100, 255, 218, 0.3), 0 0 15px rgba(100, 255, 218, 0.2);
 }
 
 .bubble {
@@ -28,15 +35,12 @@ body {
   transition: transform 0.15s ease-out; /* Movimento fluido */
   will-change: transform, filter;
   transform: translateZ(0); /* Forza accelerazione GPU */
-
-
 }
 
 .animated-element {
   opacity: 0;
   transform: translateY(50px); /* Default per far partire lo spostamento */
 }
-
 
 @keyframes dash {
   to {
