@@ -20,28 +20,28 @@ export default function WheelGame() {
 
   const data = [
     {
-      option: "Choice 1",
-      style: { backgroundColor: "#FF5733", textColor: "#FFFFFF" },
+      option: "SecretSanta 1",
+      style: { backgroundColor: "#10172A", textColor: "#FFFFFF" },
     },
     {
-      option: "Choice 2",
-      style: { backgroundColor: "#33FF57", textColor: "#000000" },
+      option: "SecretSanta 2",
+      style: { backgroundColor: "#64ffda", textColor: "#000000" },
     },
     {
-      option: "Choice 3",
-      style: { backgroundColor: "#3357FF", textColor: "#FFFFFF" },
+      option: "SecretSanta 3",
+      style: { backgroundColor: "#10172A", textColor: "#FFFFFF" },
     },
     {
-      option: "Choice 4",
-      style: { backgroundColor: "#FF33A1", textColor: "#000000" },
+      option: "SecretSanta 4",
+      style: { backgroundColor: "#64ffda", textColor: "#000000" },
     },
     {
-      option: "Choice 5",
-      style: { backgroundColor: "#A133FF", textColor: "#FFFFFF" },
+      option: "SecretSanta 5",
+      style: { backgroundColor: "#10172A", textColor: "#FFFFFF" },
     },
     {
-      option: "Choice 6",
-      style: { backgroundColor: "#33FFA1", textColor: "#000000" },
+      option: "SecretSanta 6",
+      style: { backgroundColor: "#64ffda", textColor: "#000000" },
     },
   ];
 
@@ -68,7 +68,12 @@ export default function WheelGame() {
         innerBorderWidth={5} // Larghezza del bordo interno
         radiusLineColor={"#64ffda"} // Colore delle linee del raggio
         radiusLineWidth={1} // Larghezza delle linee del
+        pointerProps={{
+          src: "/kapponenostalgico.png", // Percorso dell'immagine personalizzata
+          style: { width: "120px", height: "90px" },
+        }}
       />
+
       <Button3D onClick={handleSpinClick}>Gira la ruota!</Button3D>
 
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
