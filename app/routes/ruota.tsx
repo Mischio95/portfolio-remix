@@ -57,7 +57,11 @@ export default function WheelGame() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <audio ref={audioRef} src="/public/canzone.mp4" loop />
+      <audio
+        ref={audioRef}
+        src="https://www.micheletrombone.it/canzone.mp4"
+        loop
+      />
       <Wheel
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
