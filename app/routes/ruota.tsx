@@ -7,6 +7,7 @@ import {
   DialogTitle,
 } from "~/components/ui/dialog";
 import Button3D from "~/components/Button3D";
+import Button3Druota from "~/components/Button3Druota";
 // Importa il componente Wheel dinamicamente per evitare l'errore lato server
 const Wheel = dynamic(
   () => import("react-custom-roulette").then((mod) => mod.Wheel),
@@ -26,7 +27,7 @@ export default function WheelGame() {
     },
     {
       option: "Regalo 2",
-      style: { backgroundColor: "#64ffda", textColor: "#000000" },
+      style: { backgroundColor: "#ebe5d4", textColor: "#000000" },
     },
     {
       option: "Regalo 3",
@@ -34,7 +35,7 @@ export default function WheelGame() {
     },
     {
       option: "Regalo 4",
-      style: { backgroundColor: "#64ffda", textColor: "#000000" },
+      style: { backgroundColor: "#ebe5d4", textColor: "#000000" },
     },
     {
       option: "Regalo 5",
@@ -42,7 +43,7 @@ export default function WheelGame() {
     },
     {
       option: "Regalo 6",
-      style: { backgroundColor: "#64ffda", textColor: "#000000" },
+      style: { backgroundColor: "#ebe5d4", textColor: "#000000" },
     },
   ];
 
@@ -77,7 +78,7 @@ export default function WheelGame() {
         loop
       />
       <section className="text-center pb-8">
-        <h1 className="text-4xl font-bold animate-zoom text-white">
+        <h1 className="text-4xl font-bold animate-zoom text-[#ebe5d4]">
           Ahhh... la nostalgia!
         </h1>
       </section>
@@ -93,11 +94,11 @@ export default function WheelGame() {
           }
         }}
         outerBorderWidth={3} // Cambia il perimetro della ruota
-        outerBorderColor={"#64ffda"} // Colore del bordo esterno
+        outerBorderColor={"#ebe5d4"} // Colore del bordo esterno
         innerRadius={5} // Raggio interno della ruota
-        innerBorderColor={"#64ffda"} // Colore del bordo interno
+        innerBorderColor={"#ebe5d4"} // Colore del bordo interno
         innerBorderWidth={5} // Larghezza del bordo interno
-        radiusLineColor={"#64ffda"} // Colore delle linee del raggio
+        radiusLineColor={"#ebe5d4"} // Colore delle linee del raggio
         radiusLineWidth={1} // Larghezza delle linee del raggio
         pointerProps={{
           src: "https://www.micheletrombone.it/sticker.webp", // Percorso dell'immagine personalizzata
@@ -105,13 +106,13 @@ export default function WheelGame() {
         }}
       />
       <div className="pt-5">
-        <Button3D onClick={handleSpinClick}>Gira la ruota!</Button3D>
+        <Button3Druota onClick={handleSpinClick}>Gira la ruota!</Button3Druota>
       </div>
 
       <Dialog open={showDialog} onOpenChange={handleDialogOpenChange}>
-        <DialogContent className="border-2 border-[#64ffda] bg-[#10172A] text-white">
+        <DialogContent className="border-2 border-[#ebe5d4] bg-[#10172A] text-[#ebe5d4]">
           <DialogHeader>
-            <DialogTitle className="text-center font-bold uppercase">
+            <DialogTitle className="text-center font-bold uppercase text-3xl">
               Risultato estrazione:
             </DialogTitle>
           </DialogHeader>
@@ -120,11 +121,15 @@ export default function WheelGame() {
               <img
                 src="https://www.micheletrombone.it/coupon-calcetto.png"
                 alt="Prize"
-                className="mx-auto border-2 border-[#64ffda] neon-green-shadow"
+                className="mx-auto border border-[#ebe5d4] rounded-lg"
               />
             </div>
-            <p className="my-4">Hai vinto: La mossa del "calcetto"</p>
-            <Button3D onClick={handleDownloadImage}>Scarica il coupon</Button3D>
+            <p className="my-4 text-[#E61B23] font-bold text-2xl">
+              Hai vinto: La mossa del "calcetto"
+            </p>
+            <Button3Druota onClick={handleDownloadImage}>
+              Scarica il coupon
+            </Button3Druota>
           </div>
         </DialogContent>
       </Dialog>
