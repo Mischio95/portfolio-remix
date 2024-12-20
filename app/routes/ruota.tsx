@@ -21,27 +21,27 @@ export default function WheelGame() {
 
   const data = [
     {
-      option: "SecretSanta 1",
+      option: "Regalo 1",
       style: { backgroundColor: "#10172A", textColor: "#FFFFFF" },
     },
     {
-      option: "SecretSanta 2",
+      option: "Regalo 2",
       style: { backgroundColor: "#64ffda", textColor: "#000000" },
     },
     {
-      option: "SecretSanta 3",
+      option: "Regalo 3",
       style: { backgroundColor: "#10172A", textColor: "#FFFFFF" },
     },
     {
-      option: "SecretSanta 4",
+      option: "Regalo 4",
       style: { backgroundColor: "#64ffda", textColor: "#000000" },
     },
     {
-      option: "SecretSanta 5",
+      option: "Regalo 5",
       style: { backgroundColor: "#10172A", textColor: "#FFFFFF" },
     },
     {
-      option: "SecretSanta 6",
+      option: "Regalo 6",
       style: { backgroundColor: "#64ffda", textColor: "#000000" },
     },
   ];
