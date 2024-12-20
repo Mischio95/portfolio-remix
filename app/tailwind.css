@@ -11,6 +11,18 @@ body {
     color-scheme: dark;
   }
 }
+@keyframes zoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-zoom {
+  animation: zoom 2s infinite;
+}
 
 .wrapper {
   height: 100%;

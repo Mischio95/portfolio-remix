@@ -76,6 +76,11 @@ export default function WheelGame() {
         src="https://www.micheletrombone.it/nostalgia.mp3"
         loop
       />
+      <section className="text-center pb-8">
+        <h1 className="text-4xl font-bold animate-zoom ">
+          Ahhh... la nostalgia!
+        </h1>
+      </section>
       <Wheel
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
@@ -119,7 +124,7 @@ export default function WheelGame() {
               />
             </div>
             <p className="my-4">Hai vinto: La mossa del "calcetto"</p>
-            <Button3D onClick={handleDownloadImage}>Scarica Immagine</Button3D>
+            <Button3D onClick={handleDownloadImage}>Scarica il coupon</Button3D>
           </div>
         </DialogContent>
       </Dialog>
