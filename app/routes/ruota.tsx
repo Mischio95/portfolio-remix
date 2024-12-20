@@ -59,7 +59,7 @@ export default function WheelGame() {
     <div className="flex flex-col items-center justify-center h-screen">
       <audio
         ref={audioRef}
-        src="https://www.micheletrombone.it/canzone.mp4"
+        src="https://www.micheletrombone.it/nostalgia.mp3"
         loop
       />
       <Wheel
@@ -91,7 +91,9 @@ export default function WheelGame() {
           <DialogHeader>
             <DialogTitle>Risultato</DialogTitle>
           </DialogHeader>
+          <img src="/public/coupone.png" alt="coupone" className="mx-auto" />
           <p>Hai vinto: {data[prizeNumber].option}</p>
+          <Button3D> Scarica il Coupon </Button3D>
         </DialogContent>
       </Dialog>
     </div>
