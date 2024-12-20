@@ -91,7 +91,11 @@ export default function WheelGame() {
           <DialogHeader>
             <DialogTitle>Risultato</DialogTitle>
           </DialogHeader>
-          <img src="/public/coupone.png" alt="coupone" className="mx-auto" />
+          <img
+            src="https://www.micheletrombone.it/coupone.png"
+            alt="coupone"
+            className="mx-auto"
+          />
           <p>Hai vinto: {data[prizeNumber].option}</p>
           <Button3D> Scarica il Coupon </Button3D>
         </DialogContent>
