@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import {
   Dialog,
@@ -17,6 +17,7 @@ export default function WheelGame() {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [showDialog, setShowDialog] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const data = [
     {
@@ -49,11 +50,14 @@ export default function WheelGame() {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <audio src="https://www.micheletrombone.it/canzone.mp4" autoPlay loop />
+      <audio ref={audioRef} src="/public/canzone.mp4" loop />
       <Wheel
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
@@ -68,7 +72,7 @@ export default function WheelGame() {
         innerBorderColor={"#64ffda"} // Colore del bordo interno
         innerBorderWidth={5} // Larghezza del bordo interno
         radiusLineColor={"#64ffda"} // Colore delle linee del raggio
-        radiusLineWidth={1} // Larghezza delle linee del
+        radiusLineWidth={1} // Larghezza delle linee del raggio
         pointerProps={{
           src: "https://www.micheletrombone.it/kapponenostalgico.png", // Percorso dell'immagine personalizzata
           style: { width: "80px", height: "65px" },
