@@ -19,7 +19,18 @@ body {
   box-shadow: 0 0 10px rgba(100, 255, 218, 0.5),
     0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
 }
+@media (max-width: 768px) {
+  .gTLZXx {
+    right: -20px !important;
+    top: 230px !important;
+  }
+}
 
+@media (min-width: 768px) {
+  .gTLZXx {
+    top: 330px !important;
+  }
+}
 .neon-green-shadow-text {
   text-shadow: 0 0 5px rgba(100, 255, 218, 0.5),
     0 0 10px rgba(100, 255, 218, 0.3), 0 0 15px rgba(100, 255, 218, 0.2);

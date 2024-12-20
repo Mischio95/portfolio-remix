@@ -29,6 +29,9 @@ interface Button3DProps {
 }
 
 const Button3D: React.FC<Button3DProps> = ({ href, onClick, children }) => {
+  const commonClasses =
+    "relative inline-block px-8 py-3 font-semibold text-[#64FFDA] bg-[#10172A] border border-[#64FFDA] rounded-lg transition-all duration-300 group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] group-hover:bg-[#10172A] group-hover:text-[#64FFDA]";
+
   return (
     <div className="relative inline-block group">
       {/* Rettangolo verde che appare quando il bottone si sposta */}
@@ -41,13 +44,15 @@ const Button3D: React.FC<Button3DProps> = ({ href, onClick, children }) => {
       />
 
       {/* Il bottone */}
-      <a
-        href={href}
-        onClick={onClick}
-        className="relative inline-block px-8 py-3 font-semibold text-[#64FFDA] bg-[#10172A] border border-[#64FFDA] rounded-lg transition-all duration-300 group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] group-hover:bg-[#10172A] group-hover:text-[#64FFDA]"
-      >
-        <span className="relative z-10">{children}</span>
-      </a>
+      {href ? (
+        <a href={href} className={commonClasses}>
+          <span className="relative z-10">{children}</span>
+        </a>
+      ) : (
+        <button onClick={onClick} className={commonClasses}>
+          <span className="relative z-10">{children}</span>
+        </button>
+      )}
     </div>
   );
 };

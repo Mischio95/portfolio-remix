@@ -55,6 +55,20 @@ export default function WheelGame() {
     }
   };
 
+  const handleDialogOpenChange = (isOpen: boolean) => {
+    setShowDialog(isOpen);
+    if (audioRef.current && isOpen) {
+      audioRef.current.pause();
+    }
+  };
+
+  const handleDownloadImage = () => {
+    const link = document.createElement("a");
+    link.href = "https://www.micheletrombone.it/coupon-calcetto.png"; // Percorso dell'immagine da scaricare
+    link.download = "coupon-calcetto.png";
+    link.click();
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <audio
@@ -69,6 +83,9 @@ export default function WheelGame() {
         onStopSpinning={() => {
           setMustSpin(false);
           setShowDialog(true);
+          if (audioRef.current) {
+            audioRef.current.pause();
+          }
         }}
         outerBorderWidth={5} // Cambia il perimetro della ruota
         outerBorderColor={"#64ffda"} // Colore del bordo esterno
@@ -78,26 +95,32 @@ export default function WheelGame() {
         radiusLineColor={"#64ffda"} // Colore delle linee del raggio
         radiusLineWidth={1} // Larghezza delle linee del raggio
         pointerProps={{
-          src: "https://www.micheletrombone.it/kapponenostalgico.png", // Percorso dell'immagine personalizzata
-          style: { width: "80px", height: "65px" },
+          src: "https://www.micheletrombone.it/sticker.webp", // Percorso dell'immagine personalizzata
+          style: { width: "100px", height: "100px" },
         }}
       />
       <div className="pt-5">
         <Button3D onClick={handleSpinClick}>Gira la ruota!</Button3D>
       </div>
 
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      <Dialog open={showDialog} onOpenChange={handleDialogOpenChange}>
         <DialogContent className="border-2 border-[#64ffda] bg-[#10172A] text-white">
           <DialogHeader>
-            <DialogTitle>Risultato</DialogTitle>
+            <DialogTitle className="text-center font-bold uppercase">
+              Risultato estrazione:
+            </DialogTitle>
           </DialogHeader>
-          <img
-            src="https://www.micheletrombone.it/coupone.png"
-            alt="coupone"
-            className="mx-auto"
-          />
-          <p>Hai vinto: {data[prizeNumber].option}</p>
-          <Button3D> Scarica il Coupon </Button3D>
+          <div className="text-center">
+            <div className="my-4">
+              <img
+                src="https://www.micheletrombone.it/coupon-calcetto.png"
+                alt="Prize"
+                className="mx-auto border-2 border-[#64ffda] neon-green-shadow"
+              />
+            </div>
+            <p className="my-4">Hai vinto: La mossa del "calcetto"</p>
+            <Button3D onClick={handleDownloadImage}>Scarica Immagine</Button3D>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
