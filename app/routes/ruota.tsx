@@ -53,6 +53,7 @@ export default function WheelGame() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
+      <audio src="https://www.micheletrombone.it/canzone.mp4" autoPlay loop />
       <Wheel
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
@@ -70,11 +71,12 @@ export default function WheelGame() {
         radiusLineWidth={1} // Larghezza delle linee del
         pointerProps={{
           src: "https://www.micheletrombone.it/kapponenostalgico.png", // Percorso dell'immagine personalizzata
-          style: { width: "120px", height: "90px" },
+          style: { width: "80px", height: "65px" },
         }}
       />
-
-      <Button3D onClick={handleSpinClick}>Gira la ruota!</Button3D>
+      <div className="pt-5">
+        <Button3D onClick={handleSpinClick}>Gira la ruota!</Button3D>
+      </div>
 
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent className="border-2 border-[#64ffda] bg-[#10172A] text-white">
