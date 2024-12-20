@@ -69,7 +69,7 @@ export default function WheelGame() {
         radiusLineColor={"#64ffda"} // Colore delle linee del raggio
         radiusLineWidth={1} // Larghezza delle linee del
         pointerProps={{
-          src: "/kapponenostalgico.png", // Percorso dell'immagine personalizzata
+          src: "https://www.micheletrombone.it/kapponenostalgico.png", // Percorso dell'immagine personalizzata
           style: { width: "120px", height: "90px" },
         }}
       />
