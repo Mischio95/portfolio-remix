@@ -44,6 +44,8 @@ const projects: Project[] = [
 ];
 
 export default function ScrollSliderProject() {
+  gsap.registerPlugin(ScrollTrigger);
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
