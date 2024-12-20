@@ -11,7 +11,7 @@ import Button from "~/components/button";
 import AnimatedButton from "~/components/AnimatedButton";
 import Button3D from "~/components/Button3D";
 import { useEffect } from "react";
-import { RegisterAnimations } from "~/components/RegisterAnimations";
+import { RegisterAnimations } from "~/components/registerAnimations";
 import { Link } from "react-router-dom";
 import { Skills } from "./skills";
 import { Hero } from "./hero";
@@ -19,6 +19,7 @@ import { Preloader } from "./preloader";
 import Footer from "./footer";
 import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
 import { div } from "framer-motion/client";
+import ScrollSliderProject from "~/components/ScrollSliderProject";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
@@ -184,172 +185,9 @@ export default function Index() {
                   <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
                   <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-                  <AnimatedSection>
-                    <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
-                      <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
-                        HACKATHON - MOBILE GAME DEVELOPMENT (BITDROME - MKERS){" "}
-                      </h3>
-                      <p className="text-slate-400 mb-4">
-                        Elo Hell | 20 Ottobre - 10 Novembre 2023.
-                      </p>
-                      <p className="text-slate-400 mb-4">
-                        Sviluppo di una demo di un Mobile Game con Unity.
-                      </p>
-                      <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          C#
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          PlasticSCM
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Unity
-                        </span>
-                      </div>
-                      {/* <a
-                      href="https://github.com/Mischio95/EloHell/"
-                      className="text-[#64FFDA] relative group"
-                    >
-                      <span className="relative inline-block">
-                        Link GitHub!
-                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                      </span>
-                    </a> */}
-                      <div className="w-full text-center pt-2">
-                        {" "}
-                        <Button3D href="https://github.com/Mischio95/EloHell/">
-                          Link Github!
-                        </Button3D>
-                      </div>
-                    </div>
-                  </AnimatedSection>
-
-                  <AnimatedSection>
-                    <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
-                      <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
-                        Destiny's Altered Order - APPLE DEVELOPER ACADEMY
-                      </h3>
-                      <p className="text-slate-400 mb-4">
-                        Challenge fine anno accademico
-                      </p>
-                      <p className="text-slate-400 mb-4">
-                        Gioco di ruolo 2D per mobile sviluppato con Unity.
-                      </p>
-                      <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          C#
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          PlasticSCM
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Unity
-                        </span>
-                      </div>
-                      {/* <a
-                      href="https://github.com/Mischio95/DAO"
-                      className="text-[#64FFDA] relative group"
-                    >
-                      <span className="relative inline-block">
-                        Link GitHub!
-                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                      </span>
-                    </a> */}
-                      <div className="w-full text-center pt-2">
-                        {" "}
-                        <Button3D href="https://github.com/Mischio95/EloHell/">
-                          Link Github!
-                        </Button3D>
-                      </div>
-                    </div>
-                  </AnimatedSection>
-
-                  <AnimatedSection>
-                    <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
-                      <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
-                        P-01 - Dark of Phos - APPLE DEVELOPER ACADEMY
-                      </h3>
-                      <p className="text-slate-400 mb-4">
-                        Platform Game 2D mobile a scorrimento laterale.
-                      </p>
-                      <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Xcode
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Swift
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          SpriteKit
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Git
-                        </span>
-                      </div>
-                      {/* <a
-                      href="https://github.com/Mischio95/MC3-P-01"
-                      className="text-[#64FFDA] relative group"
-                    >
-                      <span className="relative inline-block">
-                        Link GitHub!
-                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                      </span>
-                    </a> */}
-                      <div className="w-full text-center pt-2">
-                        {" "}
-                        <Button3D href="https://github.com/Mischio95/EloHell/">
-                          Link Github!
-                        </Button3D>
-                      </div>
-                    </div>
-                  </AnimatedSection>
-
-                  <AnimatedSection>
-                    <div className="bg-[#10172A] p-8 rounded-lg border border-[#64FFDA] border-opacity-50 mx-auto">
-                      <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
-                        APPLE DEVELOPER WWDC23 - FALLINGNOTE
-                      </h3>
-                      <p className="text-slate-400 mb-4">
-                        Gioco Arcade per Swift Playground, iPadOS and iOS.
-                      </p>
-                      <p className="text-slate-400 mb-4">TECNOLOGIE:</p>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Playgrounds
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Swift
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          SpriteKit
-                        </span>
-                        <span className="w-24 border border-[#64FFDA] border-opacity-50 text-slate-300 px-2 py-1 rounded text-sm text-center">
-                          Git
-                        </span>
-                      </div>
-                      {/* <a
-                      href="https://github.com/Mischio95/MC3-P-01"
-                      className="text-[#64FFDA] relative group"
-                    >
-                      <span className="relative inline-block">
-                        Link GitHub!
-                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#64FFDA] transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                      </span>
-                    </a> */}
-                      <div className="w-full text-center pt-2">
-                        {" "}
-                        <Button3D href="https://github.com/Mischio95/EloHell/">
-                          Link Github!
-                        </Button3D>
-                      </div>
-                    </div>
-                  </AnimatedSection>
-                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"></div>
               </section>
+              <ScrollSliderProject />
 
               <section id="footer" className="py-2">
                 <Footer />
