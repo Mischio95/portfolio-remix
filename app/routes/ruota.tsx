@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogClose,
 } from "~/components/ui/dialog";
 import Button3D from "~/components/Button3D";
 // Importa il componente Wheel dinamicamente per evitare l'errore lato server
@@ -71,7 +70,7 @@ export default function WheelGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
       <audio
         ref={audioRef}
         src="https://www.micheletrombone.it/nostalgia.mp3"
@@ -93,7 +92,7 @@ export default function WheelGame() {
             audioRef.current.pause();
           }
         }}
-        outerBorderWidth={5} // Cambia il perimetro della ruota
+        outerBorderWidth={3} // Cambia il perimetro della ruota
         outerBorderColor={"#64ffda"} // Colore del bordo esterno
         innerRadius={5} // Raggio interno della ruota
         innerBorderColor={"#64ffda"} // Colore del bordo interno
@@ -115,22 +114,6 @@ export default function WheelGame() {
             <DialogTitle className="text-center font-bold uppercase">
               Risultato estrazione:
             </DialogTitle>
-            <DialogClose className="absolute top-2 right-2 text-white hover:text-[#64ffda]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </DialogClose>
           </DialogHeader>
           <div className="text-center">
             <div className="my-4">
