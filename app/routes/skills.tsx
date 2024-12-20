@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "~/components/animatedsection";
-import { RegisterAnimations } from "~/components/RegisterAnimations";
+import { RegisterAnimations } from "~/components/registerAnimations";
 import { useEffect } from "react";
 
 export function Skills() {
