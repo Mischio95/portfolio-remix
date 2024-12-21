@@ -5,9 +5,11 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "~/components/ui/dialog";
 import Button3D from "~/components/Button3D";
 import Button3Druota from "~/components/Button3Druota";
+
 // Importa il componente Wheel dinamicamente per evitare l'errore lato server
 const Wheel = dynamic(
   () => import("react-custom-roulette").then((mod) => mod.Wheel),
@@ -77,12 +79,12 @@ export default function WheelGame() {
         src="https://www.micheletrombone.it/nostalgia.mp3"
         loop
       />
-      <section className="text-center pb-8">
+      <section className="text-center pb-8 mt-0">
         <h1 className="text-2xl font-bold animate-zoom text-[#ebe5d4]">
           <span>
             Sei nostalgico?
             <br />
-            Per te la ruota della nostalgia!
+            Gira la ruota della nostalgia!
           </span>
         </h1>
       </section>
@@ -114,23 +116,37 @@ export default function WheelGame() {
       </div>
 
       <Dialog open={showDialog} onOpenChange={handleDialogOpenChange}>
-        <DialogContent className="border-2 border-[#ebe5d4] bg-[#10172A] text-[#ebe5d4]">
+        <DialogContent className="border-2 border-[#64ffda] bg-[#10172A] text-white">
           <DialogHeader>
-            <DialogTitle className="text-center font-bold uppercase text-3xl">
+            <DialogTitle className="text-center font-bold uppercase">
               Risultato estrazione:
             </DialogTitle>
+            <DialogClose className="absolute top-2 right-2 text-white hover:text-[#64ffda]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </DialogClose>
           </DialogHeader>
           <div className="text-center">
             <div className="my-4">
               <img
                 src="https://www.micheletrombone.it/coupon-calcetto.png"
                 alt="Prize"
-                className="mx-auto border border-[#ebe5d4] rounded-lg"
+                className="mx-auto border-2 border-[#64ffda] neon-green-shadow rounded-lg"
               />
             </div>
-            <p className="my-4 text-[#E61B23] font-bold text-2xl">
-              Hai vinto: La mossa del "calcetto"
-            </p>
+            <p className="my-4">Hai vinto: La mossa del "calcetto"</p>
             <Button3Druota onClick={handleDownloadImage}>
               Scarica il coupon
             </Button3Druota>
