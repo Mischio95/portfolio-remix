@@ -79,7 +79,11 @@ export default function WheelGame() {
       />
       <section className="text-center pb-8">
         <h1 className="text-4xl font-bold animate-zoom text-[#ebe5d4]">
-          Ahhh... la nostalgia!
+          <span>
+            Sei nostalgico?
+            <br />
+            Per te la ruota della nostalgia!
+          </span>
         </h1>
       </section>
       <Wheel

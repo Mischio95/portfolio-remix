@@ -48,7 +48,7 @@ export default function Index() {
               <section id="skills" className="py-12">
                 <Skills />
               </section>
-              <section id="about" className="py-12 mb-12 animated-element">
+              <section id="about" className="py-12 mb-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">02. </span>
                   <span className="pb-20 text-slate-100"> UN PO' DI ME</span>
@@ -103,7 +103,7 @@ export default function Index() {
                   </div>
                 </div>
               </section>
-              <section id="experience" className="py-12 mb-12 animated-element">
+              <section id="experience" className="py-12 mb-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">03. </span>
                   <span className="pb-20 text-slate-100">
@@ -179,7 +179,7 @@ export default function Index() {
                 </div>
               </section>
 
-              <section id="work" className="py-12 animated-element">
+              <section id="work" className="py-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">04. </span>
                   <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>

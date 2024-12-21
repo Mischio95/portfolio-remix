@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "~/components/animatedsection";
-import { RegisterAnimations } from "~/components/registerAnimations";
 import { useEffect } from "react";
 
 export function Skills() {
@@ -29,7 +28,8 @@ export function Skills() {
   ];
 
   return (
-    <section className="py-20 animated-element">
+    // <section className="py-20 animated-element">
+    <section className="py-20 ">
       <h2 className="text-3xl font-bold text-slate-100 mb-8">
         <span className="text-[#64FFDA]">01. </span>
         <span className="pb-20 text-slate-100">SKILLS</span>
