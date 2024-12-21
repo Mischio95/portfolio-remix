@@ -78,7 +78,7 @@ export default function WheelGame() {
         loop
       />
       <section className="text-center pb-8">
-        <h1 className="text-4xl font-bold animate-zoom text-[#ebe5d4]">
+        <h1 className="text-2xl font-bold animate-zoom text-[#ebe5d4]">
           <span>
             Sei nostalgico?
             <br />
