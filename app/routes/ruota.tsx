@@ -130,7 +130,7 @@ export default function WheelGame() {
                 className="mx-auto border-2 border-[#64ffda] neon-green-shadow rounded-lg"
               />
             </div>
-            <p className="my-6 text-xl font-bold font-[#dc143c]">
+            <p className="my-6 text-xl font-bold text-[#dc143c]">
               Hai vinto: La mossa del "calcetto"
             </p>
             <Button3Druota onClick={handleDownloadImage}>
