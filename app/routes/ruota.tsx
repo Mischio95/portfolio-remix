@@ -124,7 +124,7 @@ export default function WheelGame() {
       </div> */}
       <div className="absolute inset-0 pt-14 flex items-center justify-center">
         <img
-          src="https://www.micheletrombone.it/sbanchi.png"
+          src="https://micheletrombone.it/sbanchi.png"
           alt="Center Icon"
           className="w-6 h-6  border-2 border-[#ebe5d4] rounded-full"
         />
