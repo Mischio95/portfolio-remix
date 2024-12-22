@@ -119,7 +119,7 @@ export default function WheelGame() {
           <img
             src="https://micheletrombone.it/sbanchi.png"
             alt="Center Icon"
-            className="w-5 h-5 rounded-full"
+            className="w-4 h-4 rounded-full"
           />
         </div>
       </div>
