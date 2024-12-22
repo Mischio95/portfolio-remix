@@ -90,7 +90,7 @@ export default function WheelGame() {
             <img
               src="https://www.micheletrombone.it/sbanchi.png"
               alt="Icona"
-              className="inline-block w-6 h-9"
+              className="inline-block w-6 h-6"
             />
           </span>
         </h1>
