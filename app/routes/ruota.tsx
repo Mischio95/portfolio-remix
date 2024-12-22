@@ -9,6 +9,7 @@ import {
 } from "~/components/ui/dialog";
 import Button3D from "~/components/Button3D";
 import Button3Druota from "~/components/Button3Druota";
+import { motion } from "framer-motion";
 
 // Importa il componente Wheel dinamicamente per evitare l'errore lato server
 const Wheel = dynamic(
@@ -86,12 +87,7 @@ export default function WheelGame() {
             <br />
             E che c'è di male?
             <br />
-            NULLA!{" "}
-            <img
-              src="https://www.micheletrombone.it/sbanchi.png"
-              alt="Icona"
-              className="inline-block w-6 h-6"
-            />
+            NULLA!
           </span>
         </h1>
       </section>
@@ -118,6 +114,22 @@ export default function WheelGame() {
           style: { width: "100px", height: "100px" },
         }}
       />
+      {/* Immagine al centro della ruota */}
+      {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+        <img
+          src="/public/sbanchi.png"
+          alt="Center Icon"
+          className="w-10 h-10 z-30 border border-3-[#ebe5d4] rounded-full"
+        />
+      </div> */}
+      <div className="absolute inset-0 pt-14 flex items-center justify-center">
+        <img
+          src="https://www.micheletrombone.it/sbanchi.png"
+          alt="Center Icon"
+          className="w-6 h-6  border-2 border-[#ebe5d4] rounded-full"
+        />
+      </div>
+
       <div className="pt-5">
         <Button3Druota onClick={handleSpinClick}>Gira la ruota!</Button3Druota>
       </div>
