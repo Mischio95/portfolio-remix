@@ -66,13 +66,13 @@ export default function Index() {
                       passione per la tecnologia mi spinge a cercare opportunità
                       in diversi ambiti, contribuendo a progetti di vario tipo.
                     </p>
-                    <p className="text-slate-400 mb-4">
+                    {/* <p className="text-slate-400 mb-4">
                       Durante il mio percorso di studi, ho acquisito competenze
                       tecniche su vari linguaggi di programmazione. Grazie alla
                       mia passione per questa materia, ho frequentato diversi
                       corsi online su piattaforme come Learnn e Udemy per
                       ampliare e approfondire le mie competenze.
-                    </p>
+                    </p> */}
                     <p className="text-slate-400 mb-4">
                       Durante il percorso di 9 mesi alla Apple Developer
                       Academy, mi sono specializzato nello sviluppo di

@@ -73,7 +73,7 @@ export default function WheelGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden pt-0 mt-0">
       <audio
         ref={audioRef}
         src="https://www.micheletrombone.it/nostalgia.mp3"
@@ -86,7 +86,12 @@ export default function WheelGame() {
             <br />
             E che c'è di male?
             <br />
-            NULLA!
+            NULLA!{" "}
+            <img
+              src="https://www.micheletrombone.it/sbanchi.png"
+              alt="Icona"
+              className="inline-block w-8 h-8"
+            />
           </span>
         </h1>
       </section>
