@@ -12,7 +12,8 @@ body {
   }
 }
 @keyframes zoom {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -30,6 +31,11 @@ body {
 .neon-green-shadow {
   box-shadow: 0 0 10px rgba(100, 255, 218, 0.5),
     0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2);
+}
+
+.neon-b-shadow {
+  box-shadow: 0 0 10px rgba(235, 229, 212, 0.5),
+    0 0 20px rgba(235, 229, 212, 0.3), 0 0 30px rgba(235, 229, 212, 0.2);
 }
 @media (max-width: 768px) {
   .gTLZXx {
