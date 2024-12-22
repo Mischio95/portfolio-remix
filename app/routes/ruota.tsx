@@ -81,7 +81,7 @@ export default function WheelGame() {
         loop
       />
       <section className="text-center pb-8 mt-0">
-        <h1 className="text-2xl font-bold animate-zoom text-[#ebe5d4]">
+        <h1 className="text-3xl font-bold animate-zoom text-[#ebe5d4]">
           <span>
             Sei nostalgico?
             <br />
@@ -91,45 +91,38 @@ export default function WheelGame() {
           </span>
         </h1>
       </section>
-      <Wheel
-        mustStartSpinning={mustSpin}
-        prizeNumber={prizeNumber}
-        data={data}
-        onStopSpinning={() => {
-          setMustSpin(false);
-          setShowDialog(true);
-          if (audioRef.current) {
-            audioRef.current.pause();
-          }
-        }}
-        outerBorderWidth={3} // Cambia il perimetro della ruota
-        outerBorderColor={"#ebe5d4"} // Colore del bordo esterno
-        innerRadius={5} // Raggio interno della ruota
-        innerBorderColor={"#ebe5d4"} // Colore del bordo interno
-        innerBorderWidth={5} // Larghezza del bordo interno
-        radiusLineColor={"#ebe5d4"} // Colore delle linee del raggio
-        radiusLineWidth={1} // Larghezza delle linee del raggio
-        pointerProps={{
-          src: "https://www.micheletrombone.it/sticker.webp", // Percorso dell'immagine personalizzata
-          style: { width: "100px", height: "100px" },
-        }}
-      />
-      {/* Immagine al centro della ruota */}
-      {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-        <img
-          src="/public/sbanchi.png"
-          alt="Center Icon"
-          className="w-10 h-10 z-30 border border-3-[#ebe5d4] rounded-full"
+      <div className="relative">
+        <Wheel
+          mustStartSpinning={mustSpin}
+          prizeNumber={prizeNumber}
+          data={data}
+          onStopSpinning={() => {
+            setMustSpin(false);
+            setShowDialog(true);
+            if (audioRef.current) {
+              audioRef.current.pause();
+            }
+          }}
+          outerBorderWidth={3} // Cambia il perimetro della ruota
+          outerBorderColor={"#ebe5d4"} // Colore del bordo esterno
+          innerRadius={5} // Raggio interno della ruota
+          innerBorderColor={"#ebe5d4"} // Colore del bordo interno
+          innerBorderWidth={5} // Larghezza del bordo interno
+          radiusLineColor={"#ebe5d4"} // Colore delle linee del raggio
+          radiusLineWidth={1} // Larghezza delle linee del raggio
+          pointerProps={{
+            src: "https://www.micheletrombone.it/sticker.webp", // Percorso dell'immagine personalizzata
+            style: { width: "100px", height: "100px" },
+          }}
         />
-      </div> */}
-      <div className="absolute inset-0 pt-14 flex items-center justify-center">
-        <img
-          src="https://micheletrombone.it/sbanchi.png"
-          alt="Center Icon"
-          className="w-6 h-6  border-2 border-[#ebe5d4] rounded-full"
-        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src="https://micheletrombone.it/sbanchi.png"
+            alt="Center Icon"
+            className="w-6 h-6 border-2 border-[#ebe5d4] rounded-full"
+          />
+        </div>
       </div>
-
       <div className="pt-5">
         <Button3Druota onClick={handleSpinClick}>Gira la ruota!</Button3Druota>
       </div>
