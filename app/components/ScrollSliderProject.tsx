@@ -95,7 +95,7 @@ export default function ScrollSliderProject() {
             pin: true,
             scrub: 3, // Aumentato il valore per rallentare lo scroll
             snap: 1 / (slideCount - 1),
-            end: () => `+=${2 * section.offsetWidth * 2}`, // Aumentato l'end per estendere il tempo di scroll
+            end: () => `+=${4 * section.offsetWidth * 2}`, // Aumentato l'end per estendere il tempo di scroll
             onUpdate: (self) => {
               const progress = self.progress;
               const dots =

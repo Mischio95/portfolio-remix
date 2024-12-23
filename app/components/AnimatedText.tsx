@@ -61,7 +61,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ testo, className }) => {
                 attributeName="x"
                 from="0"
                 to="150%"
-                dur="4s"
+                dur="1s"
                 repeatCount="indefinite"
               />
             </rect>
@@ -77,7 +77,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ testo, className }) => {
                 attributeName="x"
                 from="-150%"
                 to="0"
-                dur="4s"
+                dur="1s"
                 repeatCount="indefinite"
               />
             </rect>

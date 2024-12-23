@@ -128,7 +128,7 @@ export default function WheelGame() {
       </div>
 
       <Dialog open={showDialog} onOpenChange={handleDialogOpenChange}>
-        <DialogContent className="border-2 border-[#ebe5d4] bg-[#10172A] text-white">
+        <DialogContent className="rounded-md border-2 border-[#ebe5d4] bg-[#10172A] text-white">
           <DialogHeader>
             <DialogTitle className="text-center font-bold uppercase text-3xl text-[#ebe5d4] tracking-wider">
               Risultato estrazione
@@ -139,7 +139,7 @@ export default function WheelGame() {
               <img
                 src="https://www.micheletrombone.it/coupon-calcetto.png"
                 alt="Prize"
-                className="mx-auto border-2 border-[#ebe5d4] rounded-lg"
+                className="mx-auto border-2 border-[#ebe5d4] rounded-lg "
               />
             </div>
             <p className="my-6 text-xl font-bold text-[#ff224e] uppercase">

@@ -40,9 +40,9 @@ export function Skills() {
         <AnimatedSection>
           <div className="bg-[#10172A] p-8 rounded-lg">
             <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
-              Competenze Tecniche
+              - Competenze Tecniche
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
               {technicalSkills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
@@ -76,9 +76,9 @@ export function Skills() {
           <div className="bg-[#10172A] p-8 rounded-lg ">
             <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
               {" "}
-              Strumenti & Tecnologie
+              - Strumenti & Tecnologie
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
               {tools.map((tool, index) => (
                 <motion.div
                   key={tool.name}
