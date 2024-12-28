@@ -237,6 +237,9 @@ export default function AssoCheFugge() {
       </Card>
 
       {/* Player List */}
+      <h1 className="text-4xl font-bold text-center mb-12 mt-12 text-white-600">
+        Lista Giocatori
+      </h1>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {filteredPlayers.map((player) => (
           <Card
