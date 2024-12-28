@@ -16,7 +16,13 @@ export default function AssoCheFugge() {
   const [players, setPlayers] = useState<Player[]>([]);
   const [newPlayerName, setNewPlayerName] = useState("");
   const [newPlayerLives, setNewPlayerLives] = useState(3);
+  // Aggiungi nuovo state
+  const [searchTerm, setSearchTerm] = useState("");
 
+  // Aggiungi funzione per filtrare
+  const filteredPlayers = players.filter((player) =>
+    player.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -137,12 +143,12 @@ export default function AssoCheFugge() {
                 placeholder="Nome giocatore"
                 value={newPlayerName}
                 onChange={(e) => setNewPlayerName(e.target.value)}
-                className="w-2/3 text-[#ffffff]"
+                className="w-2/3 text-[#ffffff] placeholder:text-[#64FFDA] placeholder:opacity-50"
               />
               <Input
                 type="number"
                 min="1"
-                max="10"
+                max="6"
                 value={newPlayerLives}
                 onChange={(e) =>
                   setNewPlayerLives(parseInt(e.target.value) || 1)
@@ -158,10 +164,28 @@ export default function AssoCheFugge() {
           </div>
         </CardContent>
       </Card>
+      <Card className="mb-6 bg-[#10172A] border border-2-[#64FFDA]">
+        <CardHeader>
+          <CardTitle className="text-[#ffffff]">
+            Ricerca Giocatore per nome!
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-4 items-center">
+            <Input
+              type="text"
+              placeholder="Cerca giocatore..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="bg-[#10172A] text-[#ffffff] placeholder:text-[#64FFDA] placeholder:opacity-50"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Player List */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {players.map((player) => (
+        {filteredPlayers.map((player) => (
           <Card
             key={player.id} // Utilizza l'ID come key
             className={`p-4 rounded shadow-md flex flex-col justify-between ${
