@@ -28,6 +28,27 @@ export default function AssoCheFugge() {
     return nameMatch && deathMatch;
   });
 
+  const deletePlayer = async (id: number) => {
+    if (!window.confirm("Sei sicuro di voler eliminare questo giocatore?"))
+      return;
+
+    try {
+      const response = await fetch(`/api/players/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setPlayers(players.filter((p) => p.id !== id));
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error || "Errore nell'eliminazione del giocatore");
+      }
+    } catch (error) {
+      console.error("Errore di rete:", error);
+      alert("Errore di rete. Riprova più tardi.");
+    }
+  };
+
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -251,6 +272,13 @@ export default function AssoCheFugge() {
                   +1 Vita
                 </Button>
               </div>
+              <Button
+                className="w-[145px] bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800"
+                onClick={() => deletePlayer(player.id)}
+              >
+                Elimina
+              </Button>
+
               {player.lives <= 0 && (
                 <span className="text-red-500 font-bold uppercase text-2xl">
                   Morto

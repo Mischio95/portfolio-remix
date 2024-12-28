@@ -36,7 +36,10 @@ export const action: ActionFunction = async ({ request }) => {
       return json(newPlayer, { status: 201 });
     } catch (error) {
       console.error("Errore nell'aggiunta del giocatore:", error);
-      return json({ error: "Errore nell'aggiunta del giocatore" }, { status: 500 });
+      return json(
+        { error: "Errore nell'aggiunta del giocatore" },
+        { status: 500 }
+      );
     }
   }
 

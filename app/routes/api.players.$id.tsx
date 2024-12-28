@@ -24,7 +24,22 @@ export const action: ActionFunction = async ({ request, params }) => {
       return json(updatedPlayer, { status: 200 });
     } catch (error) {
       console.error("Errore nell'aggiornamento delle vite:", error);
-      return json({ error: "Errore nell'aggiornamento delle vite" }, { status: 500 });
+      return json(
+        { error: "Errore nell'aggiornamento delle vite" },
+        { status: 500 }
+      );
+    }
+  }
+
+  if (method === "DELETE") {
+    try {
+      await prisma.player.delete({
+        where: { id: parseInt(id!, 10) },
+      });
+      return json({ message: "Giocatore eliminato" });
+    } catch (error) {
+      console.error("Errore eliminazione:", error);
+      return json({ error: "Errore eliminazione giocatore" }, { status: 500 });
     }
   }
 
