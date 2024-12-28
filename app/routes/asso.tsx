@@ -4,6 +4,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 
 import Button3D from "~/components/Button3D";
+import Button3DCustom from "~/components/Button3DCustom";
 
 type Player = {
   id: number;
@@ -92,7 +93,11 @@ export default function AssoCheFugge() {
 
   // Cancella tutti i giocatori tramite l'API
   const deletePlayers = async () => {
-    if (!window.confirm("Sei sicuro di voler cancellare tutti i giocatori?"))
+    if (
+      !window.confirm(
+        "Sei sicuro di voler cancellare tutti i giocatori? l'operazione è irreversibile"
+      )
+    )
       return;
 
     try {
@@ -124,36 +129,35 @@ export default function AssoCheFugge() {
           <CardTitle className="text-[#ffffff]">Aggiungi Giocatore</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex gap-4 items-center">
-            <Input
-              type="text"
-              placeholder="Nome giocatore"
-              value={newPlayerName}
-              onChange={(e) => setNewPlayerName(e.target.value)}
-              className="w-1/2 text-[#ffffff]"
-            />
-            <Input
-              type="number"
-              min="1"
-              max="10"
-              value={newPlayerLives}
-              onChange={(e) => setNewPlayerLives(parseInt(e.target.value) || 1)}
-              className="w-1/4 text-[#ffffff]"
-            />
-            <Button3D onClick={addPlayer}>Aggiungi</Button3D>
+          <div className="flex flex-col gap-4">
+            {/* Inputs sempre affiancati */}
+            <div className="flex gap-4 items-center">
+              <Input
+                type="text"
+                placeholder="Nome giocatore"
+                value={newPlayerName}
+                onChange={(e) => setNewPlayerName(e.target.value)}
+                className="w-2/3 text-[#ffffff]"
+              />
+              <Input
+                type="number"
+                min="1"
+                max="10"
+                value={newPlayerLives}
+                onChange={(e) =>
+                  setNewPlayerLives(parseInt(e.target.value) || 1)
+                }
+                className="w-1/3 text-[#ffffff]"
+              />
+            </div>
+            {/* Bottoni affiancati desktop, impilati mobile */}
+            <div className="flex  sm:flex-row gap-4 justify-center items-center">
+              <Button3D onClick={addPlayer}>Aggiungi</Button3D>
+              <Button3D onClick={deletePlayers}>Cancella</Button3D>
+            </div>
           </div>
         </CardContent>
       </Card>
-
-      {/* Delete List Button */}
-      <div className="mb-6 text-center">
-        <Button
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-          onClick={deletePlayers}
-        >
-          Cancella Lista
-        </Button>
-      </div>
 
       {/* Player List */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -161,11 +165,11 @@ export default function AssoCheFugge() {
           <Card
             key={player.id} // Utilizza l'ID come key
             className={`p-4 rounded shadow-md flex flex-col justify-between ${
-              player.lives === 0 ? "bg-red-100" : "bg-white"
+              player.lives === 0 ? "bg-red-200" : "bg-[#f0e8e3]"
             }`}
           >
             <CardContent className="flex flex-col items-center gap-4">
-              <h2 className="text-lg font-semibold">{player.name}</h2>
+              <h2 className="text-xl font-bold uppercase">{player.name}</h2>
               <p
                 className={`text-lg font-bold ${
                   player.lives === 0 ? "text-red-600" : "text-gray-800"
