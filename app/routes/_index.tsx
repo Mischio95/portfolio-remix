@@ -20,7 +20,7 @@ import Footer from "./footer";
 import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
 import { div } from "framer-motion/client";
 import ScrollSliderProject from "~/components/ScrollSliderProject";
-
+import RadialConnections from "~/components/radialConnection";
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
 };
@@ -188,7 +188,7 @@ export default function Index() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"></div>
               </section>
               <ScrollSliderProject />
-
+              <RadialConnections />
               <section id="footer" className="py-2">
                 <Footer />
               </section>
