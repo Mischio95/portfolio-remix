@@ -189,14 +189,16 @@ export default function AssoCheFugge() {
           <Card
             key={player.id} // Utilizza l'ID come key
             className={`p-4 rounded shadow-md flex flex-col justify-between ${
-              player.lives === 0 ? "bg-red-200" : "bg-[#f0e8e3]"
+              player.lives === 0
+                ? "bg-red-200 border-2 border-[#64FFDA] text-black"
+                : "bg-[#10172A]/50 border-2 border-[#64FFDA] text-white"
             }`}
           >
             <CardContent className="flex flex-col items-center gap-4">
               <h2 className="text-xl font-bold uppercase">{player.name}</h2>
               <p
                 className={`text-lg font-bold ${
-                  player.lives === 0 ? "text-red-600" : "text-gray-800"
+                  player.lives === 0 ? "text-red-600" : "text-white"
                 }`}
               >
                 Vite: {player.lives}
