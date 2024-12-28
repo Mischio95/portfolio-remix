@@ -18,11 +18,16 @@ export default function AssoCheFugge() {
   const [newPlayerLives, setNewPlayerLives] = useState(3);
   // Aggiungi nuovo state
   const [searchTerm, setSearchTerm] = useState("");
+  const [showDeadOnly, setShowDeadOnly] = useState(false);
 
-  // Aggiungi funzione per filtrare
-  const filteredPlayers = players.filter((player) =>
-    player.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredPlayers = players.filter((player) => {
+    const nameMatch = player.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const deathMatch = !showDeadOnly || player.lives === 0;
+    return nameMatch && deathMatch;
+  });
+
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -179,6 +184,33 @@ export default function AssoCheFugge() {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="bg-[#10172A] text-[#ffffff] placeholder:text-[#64FFDA] placeholder:opacity-50"
             />
+            <div className="flex flex-col items-center gap-2 -mt-8">
+              <span className="font-bold text-[11px] text-[#ffffff] mb-1 ">
+                {showDeadOnly ? "Morti ON" : " Morti OFF"}
+              </span>
+              <button
+                onClick={() => setShowDeadOnly(!showDeadOnly)}
+                className={`
+      relative inline-flex h-8 w-14 items-center
+      rounded-full transition-colors duration-300 focus:outline-none
+      ${
+        showDeadOnly ? "bg-[#64FFDA]" : "bg-[#10172A] border-2 border-[#64FFDA]"
+      }
+    `}
+              >
+                <span
+                  className={`
+        inline-block h-6 w-6 transform rounded-full 
+        transition-transform duration-300
+        ${
+          showDeadOnly
+            ? "translate-x-7 bg-[#10172A]"
+            : "translate-x-1 bg-[#64FFDA]"
+        }
+      `}
+                />
+              </button>
+            </div>
           </div>
         </CardContent>
       </Card>
