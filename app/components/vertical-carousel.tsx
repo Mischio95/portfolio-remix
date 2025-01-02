@@ -9,7 +9,8 @@ const cards = [
   {
     title: "HACKATHON - MOBILE GAME DEVELOPMENT (BITDROME - MKERS)",
     description: "Sviluppo di una demo di un Mobile Game con Unity.",
-    // image: "/placeholder.svg?height=300&width=500",
+    image:
+      "https://micheletrombone.it/portfolio/gioco1.png?height=300&width=500",
     year: "Elo Hell | 20 Ottobre - 10 Novembre 2023",
   },
   {
