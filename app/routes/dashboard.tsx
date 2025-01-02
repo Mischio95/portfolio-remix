@@ -132,14 +132,21 @@ export default function Dashboard() {
           <form
             method="post"
             action="/genera-pdf"
-            onSubmit={() =>
-              setTimeout(
-                () =>
-                  (window.location.href =
-                    "https://micheletrombone.it/dashboard?key=nE4YcUuTT7WQDmu1OA4BNxSYQmG7OaijSVjIOOxa3Q"),
-                5000
-              )
-            }
+            onSubmit={(e) => {
+              e.preventDefault();
+
+              // Crea e aggiungi un iframe nascosto per avviare il download
+              const iframe = document.createElement("iframe");
+              iframe.style.display = "none";
+              iframe.src = "/genera-pdf";
+              document.body.appendChild(iframe);
+
+              // Imposta il redirect dopo un intervallo di tempo
+              setTimeout(() => {
+                window.location.href =
+                  "https://micheletrombone.it/dashboard?key=nE4YcUuTT7WQDmu1OA4BNxSYQmG7OaijSVjIOOxa3Q";
+              }, 6000); // Aumentato a 7000ms per garantire il download
+            }}
           >
             <ButtonCustom type="submit">ESPORTA</ButtonCustom>
           </form>
