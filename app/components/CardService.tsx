@@ -53,7 +53,7 @@ export function CardService({
             ({String(index + 1).padStart(2, "0")})
           </motion.div>
         </div>
-        <div className="bg-gray-100 p-8 md:p-12 space-y-4">
+        <div className="bg-[#090A15] p-8 md:p-12 space-y-4">
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -66,7 +66,7 @@ export function CardService({
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-xl text-gray-800"
+            className="text-xl text-gray-300"
           >
             {title}
           </motion.h3>

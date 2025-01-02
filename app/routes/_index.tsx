@@ -189,12 +189,10 @@ export default function Index() {
                   <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"></div>
+                <VerticalCarousel />
               </section>
-              <ScrollSliderProject />
               <section id="footer" className="py-2">
                 <Footer />
-
-                <VerticalCarousel />
               </section>
             </div>
           </>
