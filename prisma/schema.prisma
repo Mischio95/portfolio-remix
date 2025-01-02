@@ -35,3 +35,12 @@ model Player {
 
   @@index([name])
 }
+
+model Expense {
+  id            Int      @id @default(autoincrement())
+  description   String
+  cost          Float
+  isVatIncluded Boolean
+  isMonthly     Boolean
+  createdAt     DateTime @default(now())
+}
