@@ -14,7 +14,7 @@ const ButtonCustom: React.FC<ButtonFancyProps> = ({
   type = "button",
 }) => {
   const commonClasses =
-    "relative inline-block px-6 py-3 font-semibold text-white bg-blue-600 rounded-lg shadow-lg transition transform hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500";
+    "relative inline-block px-6 py-3 font-semibold text-white bg-[#111f43] rounded-lg shadow-lg transition transform hover:scale-105 hover:bg-[#111f43] ";
 
   return (
     <div className="inline-block">

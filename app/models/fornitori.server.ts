@@ -1,11 +1,8 @@
 import { db } from "~/utils/db.server";
 import { Fornitori } from "@prisma/client";
 
-// Funzione per ottenere tutti i fornitori
 export async function getFornitori(): Promise<Fornitori[]> {
-  return db.fornitori.findMany({
-    orderBy: { nome: 'asc' },
-  });
+  return db.fornitori.findMany();
 }
 
 // Funzione per aggiungere un nuovo fornitore
@@ -24,5 +21,6 @@ export async function addFornitore(data: {
 export async function deleteFornitore(id: number): Promise<Fornitori> {
   return db.fornitori.delete({
     where: { id },
+    
   });
 }

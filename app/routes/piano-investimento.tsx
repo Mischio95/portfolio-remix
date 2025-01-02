@@ -625,7 +625,6 @@ export default function InvestmentPlan() {
               </p>
             )}
           </div>
-
           {/* Descrizione */}
           <div>
             <Label htmlFor="description" className="block text-gray-700 mb-2">
@@ -646,7 +645,6 @@ export default function InvestmentPlan() {
               </p>
             )}
           </div>
-
           {/* Costo */}
           <div>
             <Label htmlFor="cost" className="block text-gray-700 mb-2">
@@ -666,7 +664,6 @@ export default function InvestmentPlan() {
               <p className="text-red-500 text-sm mt-1">{errors.cost.message}</p>
             )}
           </div>
-
           {/* IVA Inclusa
           <div className="flex items-center space-x-2">
             <input
@@ -692,33 +689,70 @@ export default function InvestmentPlan() {
               Spesa mensile
             </Label>
           </div> */}
+
           {/* IVA Inclusa */}
           <div className="flex items-center space-x-2">
             <input
               id="isVatIncluded"
               type="checkbox"
               {...register("isVatIncluded")}
-              className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              className="hidden peer"
             />
+            <label
+              htmlFor="isVatIncluded"
+              className="w-6 h-6 flex items-center justify-center border-2 border-[#111f43] rounded-full cursor-pointer peer-checked:bg-[#111f43]"
+            >
+              <svg
+                className="hidden peer-checked:block w-4 h-4 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </label>
             <Label htmlFor="isVatIncluded" className="text-gray-700">
-              IVA inclusa
+              Indica se il prezzo è incluso d'IVA.
             </Label>
           </div>
-
           {/* Spesa Mensile */}
           <div className="flex items-center space-x-2">
             <input
               id="isMonthly"
               type="checkbox"
               {...register("isMonthly")}
-              className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              className="hidden peer"
             />
+            <label
+              htmlFor="isMonthly"
+              className="w-6 h-6 flex items-center justify-center border-2 border-[#111f43] rounded-full cursor-pointer peer-checked:bg-[#111f43]"
+            >
+              <svg
+                className="hidden peer-checked:block w-4 h-4 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </label>
             <Label htmlFor="isMonthly" className="text-gray-700">
-              Spesa mensile
+              Indica se è una spesa mensile.
             </Label>
           </div>
         </div>
-
         {/* Pulsanti aggiuntivi */}
         <div className="flex space-x-4 mt-6">
           <ButtonCustom type="submit">Aggiungi Spesa</ButtonCustom>
@@ -815,13 +849,17 @@ export default function InvestmentPlan() {
       <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
         <h2 className="text-xl font-semibold mb-4 text-gray-700">Totali</h2>
         <div className="flex justify-between mb-2">
-          <span className="font-medium text-gray-600">Totali Annuali:</span>
+          <span className="font-medium text-gray-600">
+            Totale Spese Annuali:
+          </span>
           <span className="font-medium text-gray-800">
             €{totalAnnual.toFixed(2)}
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="font-medium text-gray-600">Totali Finali:</span>
+          <span className="font-medium text-gray-600">
+            Totale Spese Finite:
+          </span>
           <span className="font-medium text-gray-800">
             €{totalFinal.toFixed(2)}
           </span>
