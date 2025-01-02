@@ -136,7 +136,7 @@ export default function Dashboard() {
                 () =>
                   (window.location.href =
                     "https://micheletrombone.it/dashboard?key=nE4YcUuTT7WQDmu1OA4BNxSYQmG7OaijSVjIOOxa3Q"),
-                3000
+                5000
               )
             }
           >
