@@ -54,3 +54,14 @@ model Fornitori {
   email     String?  @db.VarChar(255)
   createdAt DateTime @default(now())
 }
+
+model MarketData {
+  id           Int      @id @default(autoincrement())
+  marketSize   Float
+  growthRate   Float
+  demographics Json
+  trends       Json
+  swot         Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

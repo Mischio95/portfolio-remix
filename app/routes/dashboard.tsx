@@ -82,6 +82,23 @@ export default function Dashboard() {
             <Button className="bg-red-600 hover:bg-red-700">Vai</Button>
           </Link>
         </motion.div>
+
+        {/* Collegamento a Analisi di Mercato */}
+        <motion.div
+          className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-700">
+              Analisi di Mercato
+            </h2>
+            <p className="text-gray-500">Analizza il mercato.</p>
+          </div>
+          <Link to="/analisi-mercato">
+            <Button className="bg-teal-600 hover:bg-teal-700">Vai</Button>
+          </Link>
+        </motion.div>
       </div>
     </div>
   );
