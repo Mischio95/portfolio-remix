@@ -1,3 +1,4 @@
+"use client";
 import type { MetaFunction } from "@remix-run/node";
 import { motion } from "framer-motion";
 import { Nav } from "~/components/nav";
@@ -13,14 +14,16 @@ import Button3D from "~/components/Button3D";
 import { useEffect } from "react";
 import { RegisterAnimations } from "~/components/registerAnimations";
 import { Link } from "react-router-dom";
-import { Skills } from "./skills";
-import { Hero } from "./hero";
+import { Skills } from "../components/skills";
+import { Hero } from "../components/hero";
 import { Preloader } from "./preloader";
-import Footer from "./footer";
+import Footer from "../components/footer";
 import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
 import { div } from "framer-motion/client";
 import ScrollSliderProject from "~/components/ScrollSliderProject";
 import RadialConnections from "~/components/radialConnection";
+import VerticalCarousel from "~/components/vertical-carousel";
+
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
 };
@@ -45,7 +48,7 @@ export default function Index() {
             <RegisterAnimations />
             <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 2xl:px-32 relative z-20 pt-8">
               <Hero />
-              <section id="skills" className="py-12">
+              <section id="skills" className="py-12 ">
                 <Skills />
               </section>
               <section id="about" className="py-12 mb-12 ">
@@ -188,9 +191,10 @@ export default function Index() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"></div>
               </section>
               <ScrollSliderProject />
-              <RadialConnections />
               <section id="footer" className="py-2">
                 <Footer />
+
+                <VerticalCarousel />
               </section>
             </div>
           </>

@@ -21,7 +21,9 @@ export default {
   				'Segoe UI Emoji',
   				'Segoe UI Symbol',
   				'Noto Color Emoji'
-  			]
+  			],
+
+			//   sans: ['"Neue Haas Grotesk Display Pro"', 'sans-serif'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

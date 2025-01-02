@@ -11,6 +11,24 @@ body {
     color-scheme: dark;
   }
 }
+
+/* Importazione dei font */
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/public/fonts/NeueHaasDisplayThin.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/public/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @keyframes zoom {
   0%, 100% {
     transform: scale(1);
@@ -19,11 +37,38 @@ body {
     transform: scale(1.1);
   }
 }
+.center-glow {
+  filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.5));
+}
+
+.project-scroll
+{
+  margin-top: -100px !important; /* Margine superiore personalizzato */
+}
+
+.box-shadow-section-class
+{
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+.radial-connection-container {
+  margin-top: -50px !important; /* Margine superiore personalizzato */
+  margin-bottom: -100px !important; /* Margine inferiore personalizzato */
+}
 
 .animate-zoom {
   animation: zoom 2s infinite;
 }
+.inner-circle{
+  background: #10172a !important;
+  border-radius: 100%;
+  width: 60px !important;
+  height: 60px !important;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #64ffda;
 
+}
 .wrapper {
   height: 100%;
 }
@@ -40,6 +85,9 @@ body {
   .gTLZXx {
     right: -20px !important;
     top: 230px !important;
+  }
+  .radial-connection-container{
+    display: none !important;
   }
 }
 
