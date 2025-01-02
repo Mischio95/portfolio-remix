@@ -8,30 +8,34 @@ import { useRef } from "react";
 const cards = [
   {
     title: "HACKATHON - MOBILE GAME DEVELOPMENT (BITDROME - MKERS)",
+    date: "Elo Hell | 20 Ottobre - 10 Novembre 2023",
     description: "Sviluppo di una demo di un Mobile Game con Unity.",
-    image: "https://micheletrombone.it/portfolio/gioco02.png",
-    year: "Elo Hell | 20 Ottobre - 10 Novembre 2023",
+    technologies: ["C#", "PlasticSCM", "Unity"],
+    githubLink: "https://github.com/Mischio95/EloHell/",
+    image: "https://micheletrombone.it/portfolio/gioco04.png",
   },
   {
     title: "Destiny's Altered Order - APPLE DEVELOPER ACADEMY",
+    subtitle: "Challenge fine anno accademico",
     description: "Gioco di ruolo 2D per mobile sviluppato con Unity.",
+    technologies: ["C#", "PlasticSCM", "Unity"],
+    githubLink: "https://github.com/Mischio95/DAO",
     image: "https://micheletrombone.it/portfolio/gioco1.png",
-    year: "Challenge fine anno accademico",
   },
   {
-    title: "Motion",
-    description:
-      "Bring your ideas to life with fluid, dynamic motion graphics. We craft seamless animations that tell your story with style and impact.",
-    image: "https://micheletrombone.it/portfolio/gioco03.png",
-    year: "2022",
+    title: "P-01 - Dark of Phos - APPLE DEVELOPER ACADEMY",
+    description: "Platform Game 2D mobile a scorrimento laterale.",
+    technologies: ["Xcode", "Swift", "SpriteKit", "Git"],
+    githubLink: "https://github.com/Mischio95/MC3-P-01",
+    image: "https://micheletrombone.it/portfolio/gioco02.png",
   },
   {
-    title: "Design",
-    description:
-      "Elevate your visual identity with cutting-edge design solutions. We combine aesthetics with functionality to create memorable experiences.",
+    title: "APPLE DEVELOPER WWDC23 - FALLINGNOTE",
+    description: "Gioco Arcade per Swift Playground, iPadOS and iOS.",
+    technologies: ["Playgrounds", "Swift", "SpriteKit", "Git"],
+    githubLink: "https://github.com/Mischio95/MC3-P-01",
     image:
-      "https://micheletrombone.it/portfolio/gioco3.png?height=300&width=500",
-    year: "2023",
+      "https://micheletrombone.it/portfolio/gioco03.png?height=300&width=500",
   },
 ];
 
@@ -41,15 +45,11 @@ export default function VerticalCarousel() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <div className="w-full max-w-5xl">
         <AnimatePresence mode="wait">
-          <CardService
-            key={currentIndex}
-            {...cards[currentIndex]}
-            index={currentIndex}
-          />
+          <CardService key={currentIndex} {...cards[currentIndex]} />
         </AnimatePresence>
       </div>
     </div>

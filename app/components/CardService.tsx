@@ -1,26 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ButtonCustom from "~/components/ButtonCustom";
+import Button3D from "./Button3D";
 
 interface CardProps {
   title: string;
   description: string;
   image: string;
-  year: string;
-  index: number;
+  date?: string;
+  subtitle?: string;
+  technologies: string[];
+  githubLink: string;
 }
 
 export function CardService({
   title,
   description,
   image,
-  year,
-  index,
+  date,
+  subtitle,
+  technologies,
+  githubLink,
 }: CardProps) {
   return (
     <motion.div
-      className="w-full max-w-5xl mx-auto rounded-3xl box-shadow-section-class
- overflow-hidden"
+      className="w-full max-w-5xl mx-auto rounded-3xl box-shadow-section-class overflow-hidden bg-[#10172A]"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
@@ -32,7 +37,7 @@ export function CardService({
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-2xl md:text-5xl font-light text-gray-200"
+            className="text-4xl md:text-4xl font-light text-gray-200"
           >
             {title}
           </motion.div>
@@ -44,24 +49,26 @@ export function CardService({
           >
             {description}
           </motion.p>
+          {date && (
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="text-xl md:text-xl font-thin text-gray-200"
+            >
+              {date}
+            </motion.div>
+          )}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-xl md:text-xl font-thin text-gray-200 bottom-8 left-8"
+            className="mt-4"
           >
-            ({String(index + 1).padStart(2, "0")})
+            <Button3D href={githubLink}>Vedi il progetto su GitHub</Button3D>
           </motion.div>
         </div>
         <div className="bg-[#090A15] p-8 md:p-12 space-y-4">
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-sm text-gray-500"
-          >
-            Relevant project
-          </motion.div>
           <motion.h3
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -70,14 +77,16 @@ export function CardService({
           >
             {title}
           </motion.h3>
-          <motion.span
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-sm text-gray-500"
-          >
-            {year}
-          </motion.span>
+          {date && (
+            <motion.span
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="text-sm text-gray-500"
+            >
+              {date}
+            </motion.span>
+          )}
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -89,6 +98,24 @@ export function CardService({
               alt={title}
               className="w-full h-48 md:h-64 object-cover"
             />
+          </motion.div>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="mt-4"
+          >
+            <h4 className="text-lg text-gray-300">Technologies:</h4>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {technologies.map((tech, index) => (
+                <span
+                  key={index}
+                  className="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
