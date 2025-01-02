@@ -243,7 +243,7 @@ export const action: ActionFunction = async ({ request }) => {
             margin-top: 40px;
             margin-bottom: 20px;
             font-size: 28px;
-            border-bottom: 2px solid #3498db;
+            border-bottom: 2px solid #111f43;
             padding-bottom: 10px;
           }
           table {
