@@ -241,7 +241,7 @@ export default function FornitoriPage() {
                   <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
                     {fornitore.nome}
                   </TableCell>
-                  <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-blue-600">
+                  <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-[#111f43]">
                     {fornitore.sitoWeb ? (
                       <a
                         href={fornitore.sitoWeb}

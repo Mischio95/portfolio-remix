@@ -3,6 +3,7 @@ import { Button } from "~/components/ui/button";
 import { motion } from "framer-motion";
 import { LoaderFunction, json } from "@remix-run/node"; // LoaderFunction da usare nel server
 import { useState, useEffect } from "react";
+import ButtonCustom from "~/components/ButtonCustom";
 
 type LoaderData = {
   someData?: boolean; // Aggiungi una proprietà per i dati che vuoi caricare
@@ -43,7 +44,7 @@ export default function Dashboard() {
       {/* Mostra solo l'animazione se i dati sono stati caricati */}
       {isDataLoaded ? (
         <motion.h1
-          className="text-4xl font-bold mb-10 text-black"
+          className="text-4xl font-bold mb-10 text-[#111f43]"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -67,11 +68,11 @@ export default function Dashboard() {
           whileHover={{ scale: 1.05 }}
         >
           <div>
-            <h2 className="text-2xl font-semibold text-gray-700">Fornitori</h2>
+            <h2 className="text-2xl font-semibold text-[#111f43]">Fornitori</h2>
             <p className="text-gray-500">Gestisci la tua lista di fornitori.</p>
           </div>
           <Link to="/fornitori">
-            <Button className="bg-blue-600 hover:bg-blue-700">Vai</Button>
+            <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
 
@@ -84,7 +85,7 @@ export default function Dashboard() {
           whileHover={{ scale: 1.05 }}
         >
           <div>
-            <h2 className="text-2xl font-semibold text-gray-700">
+            <h2 className="text-2xl font-semibold text-[#111f43]">
               Piano di Investimento
             </h2>
             <p className="text-gray-500">
@@ -92,7 +93,7 @@ export default function Dashboard() {
             </p>
           </div>
           <Link to="/piano-investimento">
-            <Button className="bg-red-600 hover:bg-red-700">Vai</Button>
+            <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
 
@@ -105,13 +106,13 @@ export default function Dashboard() {
           whileHover={{ scale: 1.05 }}
         >
           <div>
-            <h2 className="text-2xl font-semibold text-gray-700">
+            <h2 className="text-2xl font-semibold text-[#111f43]">
               Analisi di Mercato
             </h2>
             <p className="text-gray-500">Analizza il mercato.</p>
           </div>
           <Link to="/analisi-mercato">
-            <Button className="bg-teal-600 hover:bg-teal-700">Vai</Button>
+            <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
 
@@ -124,7 +125,7 @@ export default function Dashboard() {
           whileHover={{ scale: 1.05 }}
         >
           <div>
-            <h2 className="text-2xl font-semibold text-gray-700">
+            <h2 className="text-2xl font-semibold text-[#111f43]">
               Esporta Dati in PDF
             </h2>
           </div>
@@ -140,12 +141,7 @@ export default function Dashboard() {
               )
             }
           >
-            <Button
-              type="submit"
-              className="text-black bg-teal-300 hover:bg-teal-300"
-            >
-              ESPORTA
-            </Button>
+            <ButtonCustom type="submit">ESPORTA</ButtonCustom>
           </form>
         </motion.div>
       </div>
