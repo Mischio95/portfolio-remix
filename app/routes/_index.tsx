@@ -182,7 +182,7 @@ export default function Index() {
                 </div>
               </section>
 
-              <section id="work" className="py-12 ">
+              {/* <section id="work" className="py-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">04. </span>
                   <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
@@ -190,7 +190,9 @@ export default function Index() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"></div>
                 <VerticalCarousel />
-              </section>
+              </section> */}
+              <div className="justify-center h-[1px] bg-slate-600 w-full mt-4"></div>
+
               <section id="footer" className="py-2">
                 <Footer />
               </section>

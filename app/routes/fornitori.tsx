@@ -1,5 +1,5 @@
 import { useLoaderData, Form, redirect } from "@remix-run/react";
-import { ActionFunction } from "@remix-run/node";
+import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { z } from "zod";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -12,20 +12,20 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Fornitori } from "@prisma/client";
 import {
   getFornitori,
   addFornitore,
   deleteFornitore,
 } from "~/models/fornitori.server";
-import { Fornitori } from "@prisma/client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 
 type LoaderData = {
   fornitori: Fornitori[];
 };
 
-export const loader = async () => {
+export const loader: LoaderFunction = async () => {
   try {
     const fornitori = await getFornitori();
     console.log("Fornitori caricati:", fornitori); // Debug
@@ -46,6 +46,19 @@ type FornitoreFormData = z.infer<typeof fornitoriSchema>;
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
+  const intent = form.get("intent");
+  const id = form.get("id");
+
+  if (intent === "delete" && id) {
+    try {
+      await deleteFornitore(Number(id));
+      return redirect("/fornitori");
+    } catch (error) {
+      console.error("Errore nell'eliminazione del fornitore:", error);
+      return { errors: { form: "Errore nell'eliminazione del fornitore" } };
+    }
+  }
+
   const data = Object.fromEntries(form.entries());
 
   console.log("Dati ricevuti nel form:", data); // Debug
@@ -76,12 +89,6 @@ export default function FornitoriPage() {
     resolver: zodResolver(fornitoriSchema),
   });
 
-  // RIMUOVI QUESTO HANDLER
-  /* const onSubmit = (data: FornitoreFormData) => {
-    // Submit handled by Remix's <Form>
-    reset();
-  }; */
-
   console.log("Fornitori ricevuti nel componente:", data.fornitori); // Debug
 
   return (
@@ -91,12 +98,7 @@ export default function FornitoriPage() {
       </h1>
 
       {/* Form Aggiungi Fornitore */}
-      <Form
-        method="post"
-        // RIMUOVI ONSUBMIT
-        /* onSubmit={handleSubmit(onSubmit)} */
-        className="bg-white p-6 rounded-lg shadow-lg mb-8"
-      >
+      <Form method="post" className="bg-white p-6 rounded-lg shadow-lg mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Nome */}
           <div>
@@ -108,7 +110,7 @@ export default function FornitoriPage() {
               {...register("nome")}
               className={`w-full p-2 border ${
                 errors.nome ? "border-red-500" : "border-gray-300"
-              } rounded-md text-black`} // Assicurati che `text-black` sia presente
+              } rounded-md text-black`}
               placeholder="Nome del fornitore"
             />
             {errors.nome && (
@@ -126,7 +128,7 @@ export default function FornitoriPage() {
               {...register("sitoWeb")}
               className={`w-full p-2 border ${
                 errors.sitoWeb ? "border-red-500" : "border-gray-300"
-              } rounded-md  text-black`} // Assicurati che `text-black` sia presente
+              } rounded-md text-black`}
               placeholder="https://www.esempio.com"
             />
             {errors.sitoWeb && (
@@ -146,7 +148,7 @@ export default function FornitoriPage() {
               {...register("telefono")}
               className={`w-full p-2 border ${
                 errors.telefono ? "border-red-500" : "border-gray-300"
-              } rounded-md  text-black`} // Assicurati che `text-black` sia presente
+              } rounded-md text-black`}
               placeholder="+39 333 3333 333"
             />
             {errors.telefono && (
@@ -166,7 +168,7 @@ export default function FornitoriPage() {
               {...register("email")}
               className={`w-full p-2 border ${
                 errors.email ? "border-red-500" : "border-gray-300"
-              } rounded-md  text-black`} // Assicurati che `text-black` sia presente
+              } rounded-md text-black`}
               placeholder="email@esempio.com"
             />
             {errors.email && (
@@ -237,10 +239,9 @@ export default function FornitoriPage() {
                     {fornitore.email || "N/A"}
                   </TableCell>
                   <TableCell className="px-4 py-2 whitespace-nowrap text-center">
-                    <Form
-                      method="post"
-                      action={`/fornitori/delete/${fornitore.id}`}
-                    >
+                    <Form method="post">
+                      <input type="hidden" name="id" value={fornitore.id} />
+                      <input type="hidden" name="intent" value="delete" />
                       <button
                         type="submit"
                         className="text-red-600 hover:text-red-800"
