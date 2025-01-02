@@ -114,6 +114,40 @@ export default function Dashboard() {
             <Button className="bg-teal-600 hover:bg-teal-700">Vai</Button>
           </Link>
         </motion.div>
+
+        {/* ESPORTA PDF */}
+        <motion.div
+          className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-700">
+              Esporta Dati in PDF
+            </h2>
+          </div>
+          <form
+            method="post"
+            action="/genera-pdf"
+            onSubmit={() =>
+              setTimeout(
+                () =>
+                  (window.location.href =
+                    "https://micheletrombone.it/dashboard?key=nE4YcUuTT7WQDmu1OA4BNxSYQmG7OaijSVjIOOxa3Q"),
+                2000
+              )
+            }
+          >
+            <Button
+              type="submit"
+              className="text-black bg-teal-300 hover:bg-teal-300"
+            >
+              ESPORTA
+            </Button>
+          </form>
+        </motion.div>
       </div>
     </div>
   );

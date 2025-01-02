@@ -3,6 +3,11 @@ import { json, LoaderFunction, ActionFunction } from "@remix-run/node";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+// Funzione per ottenere le spese
+export async function getExpenses() {
+  return prisma.expense.findMany();
+}
+
 
 // Loader per gestire le richieste GET
 export const loader: LoaderFunction = async () => {
