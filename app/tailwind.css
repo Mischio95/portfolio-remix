@@ -45,7 +45,14 @@ body {
 {
   margin-top: -100px !important; /* Margine superiore personalizzato */
 }
-
+#matrixCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
 .box-shadow-section-class
 {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4) !important;
