@@ -20,11 +20,28 @@ import {
   addFornitore,
   deleteFornitore,
 } from "~/models/fornitori.server";
+import ButtonCustom from "~/components/ButtonCustom";
+import pkg from "file-saver";
+const { saveAs } = pkg;
 
 type LoaderData = {
   fornitori: Fornitori[];
 };
 
+// Aggiungi questa funzione per esportare i dati
+function exportFornitori(fornitori: Fornitori[]) {
+  const csvHeader = "ID,Nome,Email,Telefono,Sito Web\n";
+  const csvRows = fornitori
+    .map(
+      (fornitore) =>
+        `${fornitore.id},${fornitore.nome},${fornitore.email},${fornitore.telefono},${fornitore.sitoWeb}`
+    )
+    .join("\n");
+  const csvData = new Blob([csvHeader + csvRows], {
+    type: "text/csv;charset=utf-8;",
+  });
+  saveAs(csvData, "fornitori.csv");
+}
 export const loader: LoaderFunction = async () => {
   try {
     const fornitori = await getFornitori();
@@ -81,6 +98,10 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function FornitoriPage() {
   const data = useLoaderData<LoaderData>();
+  const { fornitori } = useLoaderData<LoaderData>(); // Assicurati che questa linea sia presente
+  if (!fornitori) {
+    throw new Error("Dati dei fornitori non trovati");
+  }
   const {
     register,
     formState: { errors },
@@ -180,10 +201,11 @@ export default function FornitoriPage() {
         </div>
 
         {/* Pulsante di invio */}
-        <div className="mt-6 flex justify-end">
-          <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
-            Aggiungi Fornitore
-          </Button>
+        <div className="flex space-x-4 mt-6">
+          <ButtonCustom type="submit">Aggiungi Fornitore</ButtonCustom>
+          <ButtonCustom onClick={() => exportFornitori(fornitori)}>
+            Esporta CSV
+          </ButtonCustom>
         </div>
       </Form>
 
