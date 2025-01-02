@@ -50,7 +50,7 @@ export const action: ActionFunction = async ({ request }) => {
               margin-top: 40px;
               margin-bottom: 20px;
               font-size: 28px;
-              border-bottom: 2px solid #3498db;
+              border-bottom: 2px solid #111f43;
               padding-bottom: 10px;
             }
             table {
@@ -191,13 +191,22 @@ export const action: ActionFunction = async ({ request }) => {
 
     console.log("HTML content generato");
 
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setContent(htmlContent);
-    const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
-    await browser.close();
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
+    console.log("Browser avviato");
 
-    console.log("PDF generato con successo");
+    const page = await browser.newPage();
+    console.log("Nuova pagina creata");
+
+    await page.setContent(htmlContent);
+    console.log("Contenuto HTML impostato");
+
+    const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
+    console.log("PDF generato");
+
+    await browser.close();
+    console.log("Browser chiuso");
 
     return new Response(pdfBuffer, {
       headers: {
