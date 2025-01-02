@@ -42,5 +42,15 @@ model Expense {
   cost          Float
   isVatIncluded Boolean
   isMonthly     Boolean
+  category      String   @default("Uncategorized") // Nuovo campo per la categoria
   createdAt     DateTime @default(now())
+}
+
+model Fornitori {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  sitoWeb   String?  @db.VarChar(255)
+  telefono  String?  @db.VarChar(20)
+  email     String?  @db.VarChar(255)
+  createdAt DateTime @default(now())
 }

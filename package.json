@@ -11,6 +11,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@prisma/client": "^6.1.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-dialog": "^1.1.4",
@@ -28,6 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "file-saver": "^2.0.5",
     "framer-motion": "^11.15.0",
     "gsap": "^3.12.5",
     "isbot": "^4.1.0",
@@ -38,6 +40,7 @@
     "react-custom-roulette": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.54.2",
     "react-simple-typewriter": "^5.0.1",
     "react-wheel-of-prizes": "^1.1.0",
     "shadcn-ui": "^0.9.4",
@@ -46,12 +49,14 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.171.0",
     "uuid": "^11.0.3",
+    "xlsx": "^0.18.5",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.15.1",
     "@types/animejs": "^3.1.12",
     "@types/csv-stringify": "^1.4.3",
+    "@types/file-saver": "^2.0.7",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/react-helmet": "^6.1.11",

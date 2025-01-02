@@ -1,3 +1,4 @@
+// filepath: /Users/mischio/Desktop/micheletrombone.it/portfolio-remix/app/routes/api.expenses.ts
 import { json, LoaderFunction, ActionFunction } from "@remix-run/node";
 import { PrismaClient } from "@prisma/client";
 
@@ -18,20 +19,21 @@ export const loader: LoaderFunction = async () => {
 // Action per gestire le richieste POST
 export const action: ActionFunction = async ({ request }) => {
   try {
-    const { description, cost, isVatIncluded, isMonthly } = await request.json();
+    const { description, cost, isVatIncluded, isMonthly, category } = await request.json();
 
     // Validazione dei dati
     if (
       typeof description !== "string" ||
       typeof cost !== "number" ||
       typeof isVatIncluded !== "boolean" ||
-      typeof isMonthly !== "boolean"
+      typeof isMonthly !== "boolean" ||
+      typeof category !== "string" // Validazione della categoria
     ) {
       return json({ error: "Dati non validi" }, { status: 400 });
     }
 
     const newExpense = await prisma.expense.create({
-      data: { description, cost, isVatIncluded, isMonthly },
+      data: { description, cost, isVatIncluded, isMonthly, category }, // Inclusione della categoria
     });
 
     return json(newExpense, { status: 201 });

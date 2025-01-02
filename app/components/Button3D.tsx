@@ -1,34 +1,18 @@
-// import React from "react";
-
-// interface Button3DProps {
-//   href?: string;
-//   onClick?: () => void;
-//   children: React.ReactNode;
-// }
-
-// const Button3D: React.FC<Button3DProps> = ({ href, onClick, children }) => {
-//   return (
-//     <a
-//       href={href}
-//       onClick={onClick}
-//       className="relative inline-block px-8 py-3 font-semibold text-[#64FFDA] border-2 border-[#64FFDA] rounded-lg group hover:bg-[#64FFDA] hover:text-[#0A192F] transition-all duration-300"
-//     >
-//       <span className="absolute inset-0  rounded-lg opacity-30 blur-sm group-hover:opacity-100 group-hover:blur-sm transition-all duration-300"></span>
-//       <span className="relative z-10">{children}</span>
-//     </a>
-//   );
-// };
-
-// export default Button3D;
 import React from "react";
 
 interface Button3DProps {
   href?: string;
   onClick?: () => void;
   children: React.ReactNode;
+  type?: "button" | "submit" | "reset"; // Aggiunta della proprietà 'type'
 }
 
-const Button3D: React.FC<Button3DProps> = ({ href, onClick, children }) => {
+const Button3D: React.FC<Button3DProps> = ({
+  href,
+  onClick,
+  children,
+  type = "button",
+}) => {
   const commonClasses =
     "relative inline-block px-8 py-3 font-semibold text-[#64FFDA] bg-[#10172A] border border-[#64FFDA] rounded-lg transition-all duration-300 group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] group-hover:bg-[#10172A] group-hover:text-[#64FFDA]";
 
@@ -49,7 +33,7 @@ const Button3D: React.FC<Button3DProps> = ({ href, onClick, children }) => {
           <span className="relative z-10">{children}</span>
         </a>
       ) : (
-        <button onClick={onClick} className={commonClasses}>
+        <button type={type} onClick={onClick} className={commonClasses}>
           <span className="relative z-10">{children}</span>
         </button>
       )}
