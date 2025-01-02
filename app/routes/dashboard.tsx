@@ -29,6 +29,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Dashboard() {
   const data = useLoaderData<LoaderData>();
+  const [isLoading, setIsLoading] = useState(false);
 
   // Stato per determinare quando i dati sono pronti per il rendering
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -39,6 +40,46 @@ export default function Dashboard() {
     }
   }, [data]);
 
+  const handleExport = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      // Invia la richiesta per generare il PDF
+      const response = await fetch("/genera-pdf", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error("Errore durante la generazione del PDF.");
+      }
+
+      // Ottieni il blob del PDF
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "report-bp.pdf"); // Nome del file
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode?.removeChild(link);
+
+      // Rilascia l'URL del blob
+      window.URL.revokeObjectURL(url);
+
+      // Esegui il redirect dopo un breve ritardo per assicurarti che il download sia avviato
+      setTimeout(() => {
+        window.location.href =
+          "https://micheletrombone.it/dashboard?key=nE4YcUuTT7WQDmu1OA4BNxSYQmG7OaijSVjIOOxa3Q";
+      }, 2000); // Aumentato a 2000ms per garantire il download
+    } catch (error) {
+      console.error("Errore durante l'esportazione del PDF:", error);
+      alert(
+        "Si è verificato un errore durante l'esportazione del PDF. Riprova."
+      );
+      setIsLoading(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
       {/* Mostra solo l'animazione se i dati sono stati caricati */}
@@ -129,29 +170,27 @@ export default function Dashboard() {
               Esporta Dati in PDF
             </h2>
           </div>
-          <form
-            method="post"
-            action="/genera-pdf"
-            onSubmit={(e) => {
-              e.preventDefault();
-
-              // Crea e aggiungi un iframe nascosto per avviare il download
-              const iframe = document.createElement("iframe");
-              iframe.style.display = "none";
-              iframe.src = "/genera-pdf";
-              document.body.appendChild(iframe);
-
-              // Imposta il redirect dopo un intervallo di tempo
-              setTimeout(() => {
-                window.location.href =
-                  "https://micheletrombone.it/dashboard?key=nE4YcUuTT7WQDmu1OA4BNxSYQmG7OaijSVjIOOxa3Q";
-              }, 6000); // Aumentato a 7000ms per garantire il download
-            }}
-          >
-            <ButtonCustom type="submit">ESPORTA</ButtonCustom>
-          </form>
+          {/* Form per Esportare il PDF */}
+          {isDataLoaded && (
+            <form method="post" action="/genera-pdf" onSubmit={handleExport}>
+              <ButtonCustom type="submit" disabled={isLoading}>
+                ESPORTA
+              </ButtonCustom>
+            </form>
+          )}
         </motion.div>
       </div>
+      {/* Progress Bar */}
+      {isLoading && (
+        <div className="mt-6 w-full max-w-sm">
+          <div className="w-full bg-gray-200 rounded-full h-4">
+            <div className="bg-[#111f43] h-4 rounded-full animate-pulse"></div>
+          </div>
+          <p className="text-[#111f43] mt-2 text-center">
+            Generazione del PDF in corso...
+          </p>
+        </div>
+      )}
     </div>
   );
 }

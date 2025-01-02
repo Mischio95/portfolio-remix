@@ -4,6 +4,8 @@ interface ButtonFancyProps {
   href?: string;
   onClick?: () => void;
   children: React.ReactNode;
+  disabled?: boolean;
+
   type?: "button" | "submit" | "reset"; // Tipo del bottone
 }
 
@@ -11,6 +13,7 @@ const ButtonCustom: React.FC<ButtonFancyProps> = ({
   href,
   onClick,
   children,
+  disabled,
   type = "button",
 }) => {
   const commonClasses =
@@ -23,7 +26,12 @@ const ButtonCustom: React.FC<ButtonFancyProps> = ({
           <span className="relative z-10">{children}</span>
         </a>
       ) : (
-        <button type={type} onClick={onClick} className={commonClasses}>
+        <button
+          type={type}
+          onClick={onClick}
+          className={commonClasses}
+          disabled={disabled}
+        >
           <span className="relative z-10">{children}</span>
         </button>
       )}
