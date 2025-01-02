@@ -153,7 +153,7 @@ export const action: ActionFunction = async ({ request }) => {
                 <th>IVA Inclusa</th>
                 <th>Spesa Mensile</th>
                 <th>Categoria</th>
-                <th>Totale (€)</th>
+                <th>Totale + IVA(€)</th>
               </tr>
             </thead>
             <tbody>
