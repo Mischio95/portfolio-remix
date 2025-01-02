@@ -498,16 +498,29 @@ export default function InvestmentPlan() {
   };
 
   const handleDeleteExpense = async (id: number) => {
+    const conferma = window.confirm(
+      "Sei sicuro di voler eliminare questa spesa?"
+    );
+    if (!conferma) {
+      return;
+    }
+
     try {
       const res = await fetch(`/api/expenses/${id}`, {
         method: "DELETE",
       });
+
       if (!res.ok) {
-        throw new Error("Errore nella cancellazione della spesa");
+        throw new Error("Errore durante l'eliminazione della spesa");
       }
+
       setExpenses(expenses.filter((expense) => expense.id !== id));
+      alert("Spesa eliminata con successo!");
     } catch (error) {
-      console.error("Errore nella cancellazione della spesa:", error);
+      console.error("Errore nell'eliminazione della spesa:", error);
+      alert(
+        "Si è verificato un errore durante l'eliminazione della spesa. Per favore, riprova."
+      );
     }
   };
 
@@ -740,7 +753,7 @@ export default function InvestmentPlan() {
                 Parziale Annuale (€)
               </TableHead>
               <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Totale (€)
+                Totale + IVA(€)
               </TableHead>
               <TableHead className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Azioni
