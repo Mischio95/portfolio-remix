@@ -1,6 +1,28 @@
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData, redirect } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import { motion } from "framer-motion";
+import dotenv from "dotenv";
+import { LoaderFunction, json } from "@remix-run/node";
+
+dotenv.config();
+
+type LoaderData = {};
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+  const accessKey = url.searchParams.get("key");
+
+  // Ottieni la chiave segreta dalle variabili d'ambiente
+  const SECRET_KEY = process.env.DASHBOARD_SECRET_KEY || "";
+  console.log("SECRET_KEY:", SECRET_KEY); // Verifica che la chiave sia caricata
+
+  if (accessKey !== SECRET_KEY) {
+    // Reindirizza a una pagina di accesso negato
+    return redirect("/accesso-negato");
+  }
+
+  return json<LoaderData>({});
+};
 
 export default function Dashboard() {
   return (

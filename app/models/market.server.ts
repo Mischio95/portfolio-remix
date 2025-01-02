@@ -234,7 +234,8 @@ async function fetchNewsData(keyword: string): Promise<string[]> {
       `${config.endpoints.newsAPI}?q=${encodeURIComponent(keyword)}&apiKey=${config.apiKeys.newsAPI}`
     );
     const data = await response.json();
-    return data.articles.map((article: any) => article.title);
+    const typedData = data as { articles: { title: string }[] };
+    return typedData.articles.map((article: any) => article.title);
   } catch (error) {
     console.error("Errore nel recupero delle notizie:", error);
     return [];
