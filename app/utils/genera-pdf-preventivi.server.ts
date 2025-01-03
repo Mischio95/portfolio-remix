@@ -11,6 +11,7 @@ interface PreventivoItem {
 // Estendi l'interfaccia Preventivo di Prisma per includere gli items
 interface ExtendedPreventivo extends PrismaPreventivo {
   items: PreventivoItem[];
+  clientName: string;
 }
 
 export async function generatePDF(preventivo: ExtendedPreventivo): Promise<Buffer> {
@@ -214,7 +215,7 @@ function generateHTML(preventivo: ExtendedPreventivo): string {
             <tr>
               <th>Descrizione</th>
               <th>Quantità</th>
-              <th>Prezzo Unitario (€)</th>
+              <th>Prezzo</th>
               <th>Categoria</th>
             </tr>
           </thead>

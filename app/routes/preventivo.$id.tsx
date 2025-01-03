@@ -42,7 +42,11 @@ export default function DettaglioPreventivo() {
       }
 
       const blob = await response.blob();
-      saveAs(blob, `Preventivo_${preventivo.preventivoNumber}.pdf`);
+      const sanitizedClientName = preventivo.clientName
+        ? preventivo.clientName.replace(/[^a-z0-9]/gi, "_")
+        : "unknown_client";
+
+      saveAs(blob, `Preventivo_${sanitizedClientName}.pdf`);
     } catch (error) {
       console.error("Errore durante l'esportazione del PDF:", error);
       alert(
@@ -240,7 +244,7 @@ export default function DettaglioPreventivo() {
                 Totale (€)
               </th>
               <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.total.toFixed(2)} €
+                {preventivo.total.toFixed(2)}
               </td>
             </tr>
           </tbody>

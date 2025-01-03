@@ -38,6 +38,21 @@ export async function getPreventivoById(id: number) {
 }
 
 /**
+ * Recupera il nome del cliente per un dato ID di preventivo.
+ *
+ * @param id - L'ID del preventivo.
+ * @returns Il nome del cliente o una stringa predefinita se non trovato.
+ */
+export async function getClientNameById(id: number): Promise<string> {
+  const preventivo = await db.preventivo.findUnique({
+    where: { id },
+    select: { clientName: true },
+  });
+
+  return preventivo?.clientName || "unknown_client";
+}
+
+/**
  * Elimina un preventivo dal database.
  *
  * @param id - L'ID del preventivo da eliminare.

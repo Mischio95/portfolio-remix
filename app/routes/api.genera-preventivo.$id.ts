@@ -20,7 +20,7 @@ export const action: ActionFunction = async ({ params }) => {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename=Preventivo_${preventivo.preventivoNumber}.pdf`,
+        "Content-Disposition": `attachment; filename=Preventivo_${preventivo.clientName}.pdf`,
       },
     });
   } catch (error) {
