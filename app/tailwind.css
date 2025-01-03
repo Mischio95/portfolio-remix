@@ -11,7 +11,9 @@ body {
     color-scheme: dark;
   }
 }
-
+/* .lista li{
+  color:antiquewhite !important;
+} */
 /* Importazione dei font */
 @font-face {
   font-family: 'Neue Haas Grotesk Display Pro';

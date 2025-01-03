@@ -74,3 +74,37 @@ model Competitor {
   createdAt                  DateTime @default(now())
   updatedAt                  DateTime @updatedAt
 }
+
+model Preventivo {
+  id               Int           @id @default(autoincrement())
+  clientName       String?
+  clientAddress    String?
+  clientPhone      String?
+  clientEmail      String?
+  clientVat        String?
+  providerName     String?
+  providerAddress  String?
+  providerPhone    String?
+  providerEmail    String?
+  providerVat      String?
+  preventivoNumber String?
+  issueDate        DateTime?
+  dueDate          DateTime?
+  paymentTerms     String?
+  notes            String?
+  items            ExpenseItem[]
+  subtotal         Float
+  totalVat         Float
+  total            Float
+}
+
+model ExpenseItem {
+  id           Int        @id @default(autoincrement())
+  description  String?
+  quantity     Int?
+  unitPrice    Float?
+  vatIncluded  Boolean?
+  category     String?
+  preventivoId Int
+  preventivo   Preventivo @relation(fields: [preventivoId], references: [id], onDelete: Cascade)
+}

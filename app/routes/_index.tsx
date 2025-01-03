@@ -23,6 +23,8 @@ import { div } from "framer-motion/client";
 import ScrollSliderProject from "~/components/ScrollSliderProject";
 import RadialConnections from "~/components/radialConnection";
 import VerticalCarousel from "~/components/vertical-carousel";
+import Snowball from "~/components/animated-components/snowball";
+import ScrollText from "~/components/animated-components/scroll-text";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
@@ -113,9 +115,9 @@ export default function Index() {
                     {" "}
                     ESPERIENZE LAVORATIVE
                   </span>
-                  <div className="h-[1px] bg-slate-600 w-full mt-4"></div>{" "}
+                  <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
                 </h2>
-                <div className="space-y-8 ">
+                <div className=" lista space-y-8 ">
                   <AnimatedSection>
                     <div className="bg-[#10172A] p-6 rounded-lg">
                       <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
@@ -154,7 +156,7 @@ export default function Index() {
                       <p className="text-slate-400 mb-4">
                         Giugno 2019 - Settembre 2024
                       </p>
-                      <ul className="list-disc list-inside text-slate-400">
+                      <ul className="list-disc list-inside text-slate-200">
                         <li>
                           Progettazione, creazione e manutenzione di siti:
                           E-Commerce (WooCommerce) e Vetrina.
@@ -190,6 +192,11 @@ export default function Index() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"></div>
                 <VerticalCarousel />
+              </section> */}
+
+              {/* <section id="pollo" className="py-12 ">
+                {/* <Snowball />
+                <ScrollText /> 
               </section> */}
               <div className="justify-center h-[1px] bg-slate-600 w-full mt-4"></div>
               <section id="AnimatedText" className="py-12 "></section>

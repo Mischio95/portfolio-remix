@@ -90,7 +90,7 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Business Plan Dashboard
+          Dashboard Principale
         </motion.h1>
       ) : (
         <div className="text-gray-500">
@@ -98,15 +98,23 @@ export default function Dashboard() {
           Verifica la connessione o il caricamento dei dati.
         </div>
       )}
-
+      <motion.h1
+        className="text-2xl  mb-10 text-[#111f43]"
+        initial={{ opacity: -50, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        Sezione Business Plan
+      </motion.h1>
+      {/* Contenuto della Dashboard */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
         {/* Collegamento a Fornitori */}
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
           animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.2 }}
+          whileHover={{ scale: 1.03 }}
         >
           <div>
             <h2 className="text-2xl font-semibold text-[#111f43]">Fornitori</h2>
@@ -122,8 +130,8 @@ export default function Dashboard() {
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
           animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.2 }}
+          whileHover={{ scale: 1.03 }}
         >
           <div>
             <h2 className="text-2xl font-semibold text-[#111f43]">
@@ -143,8 +151,8 @@ export default function Dashboard() {
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
           animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.2 }}
+          whileHover={{ scale: 1.03 }}
         >
           <div>
             <h2 className="text-2xl font-semibold text-[#111f43]">
@@ -162,8 +170,8 @@ export default function Dashboard() {
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
           animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.2 }}
+          whileHover={{ scale: 1.03 }}
         >
           <div>
             <h2 className="text-2xl font-semibold text-[#111f43]">
@@ -182,8 +190,8 @@ export default function Dashboard() {
           className="bg-white w-full p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
           animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.2 }}
+          whileHover={{ scale: 1.03 }}
         >
           <div>
             <h2 className="text-2xl font-semibold text-[#111f43]">
@@ -211,6 +219,34 @@ export default function Dashboard() {
           </p>
         </div>
       )}
+
+      <motion.h1
+        className="text-2xl  pt-10 mb-10 text-[#111f43]"
+        initial={{ opacity: -50, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        Sezione Preventivi
+      </motion.h1>
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full max-w-4xl mt-0 mb-5">
+        <motion.div
+          className="bg-white w-full p-6 rounded-lg shadow-lg flex items-center justify-between"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
+          transition={{ duration: 0.2 }}
+          whileHover={{ scale: 1.03 }}
+        >
+          <div>
+            <h2 className="text-2xl font-semibold text-[#111f43]">
+              Gestisci Preventivi
+            </h2>
+          </div>
+          <Link to="/preventivi">
+            {" "}
+            <ButtonCustom>Vai</ButtonCustom>
+          </Link>
+        </motion.div>
+      </div>
     </div>
   );
 }

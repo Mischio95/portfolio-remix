@@ -1,8 +1,8 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 
 interface ButtonFancyProps {
   href?: string;
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
   disabled?: boolean;
 

@@ -1,0 +1,46 @@
+.snowball-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff;
+}
+
+.snowball-wrapper:hover .snowball-light {
+  opacity: 1;
+  transform: scale(1.1);
+  animation: blink 10s steps(1) alternate-reverse infinite;
+}
+
+.snowball-light {
+  position: absolute;
+  inset-block-end: -10px;
+  inset-inline-start: calc(50% - 125px);
+  width: 250px;
+  height: 250px;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.snowball-wrapper:hover .snowball-light path {
+  fill: #ffda44; /* Colore giallo per la luce */
+}
+
+@keyframes blink {
+  0%,
+  40%,
+  60%,
+  100% {
+    opacity: 1;
+  }
+  10%,
+  50%,
+  90% {
+    opacity: 0;
+  }
+}
