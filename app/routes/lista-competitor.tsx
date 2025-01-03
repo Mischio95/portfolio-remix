@@ -1,9 +1,8 @@
 import { useLoaderData, Form, redirect } from "@remix-run/react";
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { z } from "zod";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Table,
   TableBody,
@@ -12,54 +11,59 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Fornitori } from "@prisma/client";
-import {
-  getFornitori,
-  addFornitore,
-  deleteFornitore,
-} from "~/models/fornitori.server";
 import ButtonCustom from "~/components/buttons/ButtonCustom";
+import {
+  getCompetitori,
+  addCompetitore,
+  deleteCompetitore,
+} from "~/models/competitor.server";
 import pkg from "file-saver";
+import { Competitor } from "@prisma/client";
+import { Label } from "~/components/ui/label";
+import { Input } from "~/components/ui/input";
 const { saveAs } = pkg;
 
 type LoaderData = {
-  fornitori: Fornitori[];
+  competitor: Competitor[];
 };
 
-// Aggiungi questa funzione per esportare i dati
-function exportFornitori(fornitori: Fornitori[]) {
-  const csvHeader = "ID,Nome,Email,Telefono,Sito Web\n";
-  const csvRows = fornitori
+// Funzione per esportare i dati in CSV
+function exportcompetitor(competitor: Competitor[]) {
+  const csvHeader = "ID,Nome Azienda,Sito Web,Descrizione Prodotti Venduti\n";
+  const csvRows = competitor
     .map(
-      (fornitore) =>
-        `${fornitore.id},${fornitore.nome},${fornitore.email},${fornitore.telefono},${fornitore.sitoWeb}`
+      (competitore) =>
+        `${competitore.id},"${competitore.nomeAzienda}","${
+          competitore.sitoWeb
+        }","${competitore.descrizioneProdottiVenduti ?? ""}"`
     )
     .join("\n");
   const csvData = new Blob([csvHeader + csvRows], {
     type: "text/csv;charset=utf-8;",
   });
-  saveAs(csvData, "fornitori.csv");
+  saveAs(csvData, "competitor.csv");
 }
+
 export const loader: LoaderFunction = async () => {
   try {
-    const fornitori = await getFornitori();
-    console.log("Fornitori caricati:", fornitori); // Debug
-    return { fornitori };
+    const competitor = await getCompetitori();
+    console.log("competitor caricati:", competitor); // Debug
+    return { competitor };
   } catch (error) {
     console.error("Errore nel loader:", error); // Debug
-    throw new Response("Errore nel caricamento dei fornitori", { status: 500 });
+    throw new Response("Errore nel caricamento dei competitor", {
+      status: 500,
+    });
   }
 };
 
-const fornitoriSchema = z.object({
-  nome: z.string().min(1, "Nome è richiesto"),
-  sitoWeb: z.string().url("Deve essere un URL valido").optional(),
-  telefono: z.string().optional(),
-  email: z.string().email("Deve essere un'email valida").optional(),
+const competitorSchema = z.object({
+  nomeAzienda: z.string().min(1, "Nome Azienda è richiesto"),
+  sitoWeb: z.string().url("Deve essere un URL valido"),
+  descrizioneProdottiVenduti: z.string().optional(),
 });
-type FornitoreFormData = z.infer<typeof fornitoriSchema>;
+
+type CompetitorFormData = z.infer<typeof competitorSchema>;
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
@@ -68,11 +72,11 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (intent === "delete" && id) {
     try {
-      await deleteFornitore(Number(id));
-      return redirect("/fornitori");
+      await deleteCompetitore(Number(id));
+      return redirect("/lista-competitor");
     } catch (error) {
-      console.error("Errore nell'eliminazione del fornitore:", error);
-      return { errors: { form: "Errore nell'eliminazione del fornitore" } };
+      console.error("Errore nell'eliminazione del competitor:", error);
+      return { errors: { form: "Errore nell'eliminazione del competitor" } };
     }
   }
 
@@ -80,68 +84,76 @@ export const action: ActionFunction = async ({ request }) => {
 
   console.log("Dati ricevuti nel form:", data); // Debug
 
-  const result = fornitoriSchema.safeParse(data);
+  const result = competitorSchema.safeParse(data);
   if (!result.success) {
     console.log("Errori di validazione:", result.error.flatten()); // Debug
     return { errors: result.error.flatten() };
   }
 
   try {
-    const nuovoFornitore = await addFornitore(result.data);
-    console.log("Fornitore aggiunto:", nuovoFornitore); // Debug
-    return redirect("/fornitori");
+    const nuovoCompetitore = await addCompetitore(result.data);
+    console.log("Competitore aggiunto:", nuovoCompetitore); // Debug
+    return redirect("/lista-competitor");
   } catch (error) {
-    console.error("Errore nell'aggiunta del fornitore:", error); // Debug
-    return { errors: { form: "Errore nell'aggiunta del fornitore" } };
+    console.error("Errore nell'aggiunta del competitor:", error);
+    return { errors: { form: "Errore nell'aggiunta del competitor" } };
   }
 };
 
-export default function FornitoriPage() {
+export default function ListaCompetitorPage() {
   const data = useLoaderData<LoaderData>();
-  const { fornitori } = useLoaderData<LoaderData>(); // Assicurati che questa linea sia presente
-  if (!fornitori) {
-    throw new Error("Dati dei fornitori non trovati");
+  const { competitor } = useLoaderData<LoaderData>();
+  if (!competitor) {
+    throw new Error("Dati dei competitor non trovati");
   }
   const {
     register,
     formState: { errors },
     reset,
-  } = useForm<FornitoreFormData>({
-    resolver: zodResolver(fornitoriSchema),
+  } = useForm<CompetitorFormData>({
+    resolver: zodResolver(competitorSchema),
   });
 
-  console.log("Fornitori ricevuti nel componente:", data.fornitori); // Debug
+  console.log("competitor ricevuti nel componente:", data.competitor); // Debug
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-        Gestione Fornitori
+        Gestione competitor
       </h1>
 
-      {/* Form Aggiungi Fornitore */}
+      {/* Form Aggiungi Competitor */}
       <Form method="post" className="bg-white p-6 rounded-lg shadow-lg mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Nome */}
+          {/* Nome Azienda */}
           <div>
-            <Label htmlFor="nome" className="block text-gray-700 mb-2">
-              Nome
+            <Label
+              htmlFor="nomeAzienda"
+              className="block text-gray-700 mb-2 bg-white"
+            >
+              Nome Azienda
             </Label>
             <Input
-              id="nome"
-              {...register("nome")}
+              id="nomeAzienda"
+              {...register("nomeAzienda")}
               className={`w-full p-2 border ${
-                errors.nome ? "border-red-500" : "border-gray-300"
+                errors.nomeAzienda ? "border-red-500" : "border-gray-300"
               } rounded-md text-black`}
-              placeholder="Nome del fornitore"
+              placeholder="Nome dell'azienda"
             />
-            {errors.nome && (
-              <p className="text-red-500 text-sm mt-1">{errors.nome.message}</p>
+            {errors.nomeAzienda && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.nomeAzienda.message}
+              </p>
             )}
           </div>
 
           {/* Sito Web */}
           <div>
-            <Label htmlFor="sitoWeb" className="block text-gray-700 mb-2">
+            <Label
+              htmlFor="sitoWeb"
+              className="block text-gray-700 mb-2 bg-white"
+            >
               Sito Web
             </Label>
             <Input
@@ -159,75 +171,60 @@ export default function FornitoriPage() {
             )}
           </div>
 
-          {/* Telefono */}
+          {/* Descrizione Prodotti Venduti */}
           <div>
-            <Label htmlFor="telefono" className="block text-gray-700 mb-2">
-              Telefono
+            <Label
+              htmlFor="descrizioneProdottiVenduti"
+              className="block text-gray-700 mb-2 bg-white"
+            >
+              Descrizione Prodotti Venduti
             </Label>
             <Input
-              id="telefono"
-              {...register("telefono")}
+              id="descrizioneProdottiVenduti"
+              {...register("descrizioneProdottiVenduti")}
               className={`w-full p-2 border ${
-                errors.telefono ? "border-red-500" : "border-gray-300"
+                errors.descrizioneProdottiVenduti
+                  ? "border-red-500"
+                  : "border-gray-300"
               } rounded-md text-black`}
-              placeholder="+39 333 3333 333"
+              placeholder="Descrizione dei prodotti venduti"
             />
-            {errors.telefono && (
+            {errors.descrizioneProdottiVenduti && (
               <p className="text-red-500 text-sm mt-1">
-                {errors.telefono.message}
-              </p>
-            )}
-          </div>
-
-          {/* Email */}
-          <div>
-            <Label htmlFor="email" className="block text-gray-700 mb-2">
-              Email
-            </Label>
-            <Input
-              id="email"
-              {...register("email")}
-              className={`w-full p-2 border ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              } rounded-md text-black`}
-              placeholder="email@esempio.com"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.email.message}
+                {errors.descrizioneProdottiVenduti.message}
               </p>
             )}
           </div>
         </div>
-
-        {/* Pulsante di invio */}
+        {/* Pulsanti di azione */}
         <div className="flex space-x-4 mt-6">
-          <ButtonCustom type="submit">Aggiungi Fornitore</ButtonCustom>
-          <ButtonCustom onClick={() => exportFornitori(fornitori)}>
+          <ButtonCustom type="submit">Aggiungi Competitor</ButtonCustom>
+          <ButtonCustom
+            type="button"
+            onClick={() => exportcompetitor(competitor)}
+            disabled={competitor.length === 0}
+          >
             Esporta CSV
           </ButtonCustom>
         </div>
       </Form>
 
-      {/* Lista dei Fornitori */}
+      {/* Lista dei competitor */}
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold mb-4 text-gray-700">
-          Elenco Fornitori
+          Elenco competitor
         </h2>
         <Table className="min-w-full divide-y divide-gray-200">
           <TableHeader>
             <TableRow className="bg-gray-50">
               <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Nome
+                Nome Azienda
               </TableHead>
               <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Sito Web
               </TableHead>
               <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Telefono
-              </TableHead>
-              <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Email
+                Descrizione Prodotti Venduti
               </TableHead>
               <TableHead className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Azioni
@@ -235,34 +232,28 @@ export default function FornitoriPage() {
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white divide-y divide-gray-200">
-            {data.fornitori.length > 0 ? (
-              data.fornitori.map((fornitore) => (
-                <TableRow key={fornitore.id} className="hover:bg-gray-100">
+            {competitor.length > 0 ? (
+              competitor.map((competitore) => (
+                <TableRow key={competitore.id} className="hover:bg-gray-100">
                   <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
-                    {fornitore.nome}
+                    {competitore.nomeAzienda}
                   </TableCell>
                   <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-[#111f43]">
-                    {fornitore.sitoWeb ? (
-                      <a
-                        href={fornitore.sitoWeb}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {fornitore.sitoWeb}
-                      </a>
-                    ) : (
-                      "N/A"
-                    )}
+                    <a
+                      href={competitore.sitoWeb}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      {competitore.sitoWeb}
+                    </a>
                   </TableCell>
                   <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
-                    {fornitore.telefono || "N/A"}
-                  </TableCell>
-                  <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
-                    {fornitore.email || "N/A"}
+                    {competitore.descrizioneProdottiVenduti || "N/A"}
                   </TableCell>
                   <TableCell className="px-4 py-2 whitespace-nowrap text-center">
                     <Form method="post">
-                      <input type="hidden" name="id" value={fornitore.id} />
+                      <input type="hidden" name="id" value={competitore.id} />
                       <input type="hidden" name="intent" value="delete" />
                       <button
                         type="submit"
@@ -270,7 +261,7 @@ export default function FornitoriPage() {
                         onClick={(e) => {
                           if (
                             !confirm(
-                              "Sei sicuro di voler eliminare questo fornitore?"
+                              "Sei sicuro di voler eliminare questo competitor?"
                             )
                           ) {
                             e.preventDefault();
@@ -286,10 +277,10 @@ export default function FornitoriPage() {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={5}
+                  colSpan={4}
                   className="px-4 py-2 text-center text-gray-500"
                 >
-                  Nessun fornitore trovato.
+                  Nessun competitor trovato.
                 </TableCell>
               </TableRow>
             )}

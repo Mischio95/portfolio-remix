@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Button3D from "./Button3D";
+import Button3D from "./buttons/Button3D";
 import { X, Github, Linkedin, Instagram } from "lucide-react";
 
 interface MenuItem {

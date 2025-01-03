@@ -8,9 +8,9 @@ import { BubbleEffect } from "~/components/bubbleeffect";
 import { AnimatedSection } from "~/components/animatedsection";
 import React, { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import Button from "~/components/button";
-import AnimatedButton from "~/components/AnimatedButton";
-import Button3D from "~/components/Button3D";
+import Button from "~/components/buttons/button";
+import AnimatedButton from "~/components/buttons/AnimatedButton";
+import Button3D from "~/components/buttons/Button3D";
 import { useEffect } from "react";
 import { RegisterAnimations } from "~/components/registerAnimations";
 import { Link } from "react-router-dom";
@@ -192,7 +192,7 @@ export default function Index() {
                 <VerticalCarousel />
               </section> */}
               <div className="justify-center h-[1px] bg-slate-600 w-full mt-4"></div>
-
+              <section id="AnimatedText" className="py-12 "></section>
               <section id="footer" className="py-2">
                 <Footer />
               </section>

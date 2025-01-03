@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Button3D from "./Button3D";
+import Button3D from "./buttons/Button3D";
 
 interface Project {
   title: string;

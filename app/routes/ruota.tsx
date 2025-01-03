@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogClose,
 } from "~/components/ui/dialog";
-import Button3D from "~/components/Button3D";
-import Button3Druota from "~/components/Button3Druota";
+import Button3D from "~/components/buttons/Button3D";
+import Button3Druota from "~/components/buttons/Button3Druota";
 import { motion } from "framer-motion";
 
 // Importa il componente Wheel dinamicamente per evitare l'errore lato server

@@ -183,7 +183,7 @@ import { useState, useEffect } from "react";
 import { Link } from "@remix-run/react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button3D from "./Button3D";
+import Button3D from "./buttons/Button3D";
 import FullScreenMenu from "./FullScreenMenu";
 
 export function Nav() {

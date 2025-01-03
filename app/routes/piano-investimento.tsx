@@ -18,7 +18,7 @@ import pkg from "file-saver";
 const { saveAs } = pkg;
 
 import { userSchema } from "../validations/validationSchemaPianoInvestimento";
-import ButtonCustom from "~/components/ButtonCustom";
+import ButtonCustom from "~/components/buttons/ButtonCustom";
 
 type ExpenseFormData = z.infer<typeof userSchema>;
 

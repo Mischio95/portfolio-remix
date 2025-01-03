@@ -3,7 +3,7 @@ import { Button } from "~/components/ui/button";
 import { motion } from "framer-motion";
 import { LoaderFunction, json } from "@remix-run/node"; // LoaderFunction da usare nel server
 import { useState, useEffect } from "react";
-import ButtonCustom from "~/components/ButtonCustom";
+import ButtonCustom from "~/components/buttons/ButtonCustom";
 
 type LoaderData = {
   someData?: boolean; // Aggiungi una proprietà per i dati che vuoi caricare
@@ -157,9 +157,29 @@ export default function Dashboard() {
           </Link>
         </motion.div>
 
-        {/* ESPORTA PDF */}
+        {/* Collegamento a Lista Competitor */}
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          <div>
+            <h2 className="text-2xl font-semibold text-[#111f43]">
+              Lista Competitor
+            </h2>
+            <p className="text-gray-500">Inserire reference</p>
+          </div>
+          <Link to="/lista-competitor">
+            <ButtonCustom>Vai</ButtonCustom>
+          </Link>
+        </motion.div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full max-w-4xl mt-6">
+        <motion.div
+          className="bg-white w-full p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
           animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
           transition={{ duration: 0.5 }}

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ButtonCustom from "~/components/ButtonCustom";
-import Button3D from "./Button3D";
+import ButtonCustom from "~/components/buttons/ButtonCustom";
+import Button3D from "./buttons/Button3D";
 
 interface CardProps {
   title: string;

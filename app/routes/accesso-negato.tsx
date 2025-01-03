@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "@remix-run/react";
-import ButtonCustom from "~/components/ButtonCustom";
-import HackerButton from "~/components/Button/hacker-button";
+import ButtonCustom from "~/components/buttons/ButtonCustom";
+import HackerButton from "~/components/buttons/hacker-button";
 
 export default function AccessDenied() {
   useEffect(() => {

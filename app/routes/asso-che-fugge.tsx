@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import Button3D from "~/components/Button3D";
+import Button3D from "~/components/buttons/Button3D";
 import AssoCheFuggeRegole from "./asso-che-fugge-regole";
 import {
   Dialog,
