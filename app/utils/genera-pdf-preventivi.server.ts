@@ -193,7 +193,7 @@ function generateHTML(preventivo: ExtendedPreventivo): string {
         
         <div>
           <h3>DATI CLIENTE</h3>
-          <p>${preventivo.clientName}</p>
+          <p>${preventivo.clientName} ${preventivo.clientCognome}</p>
           <p>${preventivo.clientAddress}</p>
           <p>Tel: ${preventivo.clientPhone}</p>
           <p>Email: ${preventivo.clientEmail}</p>

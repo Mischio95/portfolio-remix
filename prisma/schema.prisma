@@ -78,6 +78,7 @@ model Competitor {
 model Preventivo {
   id               Int           @id @default(autoincrement())
   clientName       String?
+  clientCognome    String?
   clientAddress    String?
   clientPhone      String?
   clientEmail      String?

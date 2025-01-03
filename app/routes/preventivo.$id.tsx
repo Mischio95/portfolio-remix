@@ -45,8 +45,14 @@ export default function DettaglioPreventivo() {
       const sanitizedClientName = preventivo.clientName
         ? preventivo.clientName.replace(/[^a-z0-9]/gi, "_")
         : "unknown_client";
+      const sanitizedClientCognome = preventivo.clientCognome
+        ? preventivo.clientCognome.replace(/[^a-z0-9]/gi, "_")
+        : "unknown_client";
 
-      saveAs(blob, `Preventivo_${sanitizedClientName}.pdf`);
+      saveAs(
+        blob,
+        `Preventivo_${sanitizedClientName}_${sanitizedClientCognome}.pdf`
+      );
     } catch (error) {
       console.error("Errore durante l'esportazione del PDF:", error);
       alert(
@@ -65,7 +71,8 @@ export default function DettaglioPreventivo() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Dettaglio Preventivo {preventivo.preventivoNumber}
+        Dettagli Preventivo N:{preventivo.preventivoNumber} -{" "}
+        {preventivo.clientName} {preventivo.clientCognome}
       </motion.h1>
 
       <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
@@ -89,6 +96,14 @@ export default function DettaglioPreventivo() {
               </th>
               <td className="py-2 px-4 border-b text-[#10172a]">
                 {preventivo.clientName}
+              </td>
+            </tr>
+            <tr>
+              <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                Cognome
+              </th>
+              <td className="py-2 px-4 border-b text-[#10172a]">
+                {preventivo.clientCognome}
               </td>
             </tr>
             <tr>
@@ -141,6 +156,7 @@ export default function DettaglioPreventivo() {
                 {preventivo.providerName}
               </td>
             </tr>
+
             <tr>
               <th className="py-2 px-4 border-b text-left text-[#10172a]">
                 Indirizzo

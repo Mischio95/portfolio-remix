@@ -7,6 +7,7 @@ import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { preventivoSchema } from "~/validations/validationPreventivoSchema";
 import { Prisma } from "@prisma/client";
+import { Label } from "~/components/ui/label";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -53,6 +54,7 @@ export const action: ActionFunction = async ({ request }) => {
     const preventivo = await createPreventivo({
       preventivoNumber: validatedData.preventivoNumber || "",
       clientName: validatedData.clientName || "",
+      clientCognome: validatedData.clientCognome || "",
       clientAddress: validatedData.clientAddress || "",
       clientPhone: validatedData.clientPhone || "",
       clientEmail: validatedData.clientEmail || "",
@@ -159,9 +161,9 @@ export default function CreaPreventivo() {
           <div className="h-px bg-gray-200 mb-4"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="clientName">
+              <Label className="block text-gray-700 mb-2" htmlFor="clientName">
                 Nome Cliente
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="clientName"
@@ -170,12 +172,23 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label
+              <Label className="block text-gray-700 mb-2" htmlFor="clientName">
+                Cognome Cliente
+              </Label>
+              <Input
+                type="text"
+                id="clientCognome"
+                name="clientCognome"
+                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+              />
+            </div>
+            <div>
+              <Label
                 className="block text-gray-700 mb-2"
                 htmlFor="clientAddress"
               >
                 Indirizzo Cliente
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="clientAddress"
@@ -184,9 +197,9 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="clientPhone">
+              <Label className="block text-gray-700 mb-2" htmlFor="clientPhone">
                 Telefono Cliente
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="clientPhone"
@@ -195,9 +208,9 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="clientEmail">
+              <Label className="block text-gray-700 mb-2" htmlFor="clientEmail">
                 Email Cliente
-              </label>
+              </Label>
               <Input
                 type="email"
                 id="clientEmail"
@@ -206,9 +219,9 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="clientVat">
+              <Label className="block text-gray-700 mb-2" htmlFor="clientVat">
                 Partita IVA / Codice Fiscale Cliente
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="clientVat"
@@ -227,12 +240,12 @@ export default function CreaPreventivo() {
           <div className="h-px bg-gray-200 mb-4"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
+              <Label
                 className="block text-gray-700 mb-2"
                 htmlFor="providerName"
               >
                 Nome Fornitore
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="providerName"
@@ -242,12 +255,12 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label
+              <Label
                 className="block text-gray-700 mb-2"
                 htmlFor="providerAddress"
               >
                 Indirizzo Fornitore
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="providerAddress"
@@ -257,12 +270,12 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label
+              <Label
                 className="block text-gray-700 mb-2"
                 htmlFor="providerPhone"
               >
                 Telefono Fornitore
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="providerPhone"
@@ -272,12 +285,12 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label
+              <Label
                 className="block text-gray-700 mb-2"
                 htmlFor="providerEmail"
               >
                 Email Fornitore
-              </label>
+              </Label>
               <Input
                 type="email"
                 id="providerEmail"
@@ -287,9 +300,9 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="providerVat">
+              <Label className="block text-gray-700 mb-2" htmlFor="providerVat">
                 Partita IVA Fornitore
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="providerVat"
@@ -309,12 +322,12 @@ export default function CreaPreventivo() {
           <div className="h-px bg-gray-200 mb-4"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
+              <Label
                 className="block text-gray-700 mb-2"
                 htmlFor="preventivoNumber"
               >
                 Numero Preventivo
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="preventivoNumber"
@@ -323,9 +336,9 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="issueDate">
+              <Label className="block text-gray-700 mb-2" htmlFor="issueDate">
                 Data di Emissione
-              </label>
+              </Label>
               <Input
                 type="date"
                 id="issueDate"
@@ -334,9 +347,9 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="dueDate">
+              <Label className="block text-gray-700 mb-2" htmlFor="dueDate">
                 Data di Scadenza
-              </label>
+              </Label>
               <Input
                 type="date"
                 id="dueDate"
@@ -345,12 +358,12 @@ export default function CreaPreventivo() {
               />
             </div>
             <div>
-              <label
+              <Label
                 className="block text-gray-700 mb-2"
                 htmlFor="paymentTerms"
               >
                 Termini di Pagamento
-              </label>
+              </Label>
               <Input
                 type="text"
                 id="paymentTerms"
@@ -389,12 +402,12 @@ export default function CreaPreventivo() {
               className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4"
             >
               <div className="col-span-2">
-                <label
+                <Label
                   className="block text-gray-700 mb-2"
                   htmlFor={`item-description-${index}`}
                 >
                   Descrizione
-                </label>
+                </Label>
                 <Input
                   type="text"
                   id={`item-description-${index}`}
@@ -403,12 +416,12 @@ export default function CreaPreventivo() {
                 />
               </div>
               <div>
-                <label
+                <Label
                   className="block text-gray-700 mb-2"
                   htmlFor={`item-quantity-${index}`}
                 >
                   Quantità
-                </label>
+                </Label>
                 <Input
                   type="number"
                   id={`item-quantity-${index}`}
@@ -418,12 +431,12 @@ export default function CreaPreventivo() {
                 />
               </div>
               <div>
-                <label
+                <Label
                   className="block text-gray-700 mb-2"
                   htmlFor={`item-unitPrice-${index}`}
                 >
                   Prezzo Unitario (€)
-                </label>
+                </Label>
                 <Input
                   type="number"
                   id={`item-unitPrice-${index}`}
@@ -434,12 +447,12 @@ export default function CreaPreventivo() {
                 />
               </div>
               <div>
-                <label
+                <Label
                   className="block text-gray-700 mb-2"
                   htmlFor={`item-category-${index}`}
                 >
                   Categoria
-                </label>
+                </Label>
                 <select
                   id={`item-category-${index}`}
                   name={`item-category-${index}`}

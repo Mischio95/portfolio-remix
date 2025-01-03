@@ -3,6 +3,7 @@ import { z } from "zod";
 export const preventivoSchema = z.object({
   preventivoNumber: z.string().min(1, "Numero Preventivo richiesto"),
   clientName: z.string().min(1, "Nome Cliente richiesto"),
+  clientCognome: z.string().min(1, "Nome Cliente richiesto"),
   clientAddress: z.string().min(1, "Indirizzo Cliente richiesto"),
   clientPhone: z.string().min(1, "Telefono Cliente richiesto"),
   clientEmail: z.string().email("Email non valida"),
