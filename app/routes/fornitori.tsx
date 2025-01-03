@@ -336,7 +336,7 @@ export default function FornitoriPage() {
                       <input type="hidden" name="intent" value="delete" />
                       <button
                         type="submit"
-                        className="text-red-600 hover:text-red-800"
+                        className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md"
                         onClick={(e) => {
                           if (
                             !confirm(
