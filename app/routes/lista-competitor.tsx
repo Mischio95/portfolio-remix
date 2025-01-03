@@ -1,4 +1,10 @@
-import { useLoaderData, Form, redirect } from "@remix-run/react";
+import {
+  useLoaderData,
+  Form,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "@remix-run/react";
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -21,6 +27,7 @@ import pkg from "file-saver";
 import { Competitor } from "@prisma/client";
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
+import { useEffect } from "react";
 const { saveAs } = pkg;
 
 type LoaderData = {
@@ -101,26 +108,66 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function ListaCompetitorPage() {
-  const data = useLoaderData<LoaderData>();
   const { competitor } = useLoaderData<LoaderData>();
-  if (!competitor) {
-    throw new Error("Dati dei competitor non trovati");
-  }
+  const actionData = useActionData<{
+    errors?: { form?: string; fieldErrors?: Record<string, string[]> };
+  }>();
+  const transition = useNavigation();
+
   const {
     register,
     formState: { errors },
     reset,
+    setError,
   } = useForm<CompetitorFormData>({
     resolver: zodResolver(competitorSchema),
   });
 
-  console.log("competitor ricevuti nel componente:", data.competitor); // Debug
+  useEffect(() => {
+    if (actionData?.errors) {
+      // Gestione degli errori di livello form
+      if (actionData.errors.form) {
+        // Puoi implementare uno stato per mostrare un messaggio generale
+      }
+
+      // Gestione degli errori di livello campo
+      if (actionData.errors.fieldErrors) {
+        for (const [field, messages] of Object.entries(
+          actionData.errors.fieldErrors
+        )) {
+          setError(field as keyof CompetitorFormData, {
+            type: "server",
+            message: messages[0],
+          });
+        }
+      }
+    }
+
+    // Resetta il form quando la transizione è completata e non ci sono errori
+    if (transition.state === "idle" && !actionData?.errors) {
+      reset();
+    }
+  }, [actionData, setError, reset, transition.state]);
+
+  console.log("competitor ricevuti nel componente:", competitor); // Debug
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
         Gestione competitor
       </h1>
+
+      {/* Visualizza messaggio di successo */}
+      {transition.state === "idle" && !actionData?.errors && (
+        <p className="text-green-500 text-sm mb-4">
+          Competitore aggiunto con successo!
+        </p>
+      )}
+
+      {/* Visualizza errori generali */}
+      {actionData?.errors?.form && (
+        <p className="text-red-500 text-sm mb-4">{actionData.errors.form}</p>
+      )}
 
       {/* Form Aggiungi Competitor */}
       <Form method="post" className="bg-white p-6 rounded-lg shadow-lg mb-8">
@@ -131,7 +178,7 @@ export default function ListaCompetitorPage() {
               htmlFor="nomeAzienda"
               className="block text-gray-700 mb-2 bg-white"
             >
-              Nome Azienda
+              Nome Azienda*
             </Label>
             <Input
               id="nomeAzienda"
@@ -140,6 +187,7 @@ export default function ListaCompetitorPage() {
                 errors.nomeAzienda ? "border-red-500" : "border-gray-300"
               } rounded-md text-black`}
               placeholder="Nome dell'azienda"
+              defaultValue=""
             />
             {errors.nomeAzienda && (
               <p className="text-red-500 text-sm mt-1">
@@ -154,7 +202,7 @@ export default function ListaCompetitorPage() {
               htmlFor="sitoWeb"
               className="block text-gray-700 mb-2 bg-white"
             >
-              Sito Web
+              Sito Web*
             </Label>
             <Input
               id="sitoWeb"
@@ -163,6 +211,7 @@ export default function ListaCompetitorPage() {
                 errors.sitoWeb ? "border-red-500" : "border-gray-300"
               } rounded-md text-black`}
               placeholder="https://www.esempio.com"
+              defaultValue=""
             />
             {errors.sitoWeb && (
               <p className="text-red-500 text-sm mt-1">
@@ -188,6 +237,7 @@ export default function ListaCompetitorPage() {
                   : "border-gray-300"
               } rounded-md text-black`}
               placeholder="Descrizione dei prodotti venduti"
+              defaultValue=""
             />
             {errors.descrizioneProdottiVenduti && (
               <p className="text-red-500 text-sm mt-1">
@@ -198,7 +248,14 @@ export default function ListaCompetitorPage() {
         </div>
         {/* Pulsanti di azione */}
         <div className="flex space-x-4 mt-6">
-          <ButtonCustom type="submit">Aggiungi Competitor</ButtonCustom>
+          <ButtonCustom
+            type="submit"
+            disabled={transition.state === "submitting"}
+          >
+            {transition.state === "submitting"
+              ? "Aggiungendo..."
+              : "Aggiungi Competitor"}
+          </ButtonCustom>
           <ButtonCustom
             type="button"
             onClick={() => exportcompetitor(competitor)}

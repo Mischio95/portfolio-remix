@@ -1,4 +1,10 @@
-import { useLoaderData, Form, redirect } from "@remix-run/react";
+import {
+  useLoaderData,
+  Form,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "@remix-run/react";
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { z } from "zod";
 import { Button } from "~/components/ui/button";
@@ -22,13 +28,15 @@ import {
 } from "~/models/fornitori.server";
 import ButtonCustom from "~/components/buttons/ButtonCustom";
 import pkg from "file-saver";
+import { useEffect } from "react";
+
 const { saveAs } = pkg;
 
 type LoaderData = {
   fornitori: Fornitori[];
 };
 
-// Aggiungi questa funzione per esportare i dati
+// Funzione per esportare i dati in CSV
 function exportFornitori(fornitori: Fornitori[]) {
   const csvHeader = "ID,Nome,Email,Telefono,Sito Web\n";
   const csvRows = fornitori
@@ -42,6 +50,7 @@ function exportFornitori(fornitori: Fornitori[]) {
   });
   saveAs(csvData, "fornitori.csv");
 }
+
 export const loader: LoaderFunction = async () => {
   try {
     const fornitori = await getFornitori();
@@ -97,20 +106,53 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function FornitoriPage() {
-  const data = useLoaderData<LoaderData>();
-  const { fornitori } = useLoaderData<LoaderData>(); // Assicurati che questa linea sia presente
+  const { fornitori } = useLoaderData<LoaderData>();
+  const actionData = useActionData<{
+    errors?: { form?: string; fieldErrors?: Record<string, string[]> };
+  }>();
+  const transition = useNavigation();
+
   if (!fornitori) {
     throw new Error("Dati dei fornitori non trovati");
   }
+
   const {
     register,
     formState: { errors },
     reset,
+    setError,
   } = useForm<FornitoreFormData>({
     resolver: zodResolver(fornitoriSchema),
   });
 
-  console.log("Fornitori ricevuti nel componente:", data.fornitori); // Debug
+  useEffect(() => {
+    if (actionData?.errors) {
+      // Gestione degli errori di livello form
+      if (actionData.errors.form) {
+        // Potresti usare uno stato per mostrare un messaggio generale
+        // E.g., setFormError(actionData.errors.form);
+      }
+
+      // Gestione degli errori di livello campo
+      if (actionData.errors.fieldErrors) {
+        for (const [field, messages] of Object.entries(
+          actionData.errors.fieldErrors
+        )) {
+          setError(field as keyof FornitoreFormData, {
+            type: "server",
+            message: messages[0],
+          });
+        }
+      }
+    }
+
+    // Resetta il form quando la transizione è completata e non ci sono errori
+    if (transition.state === "idle" && !actionData?.errors) {
+      reset();
+    }
+  }, [actionData, setError, reset, transition.state]);
+
+  console.log("Fornitori ricevuti nel componente:", fornitori); // Debug
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -118,13 +160,25 @@ export default function FornitoriPage() {
         Gestione Fornitori
       </h1>
 
+      {/* Visualizza messaggio di successo (opzionale) */}
+      {transition.state === "idle" && !actionData?.errors && (
+        <p className="text-green-500 text-sm mb-4">
+          Fornitore aggiunto con successo!
+        </p>
+      )}
+
+      {/* Visualizza errori generali */}
+      {actionData?.errors?.form && (
+        <p className="text-red-500 text-sm mb-4">{actionData.errors.form}</p>
+      )}
+
       {/* Form Aggiungi Fornitore */}
       <Form method="post" className="bg-white p-6 rounded-lg shadow-lg mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Nome */}
           <div>
             <Label htmlFor="nome" className="block text-gray-700 mb-2">
-              Nome
+              Nome*
             </Label>
             <Input
               id="nome"
@@ -133,6 +187,7 @@ export default function FornitoriPage() {
                 errors.nome ? "border-red-500" : "border-gray-300"
               } rounded-md text-black`}
               placeholder="Nome del fornitore"
+              defaultValue=""
             />
             {errors.nome && (
               <p className="text-red-500 text-sm mt-1">{errors.nome.message}</p>
@@ -142,7 +197,7 @@ export default function FornitoriPage() {
           {/* Sito Web */}
           <div>
             <Label htmlFor="sitoWeb" className="block text-gray-700 mb-2">
-              Sito Web
+              Sito Web*
             </Label>
             <Input
               id="sitoWeb"
@@ -151,6 +206,7 @@ export default function FornitoriPage() {
                 errors.sitoWeb ? "border-red-500" : "border-gray-300"
               } rounded-md text-black`}
               placeholder="https://www.esempio.com"
+              defaultValue=""
             />
             {errors.sitoWeb && (
               <p className="text-red-500 text-sm mt-1">
@@ -171,6 +227,7 @@ export default function FornitoriPage() {
                 errors.telefono ? "border-red-500" : "border-gray-300"
               } rounded-md text-black`}
               placeholder="+39 333 3333 333"
+              defaultValue=""
             />
             {errors.telefono && (
               <p className="text-red-500 text-sm mt-1">
@@ -182,7 +239,7 @@ export default function FornitoriPage() {
           {/* Email */}
           <div>
             <Label htmlFor="email" className="block text-gray-700 mb-2">
-              Email
+              Email*
             </Label>
             <Input
               id="email"
@@ -191,6 +248,7 @@ export default function FornitoriPage() {
                 errors.email ? "border-red-500" : "border-gray-300"
               } rounded-md text-black`}
               placeholder="email@esempio.com"
+              defaultValue=""
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -200,10 +258,21 @@ export default function FornitoriPage() {
           </div>
         </div>
 
-        {/* Pulsante di invio */}
+        {/* Pulsanti di azione */}
         <div className="flex space-x-4 mt-6">
-          <ButtonCustom type="submit">Aggiungi Fornitore</ButtonCustom>
-          <ButtonCustom onClick={() => exportFornitori(fornitori)}>
+          <ButtonCustom
+            type="submit"
+            disabled={transition.state === "submitting"}
+          >
+            {transition.state === "submitting"
+              ? "Aggiungendo..."
+              : "Aggiungi Fornitore"}
+          </ButtonCustom>
+          <ButtonCustom
+            type="button"
+            onClick={() => exportFornitori(fornitori)}
+            disabled={fornitori.length === 0}
+          >
             Esporta CSV
           </ButtonCustom>
         </div>
@@ -235,8 +304,8 @@ export default function FornitoriPage() {
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white divide-y divide-gray-200">
-            {data.fornitori.length > 0 ? (
-              data.fornitori.map((fornitore) => (
+            {fornitori.length > 0 ? (
+              fornitori.map((fornitore) => (
                 <TableRow key={fornitore.id} className="hover:bg-gray-100">
                   <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
                     {fornitore.nome}
@@ -247,6 +316,7 @@ export default function FornitoriPage() {
                         href={fornitore.sitoWeb}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="text-blue-500 hover:underline"
                       >
                         {fornitore.sitoWeb}
                       </a>

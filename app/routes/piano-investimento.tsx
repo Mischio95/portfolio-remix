@@ -383,6 +383,9 @@ export default function InvestmentPlan() {
                 Costo (€)
               </TableHead>
               <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Totale + IVA(€)
+              </TableHead>
+              <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 IVA Inclusa
               </TableHead>
               <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -393,9 +396,6 @@ export default function InvestmentPlan() {
               </TableHead>
               <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Parziale Annuale (€)
-              </TableHead>
-              <TableHead className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Totale + IVA(€)
               </TableHead>
               <TableHead className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Azioni
@@ -411,6 +411,11 @@ export default function InvestmentPlan() {
                   </TableCell>
                   <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
                     €{expense.cost.toFixed(2)}
+                  </TableCell>
+                  <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
+                    {expense.isVatIncluded
+                      ? expense.cost.toFixed(2)
+                      : (expense.cost + calculateVAT(expense.cost)).toFixed(2)}
                   </TableCell>
                   <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
                     {expense.isVatIncluded ? "Sì" : "No"}
@@ -431,11 +436,7 @@ export default function InvestmentPlan() {
                         ).toFixed(2)
                       : ""}
                   </TableCell>
-                  <TableCell className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
-                    {expense.isVatIncluded
-                      ? expense.cost.toFixed(2)
-                      : (expense.cost + calculateVAT(expense.cost)).toFixed(2)}
-                  </TableCell>
+
                   <TableCell className="px-4 py-2 whitespace-nowrap text-center">
                     <Button
                       onClick={() => handleDeleteExpense(expense.id)}
