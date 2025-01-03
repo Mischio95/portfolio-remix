@@ -138,25 +138,6 @@ export default function Dashboard() {
           </Link>
         </motion.div>
 
-        {/* Collegamento a Analisi di Mercato */}
-        <motion.div
-          className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          <div>
-            <h2 className="text-2xl font-semibold text-[#111f43]">
-              Analisi di Mercato
-            </h2>
-            <p className="text-gray-500">Analizza il mercato.</p>
-          </div>
-          <Link to="/analisi-mercato">
-            <ButtonCustom>Vai</ButtonCustom>
-          </Link>
-        </motion.div>
-
         {/* Collegamento a Lista Competitor */}
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
@@ -172,6 +153,25 @@ export default function Dashboard() {
             <p className="text-gray-500">Inserire reference</p>
           </div>
           <Link to="/lista-competitor">
+            <ButtonCustom>Vai</ButtonCustom>
+          </Link>
+        </motion.div>
+
+        {/* Collegamento a Analisi di Mercato */}
+        <motion.div
+          className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          <div>
+            <h2 className="text-2xl font-semibold text-[#111f43]">
+              Analisi di Mercato
+            </h2>
+            <p className="text-gray-500">Analizza il mercato.</p>
+          </div>
+          <Link to="/analisi-mercato">
             <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
