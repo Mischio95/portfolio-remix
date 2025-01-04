@@ -194,7 +194,7 @@ function generateHTML(preventivo: ExtendedPreventivo): string {
           </g>
         </g>
       </svg>
-      <h1>Michele Trombone</h1>
+      <h1>${preventivo.providerName}</h1>
       <p>FULL STACK DEVELOPER</p>
     </div>
     
