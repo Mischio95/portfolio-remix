@@ -206,7 +206,7 @@ function generateHTML(preventivo: ExtendedPreventivo): string {
           <p>${preventivo.providerAddress}</p>
           <p>Tel: ${preventivo.providerPhone}</p>
           <p>Email: ${preventivo.providerEmail}</p>
-          <p>P.IVA / Codice Fiscale: ${preventivo.providerVat}</p>
+          <p>P.IVA / CF: ${preventivo.providerVat}</p>
         </div>
         
         <div>
@@ -215,19 +215,22 @@ function generateHTML(preventivo: ExtendedPreventivo): string {
           <p>${preventivo.clientAddress}</p>
           <p>Tel: ${preventivo.clientPhone}</p>
           <p>Email: ${preventivo.clientEmail}</p>
-          <p>P.IVA / Codice Fiscale: ${preventivo.clientVat}</p>
+          <p>P.IVA / CF: ${preventivo.clientVat}</p>
         </div>
       </div>
       
       <div>
         <div class="section-title">
-          PREVENTIVO N. ${preventivo.preventivoNumber}
+          PREVENTIVO # ${preventivo.preventivoNumber}
         </div>
-        <p>Data Emissione: ${preventivo.issueDate ? new Date(preventivo.issueDate).toLocaleDateString('it-IT') : "N/A"} - Data Scadenza: ${preventivo.dueDate ? new Date(preventivo.dueDate).toLocaleDateString('it-IT') : "N/A"}</p>
+        <p>
+          <span style="color: #111f43;">Data: ${preventivo.issueDate ? new Date(preventivo.issueDate).toLocaleDateString('it-IT') : "N/A"}</span> - 
+          <span style="color: #a9181e; font-weight: bold;">Valido fino a: ${preventivo.dueDate ? new Date(preventivo.dueDate).toLocaleDateString('it-IT') : "N/A"}</span>
+        </p>
       </div>
       
       <div>
-        <h3>OGGETTO DEL SERVIZIO: Il prodotto/servizio offerto</h3>
+        <h3>OGGETTO DEL SERVIZIO: Prodotti/Servizio offerti</h3>
         <table>
           <thead>
             <tr>
