@@ -66,9 +66,9 @@ export default function DettaglioPreventivo() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen bg-gray-100 p-4 md:p-8">
       <motion.h1
-        className="text-3xl font-bold mb-6 text-gray-800"
+        className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-800"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -77,202 +77,204 @@ export default function DettaglioPreventivo() {
         {preventivo.clientName} {preventivo.clientCognome}
       </motion.h1>
 
-      <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-        <h2 className="text-xl font-semibold mb-4 text-[#111F43]">
+      <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg mb-6 overflow-x-auto">
+        <h2 className="text-lg md:text-xl font-semibold mb-4 text-[#111F43]">
           Dettagli Preventivo
         </h2>
-        <table className="min-w-full bg-white rounded-lg shadow-lg">
-          <tbody>
-            {/* Sezione Cliente */}
-            <tr>
-              <th
-                colSpan={2}
-                className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43]  "
-              >
-                Riepilogo dati Cliente
-              </th>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Nome
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.clientName}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Cognome
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.clientCognome}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Indirizzo
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.clientAddress}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Telefono
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.clientPhone}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Email
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.clientEmail}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Partita IVA
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.clientVat}
-              </td>
-            </tr>
-
-            {/* Sezione Fornitore */}
-            <tr>
-              <th
-                colSpan={2}
-                className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43] "
-              >
-                Dettagli sul Fornitore
-              </th>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Nome
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.providerName}
-              </td>
-            </tr>
-
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Indirizzo
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.providerAddress}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Telefono
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.providerPhone}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Email
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.providerEmail}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Partita IVA
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.providerVat}
-              </td>
-            </tr>
-            {/* Sezione Spese */}
-            <tr>
-              <th
-                colSpan={2}
-                className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43] "
-              >
-                Riepilogo Voci di Spesa
-              </th>
-            </tr>
-            {preventivo.items.map((item, index) => (
-              <tr key={index}>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white rounded-lg shadow-lg">
+            <tbody>
+              {/* Sezione Cliente */}
+              <tr>
+                <th
+                  colSpan={2}
+                  className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43]  "
+                >
+                  Riepilogo dati Cliente
+                </th>
+              </tr>
+              <tr>
                 <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                  {item.description}
+                  Nome
                 </th>
                 <td className="py-2 px-4 border-b text-[#10172a]">
-                  {item.unitPrice.toFixed(2)} €
+                  {preventivo.clientName}
                 </td>
               </tr>
-            ))}
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Cognome
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.clientCognome}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Indirizzo
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.clientAddress}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Telefono
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.clientPhone}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Email
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.clientEmail}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Partita IVA
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.clientVat}
+                </td>
+              </tr>
 
-            {/* Sezione Dettagli Preventivo */}
-            <tr>
-              <th
-                colSpan={2}
-                className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43] "
-              >
-                Dettagli Preventivo
-              </th>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Data Emissione
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.issueDate
-                  ? new Date(preventivo.issueDate).toLocaleDateString()
-                  : "N/A"}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Data Scadenza
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.dueDate
-                  ? new Date(preventivo.dueDate).toLocaleDateString()
-                  : "N/A"}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Termini di Pagamento
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.paymentTerms}
-              </td>
-            </tr>
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Note
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.notes || "N/A"}
-              </td>
-            </tr>
+              {/* Sezione Fornitore */}
+              <tr>
+                <th
+                  colSpan={2}
+                  className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43] "
+                >
+                  Dettagli sul Fornitore
+                </th>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Nome
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.providerName}
+                </td>
+              </tr>
 
-            <tr>
-              <th className="py-2 px-4 border-b text-left text-[#10172a]">
-                Totale (€)
-              </th>
-              <td className="py-2 px-4 border-b text-[#10172a]">
-                {preventivo.total.toFixed(2)}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Indirizzo
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.providerAddress}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Telefono
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.providerPhone}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Email
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.providerEmail}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Partita IVA
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.providerVat}
+                </td>
+              </tr>
+              {/* Sezione Spese */}
+              <tr>
+                <th
+                  colSpan={2}
+                  className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43] "
+                >
+                  Riepilogo Voci di Spesa
+                </th>
+              </tr>
+              {preventivo.items.map((item, index) => (
+                <tr key={index}>
+                  <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                    {item.description}
+                  </th>
+                  <td className="py-2 px-4 border-b text-[#10172a]">
+                    {item.unitPrice.toFixed(2)} €
+                  </td>
+                </tr>
+              ))}
 
-        <div className="mt-4 flex space-x-2">
+              {/* Sezione Dettagli Preventivo */}
+              <tr>
+                <th
+                  colSpan={2}
+                  className="py-2 px-4 border-b text-left text-[#fff] uppercase bg-[#111F43] "
+                >
+                  Dettagli Preventivo
+                </th>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Data Emissione
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.issueDate
+                    ? new Date(preventivo.issueDate).toLocaleDateString()
+                    : "N/A"}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Data Scadenza
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.dueDate
+                    ? new Date(preventivo.dueDate).toLocaleDateString()
+                    : "N/A"}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Termini di Pagamento
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.paymentTerms}
+                </td>
+              </tr>
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Note
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.notes || "N/A"}
+                </td>
+              </tr>
+
+              <tr>
+                <th className="py-2 px-4 border-b text-left text-[#10172a]">
+                  Totale (€)
+                </th>
+                <td className="py-2 px-4 border-b text-[#10172a]">
+                  {preventivo.total.toFixed(2)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="mt-4 flex flex-col md:flex-row gap-2 md:space-x-2">
           <ButtonCustom href="/preventivi">Torna Indietro</ButtonCustom>
           <button
             type="button"
-            className="px-4 py-2 bg-emerald-800 text-white rounded-lg hover:scale-105"
+            className="w-full md:w-auto px-4 py-2 bg-emerald-800 text-white rounded-lg hover:scale-105"
             onClick={() => navigate(`/modifica-preventivo/${preventivo.id}`)}
           >
             Modifica Preventivo
@@ -280,12 +282,12 @@ export default function DettaglioPreventivo() {
 
           <button
             onClick={exportToPDF}
-            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:scale-105"
+            className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:scale-105"
             disabled={isLoading}
           >
             {isLoading ? (
               <svg
-                className="animate-spin h-5 w-5 text-white"
+                className="animate-spin h-5 w-5 text-white mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
