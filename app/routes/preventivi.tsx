@@ -78,7 +78,9 @@ export default function Preventivi() {
                   {preventivo.preventivoNumber || "N/A"}
                 </td>
                 <td className="py-2 px-4 border-b text-[#111f43] text-center">
-                  {preventivo.clientName || "N/A"}
+                  {`${preventivo.clientName} ${
+                    preventivo.clientCognome ?? ""
+                  }` || "N/A"}
                 </td>
                 <td className="py-2 px-4 border-b text-[#111f43] text-center">
                   {preventivo.issueDate

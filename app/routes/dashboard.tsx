@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { LoaderFunction, json } from "@remix-run/node"; // LoaderFunction da usare nel server
 import { useState, useEffect } from "react";
 import ButtonCustom from "~/components/buttons/ButtonCustom";
+import { AppSidebar } from "~/components/custom-sidebar";
 
 type LoaderData = {
   someData?: boolean; // Aggiungi una proprietà per i dati che vuoi caricare
@@ -83,6 +84,7 @@ export default function Dashboard() {
   };
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+      {/* <AppSidebar /> */}
       {/* Mostra solo l'animazione se i dati sono stati caricati */}
       {isDataLoaded ? (
         <motion.h1
@@ -109,7 +111,6 @@ export default function Dashboard() {
       </motion.h1>
       {/* Contenuto della Dashboard */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-        {/* Collegamento a Fornitori */}
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
@@ -125,7 +126,6 @@ export default function Dashboard() {
             <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
-
         {/* Collegamento a Piano Investimento */}
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
@@ -146,7 +146,6 @@ export default function Dashboard() {
             <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
-
         {/* Collegamento a Lista Competitor */}
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
@@ -165,7 +164,6 @@ export default function Dashboard() {
             <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
-
         {/* Collegamento a Analisi di Mercato */}
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
@@ -185,7 +183,6 @@ export default function Dashboard() {
           </Link>
         </motion.div>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full max-w-4xl mt-6">
         <motion.div
           className="bg-white w-full p-6 rounded-lg shadow-lg flex items-center justify-between"
@@ -220,7 +217,6 @@ export default function Dashboard() {
           </p>
         </div>
       )}
-
       <motion.h1
         className="text-2xl  pt-10 mb-10 text-[#111f43]"
         initial={{ opacity: -50, y: 0 }}

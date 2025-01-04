@@ -3,11 +3,11 @@ import { z } from "zod";
 export const preventivoSchema = z.object({
   preventivoNumber: z.string().min(1, "Numero Preventivo richiesto"),
   clientName: z.string().min(1, "Nome Cliente richiesto"),
-  clientCognome: z.string().min(1, "Nome Cliente richiesto"),
-  clientAddress: z.string().min(1, "Indirizzo Cliente richiesto"),
+  clientCognome: z.string().min(1, "Cognome Cliente richiesto"),
+  clientAddress: z.string().optional(),
   clientPhone: z.string().min(1, "Telefono Cliente richiesto"),
   clientEmail: z.string().email("Email non valida"),
-  clientVat: z.string().min(1, "Partita IVA Cliente richiesta"),
+  clientVat: z.string().optional(),
   providerName: z.string().min(1, "Nome Fornitore richiesto"),
   providerAddress: z.string().min(1, "Indirizzo Fornitore richiesto"),
   providerPhone: z.string().min(1, "Telefono Fornitore richiesto"),
@@ -21,6 +21,7 @@ export const preventivoSchema = z.object({
   }),
   paymentTerms: z.string().min(1, "Termini di Pagamento richiesti"),
   notes: z.string().optional(),
+  isVatIncluded: z.boolean().optional(),
   items: z
     .array(
       z.object({

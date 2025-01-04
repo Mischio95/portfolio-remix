@@ -207,7 +207,7 @@ export default function DettaglioPreventivo() {
                     {item.description}
                   </th>
                   <td className="py-2 px-4 border-b text-[#10172a]">
-                    {item.unitPrice.toFixed(2)} €
+                    {item.unitPrice.toFixed(2)} € * {item.quantity}
                   </td>
                 </tr>
               ))}

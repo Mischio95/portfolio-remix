@@ -9,7 +9,17 @@ export default {
   			'dark-navy': '#0A192F',
   			'light-navy': '#112240',
   			navy: '#233554',
-  			green: '#64FFDA'
+  			green: '#64FFDA',
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
   		},
   		fontFamily: {
   			sans: [
@@ -21,9 +31,7 @@ export default {
   				'Segoe UI Emoji',
   				'Segoe UI Symbol',
   				'Noto Color Emoji'
-  			],
-
-			//   sans: ['"Neue Haas Grotesk Display Pro"', 'sans-serif'],
+  			]
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
