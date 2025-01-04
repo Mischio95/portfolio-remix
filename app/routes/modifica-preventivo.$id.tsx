@@ -1,160 +1,111 @@
-import { useState } from "react";
-import { Form, useNavigate, redirect } from "@remix-run/react";
-import { ActionFunction, json } from "@remix-run/node";
-import { createPreventivo } from "~/models/preventivo.server";
+import React, { useState } from "react";
+import { useNavigate, useParams, useLoaderData } from "@remix-run/react";
+import { json, LoaderFunction } from "@remix-run/node";
+import { getPreventivoById } from "~/models/preventivo.server";
 import ButtonCustom from "~/components/buttons/ButtonCustom";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
-import { preventivoSchema } from "~/validations/validationPreventivoSchema";
-import { Prisma } from "@prisma/client";
 import { Label } from "~/components/ui/label";
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-
-  // Converti formData in un oggetto
-  const data: Record<string, any> = Object.fromEntries(formData.entries());
-
-  // Parsing e validazione dei dati
-  const parsedData = preventivoSchema.safeParse({
-    ...data,
-    items: extractItems(formData),
-  });
-
-  if (!parsedData.success) {
-    return json(
-      { success: false, errors: parsedData.error.errors },
-      { status: 400 }
-    );
-  }
-
-  const validatedData = parsedData.data;
-
-  // Conversione delle date in oggetti Date o null
-  const issueDate = validatedData.issueDate
-    ? new Date(validatedData.issueDate)
-    : null;
-  const dueDate = validatedData.dueDate
-    ? new Date(validatedData.dueDate)
-    : null;
-
-  // Calcolo dei totali
-  let subtotal = 0;
-  let totalVat = 0;
-
-  validatedData.items.forEach((item: any) => {
-    const cost =
-      item.quantity && item.unitPrice ? item.quantity * item.unitPrice : 0;
-    subtotal += cost;
-  });
-
-  const total = subtotal + totalVat;
-
-  try {
-    const preventivo = await createPreventivo({
-      preventivoNumber: validatedData.preventivoNumber || "",
-      clientName: validatedData.clientName || "",
-      clientCognome: validatedData.clientCognome || "",
-      clientAddress: validatedData.clientAddress || "",
-      clientPhone: validatedData.clientPhone || "",
-      clientEmail: validatedData.clientEmail || "",
-      clientVat: validatedData.clientVat || "",
-      providerName: validatedData.providerName || "",
-      providerAddress: validatedData.providerAddress || "",
-      providerPhone: validatedData.providerPhone || "",
-      providerEmail: validatedData.providerEmail || "",
-      providerVat: validatedData.providerVat || "",
-      issueDate: issueDate,
-      dueDate: dueDate,
-      paymentTerms: validatedData.paymentTerms || "",
-      notes: validatedData.notes || "",
-      items: {
-        create: validatedData.items.map((item: any) => ({
-          description: item.description || "",
-          quantity: item.quantity || 0,
-          unitPrice: item.unitPrice || 0,
-          vatIncluded: true, // Sempre incluso IVA
-          category: item.category || "",
-        })),
-      },
-      subtotal: subtotal || 0,
-      totalVat: totalVat || 0,
-      total: total || 0,
-    });
-
-    return redirect("/preventivi"); // Redirect su successo
-  } catch (error) {
-    console.error("Errore durante la creazione del preventivo:", error);
-    return json(
-      {
-        success: false,
-        message: "Errore interno del server.",
-        error: (error as Error).message,
-      },
-      { status: 500 }
-    );
-  }
+type LoaderData = {
+  preventivo: any;
 };
 
-// Funzione per estrarre gli items dal formData
-function extractItems(formData: FormData) {
-  const items: any[] = [];
-  const itemIndices = new Set<number>();
+export const loader: LoaderFunction = async ({ params }) => {
+  const id = Number(params.id);
+  if (isNaN(id)) {
+    throw new Response("ID non valido", { status: 400 });
+  }
+  const preventivo = await getPreventivoById(id);
+  if (!preventivo) {
+    throw new Response("Preventivo non trovato", { status: 404 });
+  }
+  return json<LoaderData>({ preventivo });
+};
 
-  formData.forEach((value, key) => {
-    const match = key.match(/^item-(\w+)-(\d+)$/);
-    if (match) {
-      itemIndices.add(Number(match[2]));
-    }
-  });
-
-  itemIndices.forEach((index) => {
-    const description = formData.get(`item-description-${index}`) as string;
-    const quantity = formData.get(`item-quantity-${index}`);
-    const unitPrice = formData.get(`item-unitPrice-${index}`);
-    const category = formData.get(`item-category-${index}`) as string;
-
-    items.push({
-      description: description || "",
-      quantity: quantity ? Number(quantity) : 0,
-      unitPrice: unitPrice ? Number(unitPrice) : 0,
-      vatIncluded: true, // Sempre incluso IVA
-      category: category || "",
-    });
-  });
-
-  return items;
-}
-
-export default function CreaPreventivo() {
+export default function ModificaPreventivo() {
   const navigate = useNavigate();
-  const [itemCount, setItemCount] = useState(1);
+  const { id } = useParams();
+  const { preventivo } = useLoaderData<LoaderData>();
+  const [formData, setFormData] = useState(preventivo);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Dati predefiniti del fornitore
-  const [providerData, setProviderData] = useState({
-    providerName: "Michele Trombone",
-    providerAddress: "Via Simone Martini 76, Napoli(NA), 80128",
-    providerPhone: "+39 328 4813626",
-    providerEmail: "michele.trombone95@gmail.com",
-    providerVat: "TRMMHL95L27F839E",
-    notes:
-      "Per procedere con l'inizio del lavoro, sarà necessario versare un acconto pari al 50% dell'importo totale indicato. Il saldo del restante 50% dovrà essere corrisposto al completamento del lavoro.",
-  });
-
-  const addItem = () => {
-    setItemCount((prev) => prev + 1);
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    if (name.startsWith("item-")) {
+      const [_, field, index] = name.split("-");
+      setFormData((prev: { items: any[] }) => ({
+        ...prev,
+        items: prev.items.map((item: any, i: number) =>
+          i === Number(index) ? { ...item, [field]: value } : item
+        ),
+      }));
+    } else {
+      setFormData((prev: any) => ({ ...prev, [name]: value }));
+    }
   };
 
-  const removeItem = () => {
-    if (itemCount > 1) setItemCount((prev) => prev - 1);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+
+      const response = await fetch(`/api/update-preventivo/${id}`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        navigate(`/preventivo/${id}`);
+      } else {
+        console.error("Errore nel salvataggio");
+      }
+    } catch (error) {
+      console.error("Errore nel salvataggio:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const addItem = () => {
+    setFormData((prev: { items: any }) => ({
+      ...prev,
+      items: [
+        ...prev.items,
+        {
+          description: "",
+          quantity: 0,
+          unitPrice: 0,
+          category: "",
+          vatIncluded: true,
+        },
+      ],
+    }));
+  };
+
+  const removeItem = (index: number) => {
+    setFormData((prev: { items: any[] }) => ({
+      ...prev,
+      items: prev.items.filter((_: any, i: number) => i !== index),
+    }));
   };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-        Crea Nuovo Preventivo
+        Modifica Preventivo
       </h1>
-      <Form method="post" className="bg-white p-6 rounded-lg shadow-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-6 rounded-lg shadow-lg"
+        encType="multipart/form-data"
+      >
         {/* Informazioni del Cliente */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-2 text-[#111f43]">
@@ -170,18 +121,27 @@ export default function CreaPreventivo() {
                 type="text"
                 id="clientName"
                 name="clientName"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.clientName}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
-              <Label className="block text-gray-700 mb-2" htmlFor="clientName">
+              <Label
+                className="block text-gray-700 mb-2"
+                htmlFor="clientCognome"
+              >
                 Cognome Cliente
               </Label>
               <Input
                 type="text"
                 id="clientCognome"
                 name="clientCognome"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.clientCognome}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -195,7 +155,10 @@ export default function CreaPreventivo() {
                 type="text"
                 id="clientAddress"
                 name="clientAddress"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.clientAddress}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -203,10 +166,13 @@ export default function CreaPreventivo() {
                 Telefono Cliente
               </Label>
               <Input
-                type="text"
+                type="tel"
                 id="clientPhone"
                 name="clientPhone"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.clientPhone}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -217,7 +183,10 @@ export default function CreaPreventivo() {
                 type="email"
                 id="clientEmail"
                 name="clientEmail"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.clientEmail}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -228,7 +197,10 @@ export default function CreaPreventivo() {
                 type="text"
                 id="clientVat"
                 name="clientVat"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.clientVat}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
           </div>
@@ -252,8 +224,10 @@ export default function CreaPreventivo() {
                 type="text"
                 id="providerName"
                 name="providerName"
-                defaultValue={providerData.providerName}
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.providerName}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -267,8 +241,10 @@ export default function CreaPreventivo() {
                 type="text"
                 id="providerAddress"
                 name="providerAddress"
-                defaultValue={providerData.providerAddress}
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.providerAddress}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -279,11 +255,13 @@ export default function CreaPreventivo() {
                 Telefono Fornitore
               </Label>
               <Input
-                type="text"
+                type="tel"
                 id="providerPhone"
                 name="providerPhone"
-                defaultValue={providerData.providerPhone}
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.providerPhone}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -297,20 +275,24 @@ export default function CreaPreventivo() {
                 type="email"
                 id="providerEmail"
                 name="providerEmail"
-                defaultValue={providerData.providerEmail}
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.providerEmail}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
               <Label className="block text-gray-700 mb-2" htmlFor="providerVat">
-                Partita IVA Fornitore
+                Partita IVA / Codice Fiscale Fornitore
               </Label>
               <Input
                 type="text"
                 id="providerVat"
                 name="providerVat"
-                defaultValue={providerData.providerVat}
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.providerVat}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
           </div>
@@ -334,7 +316,10 @@ export default function CreaPreventivo() {
                 type="text"
                 id="preventivoNumber"
                 name="preventivoNumber"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={formData.preventivoNumber}
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -345,7 +330,14 @@ export default function CreaPreventivo() {
                 type="date"
                 id="issueDate"
                 name="issueDate"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={
+                  formData.issueDate
+                    ? new Date(formData.issueDate).toISOString().split("T")[0]
+                    : ""
+                }
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -356,7 +348,14 @@ export default function CreaPreventivo() {
                 type="date"
                 id="dueDate"
                 name="dueDate"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                value={
+                  formData.dueDate
+                    ? new Date(formData.dueDate).toISOString().split("T")[0]
+                    : ""
+                }
+                onChange={handleChange}
+                required
+                className="text-[#111f43]"
               />
             </div>
             <div>
@@ -364,14 +363,17 @@ export default function CreaPreventivo() {
                 className="block text-gray-700 mb-2"
                 htmlFor="paymentTerms"
               >
-                Termini di Pagamento
+                Condizioni di Pagamento
               </Label>
               <Input
                 type="text"
                 id="paymentTerms"
                 name="paymentTerms"
+                value={formData.paymentTerms}
+                onChange={handleChange}
                 placeholder="Es. 30 giorni dalla data di emissione"
-                className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                required
+                className="text-[#111f43]"
               />
             </div>
           </div>
@@ -386,10 +388,12 @@ export default function CreaPreventivo() {
           <Textarea
             id="notes"
             name="notes"
-            defaultValue={providerData.notes}
             rows={4}
-            className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+            value={formData.notes}
+            onChange={handleChange}
             placeholder="Aggiungi eventuali note o condizioni particolari"
+            required
+            className="text-[#111f43]"
           ></Textarea>
         </div>
 
@@ -399,7 +403,7 @@ export default function CreaPreventivo() {
             Elenco delle Spese
           </h2>
           <div className="h-px bg-gray-200 mb-4"></div>
-          {[...Array(itemCount)].map((_, index) => (
+          {formData.items.map((item: any, index: number) => (
             <div
               key={index}
               className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4"
@@ -415,7 +419,10 @@ export default function CreaPreventivo() {
                   type="text"
                   id={`item-description-${index}`}
                   name={`item-description-${index}`}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                  value={item.description}
+                  onChange={handleChange}
+                  required
+                  className="text-[#111f43]"
                 />
               </div>
               <div>
@@ -429,8 +436,10 @@ export default function CreaPreventivo() {
                   type="number"
                   id={`item-quantity-${index}`}
                   name={`item-quantity-${index}`}
-                  min="0"
-                  className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                  value={item.quantity}
+                  onChange={handleChange}
+                  required
+                  className="text-[#111f43]"
                 />
               </div>
               <div>
@@ -442,11 +451,13 @@ export default function CreaPreventivo() {
                 </Label>
                 <Input
                   type="number"
+                  step="0.01"
                   id={`item-unitPrice-${index}`}
                   name={`item-unitPrice-${index}`}
-                  step="0.01"
-                  min="0"
-                  className="w-full p-2 border border-gray-300 rounded-md text-black placeholder-black"
+                  value={item.unitPrice}
+                  onChange={handleChange}
+                  required
+                  className="text-[#111f43]"
                 />
               </div>
               <div>
@@ -459,7 +470,10 @@ export default function CreaPreventivo() {
                 <select
                   id={`item-category-${index}`}
                   name={`item-category-${index}`}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black bg-white"
+                  value={item.category}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-md text-[#111f43] bg-white"
+                  required
                 >
                   <option value="">Seleziona una categoria</option>
                   {[
@@ -491,8 +505,8 @@ export default function CreaPreventivo() {
             </ButtonCustom>
             <ButtonCustom
               type="button"
-              onClick={removeItem}
-              disabled={itemCount === 1}
+              onClick={() => removeItem(formData.items.length - 1)}
+              disabled={formData.items.length === 1}
             >
               Rimuovi Spesa
             </ButtonCustom>
@@ -501,12 +515,17 @@ export default function CreaPreventivo() {
 
         {/* Pulsanti Invia e Annulla */}
         <div className="flex justify-end space-x-4">
-          <ButtonCustom type="submit">Salva Preventivo</ButtonCustom>
-          <ButtonCustom type="button" onClick={() => navigate(-1)}>
+          <ButtonCustom type="submit" disabled={isLoading}>
+            {isLoading ? "Salvando..." : "Salva Modifiche"}
+          </ButtonCustom>
+          <ButtonCustom
+            type="button"
+            onClick={() => navigate(`/preventivo/${id}`)}
+          >
             Annulla
           </ButtonCustom>
         </div>
-      </Form>
+      </form>
     </div>
   );
 }

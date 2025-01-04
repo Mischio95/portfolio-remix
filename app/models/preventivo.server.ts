@@ -1,6 +1,21 @@
 import { db } from "~/utils/db.server";
 import { Prisma } from "@prisma/client";
 
+
+/**
+ * Aggiorna un preventivo specifico per ID.
+ *
+ * @param id - L'ID del preventivo da aggiornare.
+ * @param data - I nuovi dati del preventivo.
+ * @returns Il preventivo aggiornato.
+ */
+export async function updatePreventivo(id: number, data: Prisma.PreventivoUpdateInput) {
+  return db.preventivo.update({
+    where: { id },
+    data,
+  });
+}
+
 /**
  * Crea un nuovo preventivo nel database.
  *

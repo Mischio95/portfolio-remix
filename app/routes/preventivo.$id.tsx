@@ -9,6 +9,7 @@ import pkg from "file-saver";
 import ButtonCustom from "~/components/buttons/ButtonCustom";
 import { useState } from "react";
 const { saveAs } = pkg;
+import { useNavigate } from "@remix-run/react";
 
 type LoaderData = {
   preventivo: Preventivo;
@@ -29,6 +30,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function DettaglioPreventivo() {
   const { preventivo } = useLoaderData<LoaderData>();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const exportToPDF = async () => {
     setIsLoading(true);
@@ -268,6 +270,14 @@ export default function DettaglioPreventivo() {
 
         <div className="mt-4 flex space-x-2">
           <ButtonCustom href="/preventivi">Torna Indietro</ButtonCustom>
+          <button
+            type="button"
+            className="px-4 py-2 bg-emerald-800 text-white rounded-lg hover:scale-105"
+            onClick={() => navigate(`/modifica-preventivo/${preventivo.id}`)}
+          >
+            Modifica Preventivo
+          </button>
+
           <button
             onClick={exportToPDF}
             className="px-4 py-2 bg-red-500 text-white rounded-lg hover:scale-105"
