@@ -87,7 +87,7 @@ export default function Preventivi() {
                     ? new Date(preventivo.issueDate).toLocaleDateString()
                     : "N/A"}
                 </td>
-                <td className="py-2 px-4 border-b text-[#111f43] text-center">
+                <td className="py-2 px-4 border-b text-red-700 text-center">
                   {preventivo.dueDate
                     ? new Date(preventivo.dueDate).toLocaleDateString()
                     : "N/A"}

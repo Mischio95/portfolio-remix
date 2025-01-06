@@ -1,8 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Definizione delle variabili per i temi */
+:root {
+  --background-color: #ffffff;
+  --text-color: #10172a;
+  /* Altre variabili per il tema chiaro */
+}
+
+.dark {
+  --background-color: #10172a;
+  --text-color: #ffffff;
+  /* Altre variabili per il tema scuro */
+}
 
 html,
+body {
+  @apply bg-[var(--background-color)] text-[var(--text-color)];
+  height: 100%;
+  margin: 0;
+}
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* html,
 body {
   @apply bg-[#10172a];
   height: 100%;
@@ -10,29 +34,30 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
-}
+} */
 /* .lista li{
   color:antiquewhite !important;
 } */
 /* Importazione dei font */
 @font-face {
-  font-family: 'Neue Haas Grotesk Display Pro';
-  src: url('/public/fonts/NeueHaasDisplayThin.ttf') format('truetype');
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("/public/fonts/NeueHaasDisplayThin.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Neue Haas Grotesk Display Pro';
-  src: url('/public/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("/public/fonts/NeueHaasDisplayBold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @keyframes zoom {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -43,8 +68,7 @@ body {
   filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.5));
 }
 
-.project-scroll
-{
+.project-scroll {
   margin-top: -100px !important; /* Margine superiore personalizzato */
 }
 #matrixCanvas {
@@ -55,8 +79,7 @@ body {
   height: 100%;
   z-index: 0;
 }
-.box-shadow-section-class
-{
+.box-shadow-section-class {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -68,7 +91,7 @@ body {
 .animate-zoom {
   animation: zoom 2s infinite;
 }
-.inner-circle{
+.inner-circle {
   background: #10172a !important;
   border-radius: 100%;
   width: 60px !important;
@@ -76,7 +99,6 @@ body {
   display: flex;
   justify-content: center;
   border: 1px solid #64ffda;
-
 }
 .wrapper {
   height: 100%;
@@ -95,7 +117,7 @@ body {
     right: -20px !important;
     top: 230px !important;
   }
-  .radial-connection-container{
+  .radial-connection-container {
     display: none !important;
   }
 }

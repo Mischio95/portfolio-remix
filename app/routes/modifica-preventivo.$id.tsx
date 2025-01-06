@@ -6,6 +6,13 @@ import ButtonCustom from "~/components/buttons/ButtonCustom";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { Label } from "~/components/ui/label";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "~/components/ui/select";
 
 type LoaderData = {
   preventivo: any;
@@ -402,6 +409,7 @@ export default function ModificaPreventivo() {
           <h2 className="text-xl font-semibold mb-2 text-[#111f43]">
             Elenco delle Spese
           </h2>
+
           <div className="h-px bg-gray-200 mb-4"></div>
           {formData.items.map((item: any, index: number) => (
             <div
@@ -410,10 +418,10 @@ export default function ModificaPreventivo() {
             >
               <div className="col-span-2">
                 <Label
-                  className="block text-gray-700 mb-2"
+                  className="block text-gray-700 mb-2 font-semibold"
                   htmlFor={`item-description-${index}`}
                 >
-                  Descrizione
+                  Descrizione Spesa #{index + 1}
                 </Label>
                 <Input
                   type="text"

@@ -1142,7 +1142,7 @@ export default function CreaPreventivo() {
                   className="block text-gray-700 mb-2"
                   htmlFor={`item-description-${index}`}
                 >
-                  Descrizione*
+                  Descrizione* Spesa #{index + 1}
                 </Label>
                 <Input
                   type="text"

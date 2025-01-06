@@ -46,7 +46,7 @@ export function AppSidebar() {
 
   return (
     <SidebarProvider>
-      <Sidebar className="border-r border-[#111f43]/20">
+      <Sidebar className="h-screen border-r border-[#111f43]/20">
         <SidebarHeader className="p-4">
           <div className="flex items-center space-x-2">
             <div className="rounded-lg bg-[#111f43] p-1">

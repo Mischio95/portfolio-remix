@@ -73,7 +73,7 @@ export default function DettaglioPreventivo() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Dettagli Preventivo N:{preventivo.preventivoNumber} -{" "}
+        Dettagli Preventivo #{preventivo.preventivoNumber} -{" "}
         {preventivo.clientName} {preventivo.clientCognome}
       </motion.h1>
 
@@ -235,7 +235,7 @@ export default function DettaglioPreventivo() {
                 <th className="py-2 px-4 border-b text-left text-[#10172a]">
                   Data Scadenza
                 </th>
-                <td className="py-2 px-4 border-b text-[#10172a]">
+                <td className="py-2 px-4 border-b text-red-600">
                   {preventivo.dueDate
                     ? new Date(preventivo.dueDate).toLocaleDateString()
                     : "N/A"}

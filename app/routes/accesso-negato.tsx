@@ -11,7 +11,7 @@ export default function AccessDenied() {
     canvas.height = window.innerHeight;
 
     const letters = Array(256).join("Accesso Negato").split("");
-    let fontSize = 16;
+    let fontSize = 12;
     let columns = canvas.width / fontSize;
 
     const drops: number[] = [];
