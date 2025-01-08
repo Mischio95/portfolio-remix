@@ -25,7 +25,8 @@ import RadialConnections from "~/components/radialConnection";
 import VerticalCarousel from "~/components/vertical-carousel";
 import Snowball from "~/components/animated-components/snowball";
 import ScrollText from "~/components/animated-components/scroll-text";
-
+import WorkShowcase from "~/components/work-showcase";
+import UltimiLavori from "~/components/ultimi-lavori";
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
 };
@@ -50,10 +51,10 @@ export default function Index() {
             <RegisterAnimations />
             <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 2xl:px-32 relative z-20 pt-8">
               <Hero />
-              <section id="skills" className="py-12 animated-element ">
+              <section id="skills" className="py-12">
                 <Skills />
               </section>
-              <section id="about" className="py-12 mb-12 animated-element">
+              <section id="about" className="py-12 mb-12">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">02. </span>
                   <span className="pb-20 text-slate-100"> UN PO' DI ME</span>
@@ -108,7 +109,7 @@ export default function Index() {
                   </div>
                 </div>
               </section>
-              <section id="experience" className="py-12 mb-12 animated-element">
+              <section id="experience" className="py-12 mb-12">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">03. </span>
                   <span className="pb-20 text-slate-100">
@@ -184,15 +185,16 @@ export default function Index() {
                 </div>
               </section>
               <div>ciccio</div>
-              {/* <section id="work" className="py-12 ">
+              <section id="work" className="py-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">04. </span>
                   <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
                   <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"></div>
-                <VerticalCarousel />
-              </section> */}
+                {/* <WorkShowcase /> */}
+                <UltimiLavori />
+              </section>
 
               {/* <section id="pollo" className="py-12 ">
                 {/* <Snowball />

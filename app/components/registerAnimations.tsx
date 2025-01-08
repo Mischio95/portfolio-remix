@@ -152,7 +152,7 @@ export function RegisterAnimations() {
                 start: startOffset,
                 end: endOffset,
                 scrub: 0.5,
-                markers: true,
+                markers: false,
               },
             }
           );

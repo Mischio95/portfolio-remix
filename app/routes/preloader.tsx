@@ -4,7 +4,7 @@ export function Preloader({ onFinish }: { onFinish: () => void }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onFinish();
-    }, 2500); // Durata dell'animazione in millisecondi
+    }, 2000); // Durata dell'animazione in millisecondi
 
     return () => clearTimeout(timer);
   }, [onFinish]);

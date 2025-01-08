@@ -10,9 +10,9 @@ export function Hero() {
   return (
     <section className="pt-36 md:pt-36 pb-20 sm:mt-18">
       <motion.p
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
         className="mt-18 mb-5 text-[#fff]"
       >
         <span className="text-base">Portfolio personale</span>
@@ -20,7 +20,7 @@ export function Hero() {
       <motion.h1
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
         className="mb-0 text-5xl font-bold text-slate-100 md:text-7xl text-shadow"
       >
         <AnimatedText
@@ -31,7 +31,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
         className="mb-8 text-4xl font-bold text-slate-300 md:text-6xl"
       >
         <Typewriter
@@ -47,7 +47,7 @@ export function Hero() {
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+        transition={{ duration: 0.8, delay: 0.6, ease: "easeInOut" }}
         className="mb-12 max-w-3xl text-slate-300 text-shadow"
       >
         Sviluppatore appassionato di tecnologia, software e gaming, con un forte
@@ -70,7 +70,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
+        transition={{ duration: 0.8, delay: 0.8, ease: "easeInOut" }}
       >
         <Button3D href="#contact">Contattami!</Button3D>
       </motion.div>
