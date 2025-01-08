@@ -8,13 +8,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Github, ExternalLink } from "lucide-react";
-
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface Project {
   title: string;
@@ -141,7 +135,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
             className="inline-flex items-center px-4 py-2 bg-[#7EFACD] text-gray-900 rounded-full font-medium hover:bg-[#5ED3A8] transition-colors duration-300"
           >
             <Github className="mr-2" size={18} />
-            Vedi su GitHub
+            Vedi on GitHub
           </a>
         </motion.div>
       </div>
