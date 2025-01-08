@@ -38,6 +38,8 @@ export default function ModificaPreventivo() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
+    // Definizione tipo di evento
+
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >

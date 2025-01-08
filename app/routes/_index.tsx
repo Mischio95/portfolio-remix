@@ -50,10 +50,10 @@ export default function Index() {
             <RegisterAnimations />
             <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 2xl:px-32 relative z-20 pt-8">
               <Hero />
-              <section id="skills" className="py-12 ">
+              <section id="skills" className="py-12 animated-element ">
                 <Skills />
               </section>
-              <section id="about" className="py-12 mb-12 ">
+              <section id="about" className="py-12 mb-12 animated-element">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">02. </span>
                   <span className="pb-20 text-slate-100"> UN PO' DI ME</span>
@@ -108,7 +108,7 @@ export default function Index() {
                   </div>
                 </div>
               </section>
-              <section id="experience" className="py-12 mb-12 ">
+              <section id="experience" className="py-12 mb-12 animated-element">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">03. </span>
                   <span className="pb-20 text-slate-100">
@@ -183,7 +183,7 @@ export default function Index() {
                   </AnimatedSection>
                 </div>
               </section>
-
+              <div>ciccio</div>
               {/* <section id="work" className="py-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">04. </span>
@@ -200,7 +200,7 @@ export default function Index() {
               </section> */}
               <div className="justify-center h-[1px] bg-slate-600 w-full mt-4"></div>
               <section id="AnimatedText" className="py-12 "></section>
-              <section id="footer" className="py-2">
+              <section id="footer" className="py-2 ">
                 <Footer />
               </section>
             </div>

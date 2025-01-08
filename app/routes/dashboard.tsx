@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { LoaderFunction, json } from "@remix-run/node"; // LoaderFunction da usare nel server
 import { useState, useEffect } from "react";
 import ButtonCustom from "~/components/buttons/ButtonCustom";
-import { AppSidebar } from "~/components/custom-sidebar";
 
 type LoaderData = {
   someData?: boolean; // Aggiungi una proprietà per i dati che vuoi caricare
@@ -17,7 +16,9 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   // Ottieni la chiave segreta direttamente dalle variabili d'ambiente
   const SECRET_KEY =
-    process.env.DASHBOARD_SECRET_KEY || "nE4YcUuTT7WQDmu1OA4B" || "";
+    process.env.DASHBOARD_SECRET_KEY ||
+    process.env.DDASHBOARD_SECRET_KEY2 ||
+    "";
 
   if (accessKey !== SECRET_KEY) {
     return redirect("/accesso-negato");

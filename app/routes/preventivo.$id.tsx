@@ -10,6 +10,7 @@ import ButtonCustom from "~/components/buttons/ButtonCustom";
 import { useState } from "react";
 const { saveAs } = pkg;
 import { useNavigate } from "@remix-run/react";
+import { Label } from "~/components/ui/label";
 
 type LoaderData = {
   preventivo: Preventivo;
@@ -30,6 +31,9 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function DettaglioPreventivo() {
   const { preventivo } = useLoaderData<LoaderData>();
   const [isLoading, setIsLoading] = useState(false);
+  const [logo, setLogo] = useState<string | null>(null);
+  const [isLoadingGenerico, setIsLoadingGenerico] = useState(false);
+
   const navigate = useNavigate();
 
   const exportToPDF = async () => {
@@ -62,6 +66,54 @@ export default function DettaglioPreventivo() {
       );
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  // Funzione per gestire l'upload del logo
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogo(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Funzione per esportare il PDF generico con il logo
+  const exportToPDFGenerico = async () => {
+    setIsLoadingGenerico(true);
+    console.log("Logo:", logo);
+
+    try {
+      const response = await fetch(
+        `/api/genera-preventivo-generico/${preventivo.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ preventivo, logo }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Errore durante la generazione del PDF");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `preventivo-${preventivo.id}.pdf`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error);
+      // Gestisci l'errore (ad es. mostrare una notifica all'utente)
+    } finally {
+      setIsLoadingGenerico(false);
     }
   };
 
@@ -269,6 +321,19 @@ export default function DettaglioPreventivo() {
             </tbody>
           </table>
         </div>
+        {/* Sezione di upload del logo
+        <div className="mb-4">
+          <Label htmlFor="logo" className="block text-gray-700 mb-2">
+            Inserisci logo per preventivo generico
+          </Label>
+          <input
+            type="file"
+            id="logo"
+            accept="image/*"
+            onChange={handleLogoUpload}
+            className="w-full p-2 border border-gray-300 rounded-md"
+          />
+        </div> */}
 
         <div className="mt-4 flex flex-col md:flex-row gap-2 md:space-x-2">
           <ButtonCustom href="/preventivi">Torna Indietro</ButtonCustom>
@@ -307,7 +372,38 @@ export default function DettaglioPreventivo() {
                 ></path>
               </svg>
             ) : (
-              "Esporta in PDF"
+              "Esporta in PDF con logo"
+            )}
+          </button>
+
+          <button
+            onClick={exportToPDFGenerico}
+            className="w-full md:w-auto px-4 py-2 bg-red-500 text-white rounded-lg hover:scale-105"
+            disabled={isLoadingGenerico}
+          >
+            {isLoadingGenerico ? (
+              <svg
+                className="animate-spin h-5 w-5 text-white mx-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            ) : (
+              "Esporta in PDF senza logo"
             )}
           </button>
         </div>

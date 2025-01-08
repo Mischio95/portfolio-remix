@@ -126,69 +126,37 @@ export function RegisterAnimations() {
         });
 
         gsap.utils.toArray(".animated-element").forEach((element: any) => {
-          // Animazioni per desktop
-          mm.add("(min-width: 768px)", () => {
-            gsap.fromTo(
-              element,
-              { opacity: 0, y: 20 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                scrollTrigger: {
-                  trigger: element,
-                  start: "top 90%",
-                  end: "bottom 30%",
-                  scrub: 0.5,
-                  markers: false,
-                },
-              }
-            );
-          });
+          // Calcola la dimensione dell'elemento e aggiusta i punti di inizio e fine
+          const height = element.offsetHeight;
+          const isMobile = window.innerWidth <= 768; // Considera 'mobile' uno schermo con larghezza <= 768px
+          const startOffset = isMobile
+            ? "top 100%"
+            : height > 800
+            ? "top 80%"
+            : "top 90%";
+          const endOffset = isMobile
+            ? `+=${height / 2}`
+            : height > 800
+            ? `+=${height}`
+            : "bottom 20%";
 
-          // Animazioni per mobile
-          mm.add("(max-width: 767px)", () => {
-            gsap.fromTo(
-              element,
-              { opacity: 0, y: 20 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                scrollTrigger: {
-                  trigger: element,
-                  start: "top 100%",
-                  end: "top 0%",
-                  scrub: 0.5,
-                  markers: false,
-                },
-              }
-            );
-          });
+          gsap.fromTo(
+            element,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              scrollTrigger: {
+                trigger: element,
+                start: startOffset,
+                end: endOffset,
+                scrub: 0.5,
+                markers: true,
+              },
+            }
+          );
         });
-        // gsap.utils.toArray(".animated-element").forEach((element: any) => {
-        //   gsap.fromTo(
-        //     element,
-        //     // {
-        //     //   opacity: 0, // Parte con opacità 0
-        //     //   y: 50, // Parte spostato verso il basso
-        //     // },
-        //     { opacity: 0, y: 20 },
-        //     {
-        //       opacity: 1,
-        //       y: 0,
-        //       duration: 0.5,
-
-        //       scrollTrigger: {
-        //         trigger: element, // L'elemento che attiva il trigger
-        //         start: "top 90%", // Modifica il valore per far partire prima l'animazione
-        //         end: "bottom 30%",
-        //         scrub: 0.5, // Rende l'animazione legata allo scroll (più fluida)
-        //         markers: false, // Rimuove i marker di debug
-        //       },
-        //     }
-        //   );
-        // });
       })();
     }
   }, []);
