@@ -87,6 +87,10 @@ body {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4) !important;
 }
 
+.box-shadow-section-class-header {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
 .radial-connection-container {
   margin-top: -50px !important; /* Margine superiore personalizzato */
   margin-bottom: -100px !important; /* Margine inferiore personalizzato */

@@ -1,32 +1,18 @@
 "use client";
 import type { MetaFunction } from "@remix-run/node";
-import { motion } from "framer-motion";
 import { Nav } from "~/components/nav";
 import { SocialSidebar } from "~/components/social-sidebar";
 import { EmailSidebar } from "~/components/email-sidebar";
-import { BubbleEffect } from "~/components/bubbleeffect";
 import { AnimatedSection } from "~/components/animatedsection";
 import React, { useState } from "react";
-import { Typewriter } from "react-simple-typewriter";
-import Button from "~/components/buttons/button";
-import AnimatedButton from "~/components/buttons/AnimatedButton";
-import Button3D from "~/components/buttons/Button3D";
-import { useEffect } from "react";
 import { RegisterAnimations } from "~/components/registerAnimations";
-import { Link } from "react-router-dom";
 import { Skills } from "../components/skills";
 import { Hero } from "../components/hero";
 import { Preloader } from "./preloader";
 import Footer from "../components/footer";
 import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
-import { div } from "framer-motion/client";
-import ScrollSliderProject from "~/components/ScrollSliderProject";
-import RadialConnections from "~/components/radialConnection";
-import VerticalCarousel from "~/components/vertical-carousel";
-import Snowball from "~/components/animated-components/snowball";
-import ScrollText from "~/components/animated-components/scroll-text";
-import WorkShowcase from "~/components/work-showcase";
 import UltimiLavori from "~/components/ultimi-lavori";
+
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
 };
@@ -188,7 +174,6 @@ export default function Index() {
                   </section>
                 </div>
               </section>
-              <div>ciccio</div>
               <section id="work" className="py-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
                   <span className="text-[#64FFDA]">04. </span>

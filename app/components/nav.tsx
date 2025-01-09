@@ -235,7 +235,7 @@ export function Nav() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-[#10172a] backdrop-blur text-slate-300 transition-transform duration-300 ${
+        className={` box-shadow-section-class-header fixed top-0 left-0 right-0 z-50 bg-[#10172a] backdrop-blur text-slate-300 transition-transform duration-300 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
