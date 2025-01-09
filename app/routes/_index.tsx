@@ -102,7 +102,7 @@ export default function Index() {
                   </div>
                   <div className="max-w-xl p-8 pt-24 ">
                     <img
-                      src="https://www.micheletrombone.it/memoji.svg"
+                      src="https://micheletrombone.it/memoji-about-me.png"
                       alt="Michele Trombone"
                       className="rounded-3xl shadow-lg neon-green-shadow"
                     />
