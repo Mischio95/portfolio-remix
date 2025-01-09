@@ -3,15 +3,16 @@
 @tailwind utilities;
 /* Definizione delle variabili per i temi */
 :root {
-  --background-color: #ffffff;
-  --text-color: #10172a;
+  /* --background-color: #ffffff;
+  --text-color: #10172a; */
+  --background-color: #10172a;
+  --text-color: #ffffff;
   /* Altre variabili per il tema chiaro */
 }
 
 .dark {
   --background-color: #10172a;
   --text-color: #ffffff;
-  /* Altre variabili per il tema scuro */
 }
 
 html,
@@ -47,6 +48,9 @@ body {
   font-display: swap;
 }
 
+.box-shadow-section-home {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4) !important;
+}
 @font-face {
   font-family: "Neue Haas Grotesk Display Pro";
   src: url("/public/fonts/NeueHaasDisplayBold.ttf") format("truetype");

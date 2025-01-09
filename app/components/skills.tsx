@@ -1,3 +1,4 @@
+// PRIMA VERSIONE
 import { motion } from "framer-motion";
 import { AnimatedSection } from "~/components/animatedsection";
 import { useEffect } from "react";
@@ -38,78 +39,84 @@ export function Skills() {
       </h2>
 
       <div className="space-y-8 sm:space-y-12">
-        <AnimatedSection>
-          <div className="bg-[#10172A] p-8 rounded-lg">
-            <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
-              - Competenze Tecniche
-            </h2>
-            <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {technicalSkills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{
-                    duration: 0.5,
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 10,
-                    hover: { delay: 0 }, // Rimuove il delay per l'hover
-                  }}
-                  className="flex flex-col items-center gap-2 p-4 rounded-lg transition-colors"
-                >
-                  <img
-                    src={skill.icon}
-                    alt={skill.name}
-                    className="w-12 h-12 object-contain"
-                  />
-                  <span className="text-slate-300 text-sm text-center">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
+        <section className="box-shadow-section-home rounded-lg">
+          <AnimatedSection>
+            <div className="bg-[#10172A] p-8 rounded-lg">
+              <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
+                - Competenze Tecniche
+              </h2>
+              <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
+                {technicalSkills.map((skill, index) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.2 }}
+                    transition={{
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 10,
+                      hover: { delay: 0 }, // Rimuove il delay per l'hover
+                    }}
+                    className="flex flex-col items-center gap-2 p-4 rounded-lg transition-colors"
+                  >
+                    <img
+                      src={skill.icon}
+                      alt={skill.name}
+                      className="w-12 h-12 object-contain"
+                    />
+                    <span className="text-slate-300 text-sm text-center">
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
+        </section>
         <RadialConnections />
         {/* <div className="h-[1px] bg-slate-600 w-full mt-4"></div>{" "} */}
-        <AnimatedSection>
-          <div className="bg-[#10172A] p-8 rounded-lg ">
-            <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
-              {" "}
-              - Strumenti & Tecnologie
-            </h2>
-            <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {tools.map((tool, index) => (
-                <motion.div
-                  key={tool.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{
-                    duration: 0.5,
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 10,
-                    hover: { delay: 0 }, // Rimuove il delay per l'hover
-                  }}
-                  className="flex flex-col items-center gap-2 p-4 rounded-lg transition-colors"
-                >
-                  <img
-                    src={tool.icon}
-                    alt={tool.name}
-                    className="w-12 h-12 object-contain"
-                  />
-                  <span className="text-slate-300 text-sm text-center">
-                    {tool.name}
-                  </span>
-                </motion.div>
-              ))}
+        <section className="box-shadow-section-home rounded-lg">
+          <AnimatedSection>
+            <div className="bg-[#10172A] p-8 rounded-lg">
+              <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
+                {" "}
+                - Strumenti & Tecnologie
+              </h2>
+              <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
+                {tools.map((tool, index) => (
+                  <motion.div
+                    key={tool.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.2 }}
+                    transition={{
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 10,
+                      hover: { delay: 0 }, // Rimuove il delay per l'hover
+                    }}
+                    className="flex flex-col items-center gap-2 p-4 rounded-lg transition-colors"
+                  >
+                    <img
+                      src={tool.icon}
+                      alt={tool.name}
+                      className="w-12 h-12 object-contain"
+                    />
+                    <span className="text-slate-300 text-sm text-center">
+                      {tool.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
+        </section>
       </div>
     </section>
   );
 }
+
+// SECONDA VERSIONE

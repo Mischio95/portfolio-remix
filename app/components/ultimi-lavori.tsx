@@ -83,13 +83,13 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
   return (
     <motion.div
       ref={cardRef}
-      className="group relative rounded-xl overflow-hidden backdrop-blur-sm border border-gray-800"
+      className="group relative rounded-lg box-shadow-section-home"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       initial={{ boxShadow: "0px 0px 0px rgba(126, 250, 205, 0)" }}
       animate={{
         boxShadow: isHovered
-          ? "0px 0px 20px rgba(126, 250, 205, 0.3)"
+          ? "0px 0px 20px rgba(126, 250, 205, 0.1)"
           : "0px 0px 0px rgba(126, 250, 205, 0)",
       }}
       transition={{ duration: 0.3 }}
@@ -135,7 +135,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
             className="inline-flex items-center px-4 py-2 bg-[#7EFACD] text-gray-900 rounded-full font-medium hover:bg-[#5ED3A8] transition-colors duration-300"
           >
             <Github className="mr-2" size={18} />
-            Vedi on GitHub
+            Vedi su GitHub
           </a>
         </motion.div>
       </div>
@@ -182,7 +182,7 @@ export default function UltimiLavori() {
     <motion.div
       ref={containerRef}
       style={{ opacity, scale }}
-      className="w-full max-w-7xl mx-auto px-4 py-16 text-white"
+      className="w-full max-w-7xl mx-auto px-4 py-16 text-white "
     >
       <motion.h2
         className="text-4xl font-bold mb-12 text-center"
@@ -190,7 +190,7 @@ export default function UltimiLavori() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       ></motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 ">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} index={index} />
         ))}
