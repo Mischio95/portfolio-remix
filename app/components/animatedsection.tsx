@@ -32,10 +32,11 @@ export function AnimatedSection({ children, className }: AnimatedSectionProps) {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
+      transition={{ duration: 0.3, delay: 0.2 }}
       whileHover={{
         scale: 1.02,
-        boxShadow: "0px 0px 20px rgba(100, 255, 218, 0.1)",
+        boxShadow:
+          "0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3), 0 0 30px rgba(100, 255, 218, 0.2)",
       }}
       className={`bg-[#10172a] p-6 rounded-lg ${className}`}
     >
