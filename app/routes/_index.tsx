@@ -50,7 +50,7 @@ export default function Index() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8 text-center md:text-left box-shadow-section-home rounded-xl ">
                   <div>
-                    <p className="text-slate-400 mb-4 p-8">
+                    <p className="text-slate-400 mb p-12 mx-auto">
                       Ciao! Sono Michele Trombone, uno sviluppatore appassionato
                       di tecnologia e programmazione, con un interesse
                       particolare per il mondo dei videogiochi e tutto ciò che
@@ -87,7 +87,7 @@ export default function Index() {
                       dinamico.
                     </p>
                   </div>
-                  <div className="max-w-xl p-12 w-[400px] mx-auto">
+                  <div className="max-w-xl p-12 w-[450px] mx-auto">
                     <div className="animated-border rounded-xl">
                       <img
                         src="https://micheletrombone.it/memoji-about-me.png"
