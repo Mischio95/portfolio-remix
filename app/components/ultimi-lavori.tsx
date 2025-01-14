@@ -98,7 +98,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
     <motion.div
       ref={cardRef}
       className="group relative rounded-lg"
-      onHoverStart={() => setIsHovered(true)}
+      onHoverStart={() => setIsHovered(false)}
       onHoverEnd={() => setIsHovered(false)}
       initial={{ boxShadow: "0px 0px 0px rgba(100, 255, 218, 0)" }}
       animate={{

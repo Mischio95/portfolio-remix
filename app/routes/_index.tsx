@@ -4,7 +4,7 @@ import { Nav } from "~/components/home-page/nav";
 import { SocialSidebar } from "~/components/social-sidebar";
 import { EmailSidebar } from "~/components/email-sidebar";
 import { AnimatedSection } from "~/components/animatedsection";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { RegisterAnimations } from "~/components/registerAnimations";
 import { Skills } from "../components/home-page/skills";
 import { Hero } from "../components/home-page/hero";
@@ -14,6 +14,7 @@ import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
 import UltimiLavori from "~/components/ultimi-lavori";
 import FluidButton from "~/components/buttons/FluidButton";
 import WorkExperience from "~/components/home-page/WorkExperience";
+import { motion, useInView } from "framer-motion";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
@@ -21,6 +22,8 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const [loading, setLoading] = useState(true);
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { amount: 0.5 });
 
   const handleFinishLoading = () => {
     setLoading(false);
@@ -252,7 +255,18 @@ export default function Index() {
               <div className="justify-center h-[1px] bg-slate-600 w-full mt-4"></div>
               <section id="AnimatedText" className="py-12 "></section>
               <section id="footer" className="py-2 ">
-                <Footer />
+                <div ref={footerRef} className="w-full">
+                  <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{
+                      y: isInView ? 0 : 100,
+                      opacity: isInView ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  >
+                    <Footer />
+                  </motion.div>
+                </div>
               </section>
             </div>
           </>
