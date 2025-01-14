@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "~/components/animatedsection";
 import { useEffect } from "react";
-import RadialConnections from "~/components/radialConnection";
+import RadialConnections from "./radialConnection";
 
 export function Skills() {
   const technicalSkills = [
@@ -33,8 +33,8 @@ export function Skills() {
     // <section className="py-20 animated-element">
     <section className="py-20 ">
       <h2 className="text-3xl font-bold text-slate-100 mb-8">
-        <span className="text-[#64FFDA]">01. </span>
-        <span className="pb-20 text-slate-100">SKILLS</span>
+        <span className="text-[#64FFDA] font-mono">01. </span>
+        <span className="pb-20 text-slate-100">COMPETENZE TECNICHE</span>
         <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
       </h2>
 
@@ -42,9 +42,9 @@ export function Skills() {
         <section className="box-shadow-section-home rounded-lg">
           <AnimatedSection>
             <div className="bg-[#10172A] p-8 rounded-lg">
-              <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
+              {/* <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
                 - Competenze Tecniche
-              </h2>
+              </h2> */}
               <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {technicalSkills.map((skill, index) => (
                   <motion.div
@@ -80,10 +80,10 @@ export function Skills() {
         <section className="box-shadow-section-home rounded-lg">
           <AnimatedSection>
             <div className="bg-[#10172A] p-8 rounded-lg">
-              <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
+              {/* <h2 className="text-xl md:text-2xl font-semibold text-[#64FFDA] mb-6">
                 {" "}
                 - Strumenti & Tecnologie
-              </h2>
+              </h2> */}
               <div className="grid max-md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {tools.map((tool, index) => (
                   <motion.div

@@ -183,9 +183,9 @@ import { useState, useEffect } from "react";
 import { Link } from "@remix-run/react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button3D from "./buttons/Button3D";
-import FullScreenMenu from "./FullScreenMenu";
-import { ThemeToggle } from "./ThemeToggle";
+import Button3D from "~/components/buttons/Button3D";
+import FullScreenMenu from "~/components/home-page/FullScreenMenu";
+import { ThemeToggle } from "~/components/ThemeToggle";
 
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false);

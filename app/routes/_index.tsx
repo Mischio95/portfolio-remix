@@ -1,17 +1,18 @@
 "use client";
 import type { MetaFunction } from "@remix-run/node";
-import { Nav } from "~/components/nav";
+import { Nav } from "~/components/home-page/nav";
 import { SocialSidebar } from "~/components/social-sidebar";
 import { EmailSidebar } from "~/components/email-sidebar";
 import { AnimatedSection } from "~/components/animatedsection";
 import React, { useState } from "react";
 import { RegisterAnimations } from "~/components/registerAnimations";
-import { Skills } from "../components/skills";
-import { Hero } from "../components/hero";
+import { Skills } from "../components/home-page/skills";
+import { Hero } from "../components/home-page/hero";
 import { Preloader } from "./preloader";
-import Footer from "../components/footer";
+import Footer from "../components/home-page/footer";
 import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
 import UltimiLavori from "~/components/ultimi-lavori";
+import FluidButton from "~/components/buttons/FluidButton";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
@@ -41,8 +42,8 @@ export default function Index() {
                 <Skills />
               </section>
               <section id="about" className="py-12 mb-12">
-                <h2 className="text-3xl font-bold text-slate-100 mb-8">
-                  <span className="text-[#64FFDA]">02. </span>
+                <h2 className=" text-3xl font-bold text-slate-100 mb-8">
+                  <span className="text-[#64FFDA] font-mono">02. </span>
                   <span className="pb-20 text-slate-100"> UN PO' DI ME</span>
                   <div className="h-[1px] bg-slate-600 w-full mt-4"></div>{" "}
                 </h2>
@@ -86,18 +87,20 @@ export default function Index() {
                       dinamico.
                     </p>
                   </div>
-                  <div className="max-w-xl p-8 pt-24 ">
-                    <img
-                      src="https://micheletrombone.it/memoji-about-me.png"
-                      alt="Michele Trombone"
-                      className="rounded-3xl shadow-lg neon-green-shadow"
-                    />
+                  <div className="max-w-xl p-8 lg:pt-24 md:pt-12 sm:pt-6">
+                    <div className="animated-border rounded-xl">
+                      <img
+                        src="https://micheletrombone.it/memoji-about-me.png"
+                        alt="Michele Trombone"
+                        className="z-30 rounded-xl"
+                      />
+                    </div>
                   </div>
                 </div>
               </section>
               <section id="experience" className="py-12 mb-12">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
-                  <span className="text-[#64FFDA]">03. </span>
+                  <span className="text-[#64FFDA] font-mono">03. </span>
                   <span className="pb-20 text-slate-100">
                     {" "}
                     ESPERIENZE LAVORATIVE
@@ -114,24 +117,27 @@ export default function Index() {
                         <p className="text-slate-400 mb-4">
                           Dicembre 2024 - in corso
                         </p>
-                        <ul className="list-disc list-inside text-slate-400">
-                          <li>
+                        <ul className="list-disc list-inside text-slate-400 sm:font-size[10px]">
+                          <li className="text-[14px] pb-2">
                             Sviluppo e manutenzione di web app scalabili
-                            utilizzando React, Remix e TypeScript.
+                            utilizzando React, Remix e TypeScript. <br />
                           </li>
-                          <li>
+                          <li className="text-[14px] pb-2">
                             Gestione dell’integrazione con database PostgreSQL
                             tramite Prisma ORM e scrittura di query SQL.
+                            <br />
                           </li>
-                          <li>
+                          <li className="text-[14px] pb-2">
                             Configurazione e gestione di server Linux con Nginx
                             e PM2 per il deployment e il bilanciamento del
                             carico delle web app.
+                            <br />
                           </li>
-                          <li>
+                          <li className="text-[14px] pb-2">
                             Ottimizzazione delle performance e strutturazione
                             modulare del codice per migliorare scalabilità e
                             manutenzione.
+                            <br />
                           </li>
                         </ul>
                       </div>
@@ -141,30 +147,81 @@ export default function Index() {
                     <AnimatedSection>
                       <div className="bg-[#10172A] p-6 rounded-lg">
                         <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
-                          WORDPRESS & SHOPIFY DEVELOPER | Libero Professionista
+                          Game Developer | FOREACHSOFTWARE (Startup costituenda)
+                        </h3>
+                        <p className="text-slate-400 mb-4">
+                          Gennaio 2024 - Settembre 2024
+                        </p>
+                        <ul className="list-disc list-inside text-slate-400 lg:text-[16px] md:text-[14px] sm:text-[12px]">
+                          <li className="text-[14px] pb-2">
+                            Sviluppo e implementazione delle meccaniche di gioco
+                            per un titolo 2D Metroidvania utilizzando Unity e
+                            C#, con particolare attenzione alla struttura basata
+                            su componenti.
+                          </li>
+                          <li className="text-[14px] pb-2">
+                            Redazione e gestione del Game Design Document (GDD),
+                            includendo dettagli tecnici su sistemi di gioco,
+                            interfacce utente e logiche di progressione.
+                          </li>
+                          <li className="text-[14px] pb-2">
+                            Programmazione e ottimizzazione di sistemi di
+                            movimento e interazione tramite RigidBody2D,
+                            Collider2D, e Physics2D API.
+                          </li>
+                          <li className="text-[14px] pb-2">
+                            Creazione di animazioni fluide con il Animator
+                            Controller, utilizzando stati animati complessi e
+                            transizioni parametrizzate per un gameplay reattivo.
+                          </li>
+                          <li className="text-[14px] pb-2">
+                            Implementazione e gestione di effetti particellari
+                            con Unity Particle System.
+                          </li>
+                          <li className="text-[14px] pb-2">
+                            Debugging avanzato e profiling del gioco tramite
+                            Unity Profiler, Frame Debugger, e strumenti di log
+                            per ottimizzare frame rate e memoria.
+                          </li>
+                          <li className="text-[14px] pb-2">
+                            Collaborazione all’integrazione di asset grafici e
+                            sonori tramite Prefab, Asset Bundles, e script di
+                            automazione.
+                          </li>
+                        </ul>
+                      </div>
+                    </AnimatedSection>
+                  </section>
+                  <section className="box-shadow-section-home rounded-lg">
+                    <AnimatedSection>
+                      <div className="bg-[#10172A] p-6 rounded-lg">
+                        <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">
+                          Wordpress & Shopify Developer | Libero Professionista
                         </h3>
                         <p className="text-slate-400 mb-4">
                           Giugno 2019 - Settembre 2024
                         </p>
-                        <ul className="list-disc list-inside text-slate-200">
-                          <li>
+                        <ul className="list-disc list-inside text-slate-400 lg:text-[16px] md:text-[14px] sm:text-[12px]">
+                          <li className="text-[14px] pb-2">
                             Progettazione, creazione e manutenzione di siti:
                             E-Commerce (WooCommerce) e Vetrina.
                           </li>
-                          <li>Sviluppo del layout web.</li>
-                          <li>
+                          <li className="text-[14px] pb-2">
+                            Sviluppo del layout web.
+                          </li>
+                          <li className="text-[14px] pb-2">
                             Caricamento e gestione dei contenuti delle pagine
                             web e ottimizzazione SEO.
                           </li>
-                          <li>
+                          <li className="text-[14px] pb-2">
                             Pubblicazione del sito online e configurazione di
                             server e hosting.
                           </li>
-                          <li>
+                          <li className="text-[14px] pb-2">
                             Implementazione di misure di sicurezza (SSL,
                             firewall, plugin di sicurezza).
                           </li>
-                          <li>
+                          <li className="text-[14px] pb-2">
                             Supporto e formazione per i clienti sull'uso e la
                             gestione dei loro siti.
                           </li>
@@ -176,7 +233,7 @@ export default function Index() {
               </section>
               <section id="work" className="py-12 ">
                 <h2 className="text-3xl font-bold text-slate-100 mb-8">
-                  <span className="text-[#64FFDA]">04. </span>
+                  <span className="text-[#64FFDA] font-mono">04. </span>
                   <span className="pb-20 text-slate-100"> ULTIMI PROGETTI</span>
                   <div className="h-[1px] bg-slate-600 w-full mt-4"></div>
                 </h2>

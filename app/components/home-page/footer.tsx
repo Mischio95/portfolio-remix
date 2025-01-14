@@ -4,11 +4,12 @@ import Button3D from "~/components/buttons/Button3D";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
+import FluidButton from "../buttons/FluidButton";
 
 export default function Footer() {
   return (
     <footer className=" text-slate-300 py-4">
-      <section id="contact" className="mt-[120px] mb-[100px]">
+      <section id="contact" className="mt-[65px] mb-[100px]">
         <p className="text-4xl font bold mb-4 text-center pb-6">
           <Typewriter
             words={["Resta in contatto!"]}
@@ -30,6 +31,10 @@ export default function Footer() {
           <Button3D href="mailto:michele.trombone@example.com">
             Inviami un messaggio!
           </Button3D>
+          {/* <FluidButton href="mailto:michele.trombone95@gmail.com">
+            {" "}
+            Inviami un messaggio{" "}
+          </FluidButton> */}
         </div>
         <div className="container mx-auto text-center pb-0">
           <motion.div

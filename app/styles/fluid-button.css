@@ -1,0 +1,77 @@
+.fluidButton {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 20px 60px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  transition: 0.2s;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.fluidButton span {
+  position: relative;
+  z-index: 1;
+  color: #64ffda;
+}
+
+.liquid {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: #64ffda;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
+  transition: 0.5s;
+}
+
+.liquid::after,
+.liquid::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}
+
+.liquid::after {
+  border-radius: 45%;
+  background: #10172a;
+  box-shadow: 0 0 10px #64ffda, inset 0 0 5px #64ffda;
+  animation: animate 5s linear infinite;
+  opacity: 0.8;
+}
+
+.liquid::before {
+  border-radius: 40%;
+  background: rgba(16, 23, 42, 0.5);
+  animation: animate 7s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+.fluidButton:hover .liquid {
+  top: -120px;
+}
+
+.fluidButton:hover {
+  box-shadow: 0 0 5px #64ffda, inset 0 0 5px #64ffda;
+  transition-delay: 0.2s;
+  color: #64ffda;
+}

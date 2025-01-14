@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import Button3D from "~/components/buttons/Button3D";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { Suspense } from "react";
 import AnimatedText from "~/components/AnimatedText";
 
 export function Hero() {
@@ -15,7 +12,7 @@ export function Hero() {
         transition={{ duration: 0.6, ease: "easeInOut" }}
         className="mt-18 mb-5 text-[#fff]"
       >
-        <span className="text-base">Portfolio personale</span>
+        <span className="text-2xl  ">Portfolio personale</span>
       </motion.p>
       <motion.h1
         initial={{ opacity: 0, y: 30 }}
@@ -25,7 +22,7 @@ export function Hero() {
       >
         <AnimatedText
           testo="Michele Trombone."
-          className="text-4xl md:text-5xl lg:text-7xl"
+          className="text-4xl sm:text-7xl md:text-xl lg:text-7xl"
         />
       </motion.h1>
       <motion.div
