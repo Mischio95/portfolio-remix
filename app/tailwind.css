@@ -267,7 +267,7 @@ body {
 }
 
 .animated-border::after {
-  filter: blur(1rem); /* Blur ridotto */
+  filter: blur(0.4rem); /* Blur ridotto */
 }
 
 @keyframes rotate {

@@ -13,6 +13,7 @@ import Footer from "../components/home-page/footer";
 import { BubbleEffectCanvas } from "~/components/BubbleEffectCanvas";
 import UltimiLavori from "~/components/ultimi-lavori";
 import FluidButton from "~/components/buttons/FluidButton";
+import WorkExperience from "~/components/home-page/WorkExperience";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Michele Trombone Portfolio" }];
@@ -47,7 +48,7 @@ export default function Index() {
                   <span className="pb-20 text-slate-100"> UN PO' DI ME</span>
                   <div className="h-[1px] bg-slate-600 w-full mt-4"></div>{" "}
                 </h2>
-                <div className="grid md:grid-cols-2 gap-8 text-center md:text-left box-shadow-section-home rounded-xl">
+                <div className="grid md:grid-cols-2 gap-8 text-center md:text-left box-shadow-section-home rounded-xl ">
                   <div>
                     <p className="text-slate-400 mb-4 p-8">
                       Ciao! Sono Michele Trombone, uno sviluppatore appassionato
@@ -58,8 +59,8 @@ export default function Index() {
                       inclusa l’importanza dell’audio e delle musiche. Questa
                       passione per la tecnologia mi spinge a cercare opportunità
                       in diversi ambiti, contribuendo a progetti di vario tipo.
-                      <br />
-                      <br />
+                      {/* <br />
+                      <br /> */}
                       {/* <p className="text-slate-400 mb-4">
                       Durante il mio percorso di studi, ho acquisito competenze
                       tecniche su vari linguaggi di programmazione. Grazie alla
@@ -67,7 +68,7 @@ export default function Index() {
                       corsi online su piattaforme come Learnn e Udemy per
                       ampliare e approfondire le mie competenze.
                     </p> */}
-                      Durante il percorso di 9 mesi alla Apple Developer
+                      {/* Durante il percorso di 9 mesi alla Apple Developer
                       Academy, mi sono specializzato nello sviluppo di
                       videogiochi, approfondendo l'uso di Unity e dei framework
                       Apple, come SpriteKit, dedicati al game development.
@@ -76,18 +77,17 @@ export default function Index() {
                       La metodologia didattica adottata alla Apple Developer
                       Academy è basata sul Challenge-Based Learning (CBL), che
                       mi ha permesso di affrontare sfide pratiche e di
-                      apprendere attraverso la risoluzione di problemi reali.
+                      apprendere attraverso la risoluzione di problemi reali. */}
                       <br />
                       <br />
-                      Per me, il lavoro di squadra è fondamentale. L'ho
-                      sperimentato anche nei miei lavori passati e credo che,
+                      Per me, il lavoro di squadra è fondamentale e credo che,
                       collaborandom si possa raggiungere il massimo potenziale
                       in un progetto. Sono entusiasta di continuare a crescere
                       professionalmente in questo settore affascinante e
                       dinamico.
                     </p>
                   </div>
-                  <div className="max-w-xl p-8 lg:pt-24 md:pt-12 sm:pt-6">
+                  <div className="max-w-xl p-12 w-[400px] mx-auto">
                     <div className="animated-border rounded-xl">
                       <img
                         src="https://micheletrombone.it/memoji-about-me.png"
@@ -107,7 +107,10 @@ export default function Index() {
                   </span>
                   <div className="h-[1px] bg-slate-600 w-full mt-4 "></div>
                 </h2>
-                <div className=" lista space-y-8  ">
+                <div className="w-full">
+                  <WorkExperience />
+
+                  {/*
                   <section className="box-shadow-section-home rounded-lg">
                     <AnimatedSection>
                       <div className="bg-[#10172A] p-6 rounded-lg  w-full ">
@@ -227,8 +230,8 @@ export default function Index() {
                           </li>
                         </ul>
                       </div>
-                    </AnimatedSection>
-                  </section>
+                    </AnimatedSection>*/}
+                  {/* </section>  */}
                 </div>
               </section>
               <section id="work" className="py-12 ">
