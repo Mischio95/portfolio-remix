@@ -268,6 +268,7 @@ export default function Index() {
                   </motion.div>
                 </div> */}
                 <Footer />
+                {/* commento ciccio bello  */}
               </section>
             </div>
           </>
