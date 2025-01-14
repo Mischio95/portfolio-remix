@@ -307,8 +307,8 @@ export function Nav() {
               >
                 <section className="text-sm">
                   <div>
-                    <Button3D href="https://micheletrombone.it/MicheleTromboneCV.pdf">
-                      Scarica il CV!
+                    <Button3D href="mailto:michele.trombone95@gmail.com">
+                      Richiedi il CV!
                     </Button3D>
                   </div>
                 </section>

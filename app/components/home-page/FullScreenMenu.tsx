@@ -102,8 +102,8 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({
               initial="hidden"
               animate="visible"
             >
-              <Button3D href="https://micheletrombone.it/MicheleTromboneCV.pdf">
-                Scarica il CV!
+              <Button3D href="mailto:michele.trombone95@gmail.com">
+                Richiedi il CV!{" "}
               </Button3D>
             </motion.li>
           </ul>

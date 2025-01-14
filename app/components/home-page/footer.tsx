@@ -28,7 +28,7 @@ export default function Footer() {
           Inviami una mail, e risponderò al più presto.
         </p>
         <div className="text-center pb-6 mb-4">
-          <Button3D href="mailto:michele.trombone@example.com">
+          <Button3D href="mailto:michele.trombone95@gmail.com">
             Inviami un messaggio!
           </Button3D>
           {/* <FluidButton href="mailto:michele.trombone95@gmail.com">
