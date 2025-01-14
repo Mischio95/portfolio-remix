@@ -255,7 +255,7 @@ export default function Index() {
               <div className="justify-center h-[1px] bg-slate-600 w-full mt-4"></div>
               <section id="AnimatedText" className="py-12 "></section>
               <section id="footer" className="py-2 ">
-                <div ref={footerRef} className="w-full">
+                {/* <div ref={footerRef} className="w-full">
                   <motion.div
                     initial={{ y: 100, opacity: 0 }}
                     animate={{
@@ -266,7 +266,8 @@ export default function Index() {
                   >
                     <Footer />
                   </motion.div>
-                </div>
+                </div> */}
+                <Footer />
               </section>
             </div>
           </>
