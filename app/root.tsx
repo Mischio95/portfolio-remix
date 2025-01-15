@@ -1,7 +1,10 @@
 import {
   Links,
   Meta,
+  Navigate,
   Outlet,
+  Route,
+  Routes,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";

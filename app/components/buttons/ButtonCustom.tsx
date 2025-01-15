@@ -5,8 +5,10 @@ interface ButtonFancyProps {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
   disabled?: boolean;
-
-  type?: "button" | "submit" | "reset"; // Tipo del bottone
+  className?: string;
+  name?: string;
+  value?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const ButtonCustom: React.FC<ButtonFancyProps> = ({
@@ -14,10 +16,12 @@ const ButtonCustom: React.FC<ButtonFancyProps> = ({
   onClick,
   children,
   disabled,
+  className = "",
+  name,
+  value,
   type = "button",
 }) => {
-  const commonClasses =
-    "relative inline-block px-6 py-3 font-semibold text-white bg-[#111f43] rounded-lg shadow-lg transition transform hover:scale-105 hover:bg-[#111f43] ";
+  const commonClasses = `relative inline-block px-6 py-3 font-semibold text-white bg-[#111f43] rounded-lg shadow-lg transition transform hover:scale-105 hover:bg-[#111f43] ${className}`;
 
   return (
     <div className="inline-block">
@@ -31,6 +35,8 @@ const ButtonCustom: React.FC<ButtonFancyProps> = ({
           onClick={onClick}
           className={commonClasses}
           disabled={disabled}
+          name={name}
+          value={value}
         >
           <span className="relative z-10">{children}</span>
         </button>

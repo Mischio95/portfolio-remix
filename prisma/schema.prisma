@@ -109,3 +109,15 @@ model ExpenseItem {
   preventivoId Int
   preventivo   Preventivo @relation(fields: [preventivoId], references: [id], onDelete: Cascade)
 }
+
+model Spese {
+  id                    Int      @id @default(autoincrement())
+  name                  String
+  amount                Float
+  reimbursement         Boolean  @default(false)
+  reimbursementAmount   Float? // Aggiungi questo campo
+  reimbursementReceived Boolean  @default(false)
+  date                  DateTime
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}

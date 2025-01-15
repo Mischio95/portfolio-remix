@@ -1,13 +1,24 @@
-import { Link, useLoaderData, redirect } from "@remix-run/react";
+import { Link, useLoaderData, redirect, useNavigate } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import { motion } from "framer-motion";
 import { LoaderFunction, json } from "@remix-run/node"; // LoaderFunction da usare nel server
 import { useState, useEffect } from "react";
 import ButtonCustom from "~/components/buttons/ButtonCustom";
+import Modal from "~/components/modali/spese/modale";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "~/components/ui/input";
 
 type LoaderData = {
   someData?: boolean; // Aggiungi una proprietà per i dati che vuoi caricare
 };
+// Definizione dello schema Zod
+const pinSchema = z.object({
+  pin: z.string().min(4, "Il PIN deve avere almeno 4 cifre"),
+});
+
+type PinForm = z.infer<typeof pinSchema>;
 
 // Loader per caricare i dati e gestire l'accesso
 export const loader: LoaderFunction = async ({ request }) => {
@@ -83,8 +94,32 @@ export default function Dashboard() {
       setIsLoading(false);
     }
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<PinForm>({
+    resolver: zodResolver(pinSchema),
+  });
+
+  const onSubmit = (data: PinForm) => {
+    const correctPin = "040360"; // Sostituisci con il PIN corretto
+    if (data.pin === correctPin) {
+      setIsModalOpen(false);
+      reset();
+      navigate("/spese-personali-index");
+    } else {
+      alert("PIN errato. Riprova.");
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4 top-20">
       {/* <AppSidebar /> */}
       {/* Mostra solo l'animazione se i dati sono stati caricati */}
       {isDataLoaded ? (
@@ -103,7 +138,7 @@ export default function Dashboard() {
         </div>
       )}
       <motion.h1
-        className="text-2xl  mb-10 text-[#111f43]"
+        className="text-2xl  mb-2 text-[#111f43]"
         initial={{ opacity: -50, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -111,7 +146,7 @@ export default function Dashboard() {
         Sezione Business Plan
       </motion.h1>
       {/* Contenuto della Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
         <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
@@ -121,7 +156,7 @@ export default function Dashboard() {
         >
           <div>
             <h2 className="text-2xl font-semibold text-[#111f43]">Fornitori</h2>
-            <p className="text-gray-500">Gestisci la tua lista di fornitori.</p>
+            {/* <p className="text-gray-500">Gestisci la tua lista di fornitori.</p> */}
           </div>
           <Link to="/fornitori">
             <ButtonCustom>Vai</ButtonCustom>
@@ -139,9 +174,9 @@ export default function Dashboard() {
             <h2 className="text-2xl font-semibold text-[#111f43]">
               Piano di Investimento
             </h2>
-            <p className="text-gray-500">
+            {/* <p className="text-gray-500">
               Visualizza e modifica il piano di investimento.
-            </p>
+            </p> */}
           </div>
           <Link to="/piano-investimento">
             <ButtonCustom>Vai</ButtonCustom>
@@ -159,14 +194,14 @@ export default function Dashboard() {
             <h2 className="text-2xl font-semibold text-[#111f43]">
               Lista Competitor
             </h2>
-            <p className="text-gray-500">Inserire reference</p>
+            {/* <p className="text-gray-500">Inserire reference</p> */}
           </div>
           <Link to="/lista-competitor">
             <ButtonCustom>Vai</ButtonCustom>
           </Link>
         </motion.div>
         {/* Collegamento a Analisi di Mercato */}
-        <motion.div
+        {/* <motion.div
           className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-between"
           initial={{ opacity: 0 }}
           animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
@@ -182,7 +217,7 @@ export default function Dashboard() {
           <Link to="/analisi-mercato">
             <ButtonCustom>Vai</ButtonCustom>
           </Link>
-        </motion.div>
+        </motion.div> */}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full max-w-4xl mt-6">
         <motion.div
@@ -218,13 +253,16 @@ export default function Dashboard() {
           </p>
         </div>
       )}
+
       <motion.h1
-        className="text-2xl  pt-10 mb-10 text-[#111f43]"
+        className="text-2xl mb-2 pt-4 text-[#111f43]"
         initial={{ opacity: -50, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        Sezione Preventivi
+        {/* Divider Blu Aggiunto */}
+        <div className="border-t-2 w-[400px] justify-center border-[#111f43] my-4"></div>
+        <p className="text-center">Sezione Preventivi</p>
       </motion.h1>
       <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full max-w-4xl mt-0 mb-5">
         <motion.div
@@ -245,6 +283,57 @@ export default function Dashboard() {
           </Link>
         </motion.div>
       </div>
+      <motion.h1
+        className="text-2xl mb-2 text-[#111f43]"
+        initial={{ opacity: -50, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Divider Blu Aggiunto */}
+        <div className="border-t-2 w-[400px] justify-center border-[#111f43] my-4"></div>
+        <p className="text-center">Sezione Spese Personali</p>
+      </motion.h1>
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full max-w-4xl mt-0 mb-5">
+        <motion.div
+          className="bg-white w-full p-6 rounded-lg shadow-lg flex items-center justify-between"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isDataLoaded ? 1 : 0 }} // Animazione che dipende dai dati caricati
+          transition={{ duration: 0.2 }}
+          whileHover={{ scale: 1.03 }}
+        >
+          <div>
+            <h2 className="text-2xl font-semibold text-[#111f43]">
+              Gestione Spese
+            </h2>
+          </div>
+          <ButtonCustom onClick={() => setIsModalOpen(true)}>Vai</ButtonCustom>
+        </motion.div>
+      </div>
+      {/* Modal */}
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <h2 className="text-xl mb-4 text-center text-[#111f43]">
+            Inserisci il PIN
+          </h2>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col items-center"
+          >
+            <Input
+              type="password"
+              {...register("pin")}
+              className="mb-2 p-2 border border-gray-300 rounded text-[#111f43]"
+              placeholder="Inserisci il PIN"
+            />
+            {errors.pin && (
+              <span className="text-red-500 text-sm">{errors.pin.message}</span>
+            )}
+            <ButtonCustom type="submit" className="mt-4">
+              Conferma
+            </ButtonCustom>
+          </form>
+        </Modal>
+      )}
     </div>
   );
 }
