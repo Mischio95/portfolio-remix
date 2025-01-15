@@ -36,7 +36,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 export const action: ActionFunction = async ({ request, params }) => {
   const id = Number(params.id);
   if (isNaN(id)) {
-    return redirect("/spese");
+    return redirect("/spese-personali-index");
   }
 
   const formData = await request.formData();
@@ -44,14 +44,14 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   if (_action === "delete") {
     await deleteSpesa(id);
-    return redirect("/spese");
+    return redirect("/spese-personali-index");
   }
 
   if (_action === "emesso") {
     await updateSpesa(id, {
       reimbursementReceived: true,
     });
-    return redirect("/spese");
+    return redirect("/spese-personali-index");
   }
 
   const name = formData.get("name");
@@ -71,7 +71,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     date: new Date(String(date)),
   });
 
-  return redirect("/spese");
+  return redirect("/spese-personali-index");
 };
 
 export default function SpesaDetail() {

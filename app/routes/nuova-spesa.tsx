@@ -58,7 +58,7 @@ export const action: ActionFunction = async ({ request }) => {
     date: new Date(result.data.date),
   });
 
-  return redirect("/spese");
+  return redirect("/spese-personali-index");
 };
 
 export default function NewSpesa() {
