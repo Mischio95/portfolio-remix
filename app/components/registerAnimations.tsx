@@ -161,5 +161,5 @@ export function RegisterAnimations() {
     }
   }, []);
 
-  return null; // Non renderizza nulla
+  return null;
 }
