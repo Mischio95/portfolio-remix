@@ -265,7 +265,13 @@ body {
   animation: rotate 3s linear infinite;
   opacity: 0.9;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
 
+input[type="date"]::-webkit-inner-spin-button {
+  filter: invert(1);
+}
 .animated-border::after {
   filter: blur(0.4rem); /* Blur ridotto */
 }
